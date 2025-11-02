@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pumpki - Your Breathing Buddy</title>
+    <meta name="theme-color" content="#d87449">
+    <meta name="description" content="Beautiful, neurodivergent-friendly companion for breathing exercises and self-regulation with cute brain science tips. Now with extra-gentle hold sounds for sensitive ears.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Burnt Orange Ember Design System - Inspired by Daily Compass */
+        :root {
+            /* Primary Burnt Orange Palette */
+            --primary-orange: #d87449;
+            --primary-orange-light: #e88b5d;
+            --primary-orange-dark: #bf5830;
+            --warm-amber: #e8a870;
+            --deep-terracotta: #c85a3a;
+            
+            /* Background Colors */
+            --bg-primary: #1a110c;
+            --bg-secondary: rgba(45, 30, 20, 0.95);
+            --bg-tertiary: rgba(230, 140, 90, 0.08);
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --bg-elevated: rgba(255, 255, 255, 0.08);
+            --bg-gradient-start: #2d1f16;
+            --bg-gradient-end: #1a110c;
+            
+            /* Warm Earthy Accents */
+            --sage-green: #7a8f65;
+            --sage-green-light: #8fa576;
+            --calm-blue: #7a8f9d;
+            --soft-purple: #a88d9e;
+            --warm-yellow: #d8b870;
+            --coral-pink: #d87060;
+            
+            /* Text Colors */
+            --text-primary: #f5e6d8;
+            --text-secondary: #e0c4ad;
+            --text-tertiary: #b89a7d;
+            
+            /* Status Colors */
+            --success: #8fad6f;
+            --warning: #d89850;
+            --error: #c85a3a;
+            
+            /* Borders */
+            --border-color: #4d3426;
+            
+            /* Spacing & Layout */
+            --border-radius: 24px;
+            --border-radius-small: 16px;
+            --border-radius-large: 32px;
+            
+            /* Shadows - Warm undertones */
+            --shadow-soft: 0 8px 32px rgba(45, 30, 20, 0.4);
+            --shadow-medium: 0 12px 48px rgba(45, 30, 20, 0.5);
+            --shadow-strong: 0 20px 64px rgba(45, 30, 20, 0.6);
+            --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+            
+            /* Glass Effect */
+            --glass-border: 1px solid rgba(245, 230, 216, 0.1);
+            --glass-backdrop: blur(16px);
+            
+            /* Transitions */
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-quick: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: radial-gradient(circle at 50% 50%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            touch-action: manipulation;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        body.high-contrast {
+            --bg-primary: #000000;
+            --bg-gradient-start: #1a1a1a;
+            --bg-gradient-end: #000000;
+            --text-primary: #ffffff;
+            --primary-orange: #ff6b3d;
+        }
+
+        .hidden { display: none; }
+
+        /* Main Layout */
+        #main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            width: 100%;
+        }
+
+        /* Header Design */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0 40px 0;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        /* Glassmorphism Controls */
+        .accessibility-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-secondary);
+            backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-soft);
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: var(--border-radius-small);
+            transition: var(--transition-smooth);
+            color: var(--text-primary);
+            backdrop-filter: blur(8px);
+        }
+
+        .control-btn:hover, .control-btn:focus {
+            background: rgba(216, 116, 73, 0.2);
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(216, 116, 73, 0.3);
+            outline: none;
+        }
+
+        .control-btn.active {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            border-color: var(--primary-orange-dark);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Modern Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            backdrop-filter: var(--glass-backdrop);
+            border: 2px solid var(--primary-orange);
+            border-radius: var(--border-radius-large);
+            padding: 8px;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-soft);
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 120px;
+            padding: 16px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            color: var(--text-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(216, 116, 73, 0.2), transparent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: rgba(216, 116, 73, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Emergency tab special styling */
+        .nav-tab[data-tab="emergency"] {
+            background: linear-gradient(135deg, var(--error) 0%, #d66850 100%);
+            color: var(--text-primary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 90, 58, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(200, 90, 58, 0); }
+        }
+
+        /* Elevated Card Design */
+        .tab-content {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-backdrop);
+            border: var(--glass-border);
+            border-radius: var(--border-radius-large);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow), var(--sage-green), var(--calm-blue));
+        }
+
+        /* Arousal State Check - Beautiful Design */
+        .arousal-check {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .arousal-check h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            letter-spacing: -0.3px;
+        }
+
+        .arousal-scale {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--primary-orange);
+            padding: 24px;
+            border-radius: var(--border-radius-large);
+            margin: 20px 0;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .arousal-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 20px 16px;
+            border-radius: var(--border-radius);
+            transition: var(--transition-bounce);
+            min-width: 90px;
+            text-align: center;
+            border: 2px solid transparent;
+            background: var(--bg-tertiary);
+            backdrop-filter: blur(8px);
+        }
+
+        .arousal-option:hover {
+            background: rgba(216, 116, 73, 0.2);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--border-color);
+        }
+
+        .arousal-option.selected {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            border-color: var(--primary-orange-dark);
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .arousal-emoji {
+            font-size: 36px;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
+        }
+
+        .arousal-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        /* Canvas Container */
+        .canvas-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px 0;
+            min-height: 450px;
+            position: relative;
+        }
+
+        #pumpki-canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-strong);
+            background: linear-gradient(135deg, rgba(45, 30, 20, 0.3) 0%, rgba(26, 17, 12, 0.5) 100%);
+            border: 2px solid var(--border-color);
+        }
+
+        /* Breathing Controls */
+        .breathing-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .breathing-timer {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(16px);
+            border: var(--glass-border);
+            padding: 32px 48px;
+            border-radius: var(--border-radius-large);
+            text-align: center;
+            min-width: 300px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breathing-timer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow));
+        }
+
+        .breathing-phase {
+            font-size: 20px;
+            margin-bottom: 16px;
+            min-height: 28px;
+            color: var(--primary-orange);
+            letter-spacing: -0.3px;
+        }
+
+        #timer-display {
+            font-size: 42px;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Breathing Pattern Cards */
+        .breathing-patterns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .breathing-pattern {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 32px 24px;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .breathing-pattern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-green), var(--calm-blue));
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
+        }
+
+        .breathing-pattern:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .breathing-pattern:hover::before {
+            transform: scaleX(1);
+        }
+
+        .breathing-pattern.active {
+            border-color: var(--primary-orange);
+            background: linear-gradient(135deg, rgba(216, 116, 73, 0.15) 0%, rgba(232, 139, 93, 0.1) 100%);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .breathing-pattern.active::before {
+            transform: scaleX(1);
+            background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-light));
+        }
+
+        .breathing-pattern h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-orange);
+            margin-bottom: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .breathing-pattern p {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .breathing-pattern small {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Modern Button System */
+        .primary-btn, .secondary-btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            min-width: 180px;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-btn::before, .secondary-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-smooth);
+        }
+
+        .primary-btn:hover::before, .secondary-btn:hover::before {
+            left: 100%;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-medium);
+            border: 2px solid var(--primary-orange-dark);
+        }
+
+        .primary-btn:hover, .primary-btn:focus {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .primary-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .secondary-btn {
+            background: linear-gradient(135deg, var(--sage-green) 0%, var(--sage-green-light) 100%);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--sage-green);
+        }
+
+        .secondary-btn:hover, .secondary-btn:focus {
+            background: linear-gradient(135deg, #6d7e58 0%, var(--sage-green) 100%);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Body Scan Enhancements */
+        .body-scan-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .body-outline-container {
+            position: relative;
+            max-width: 280px;
+            margin: 0 auto;
+            padding: 24px;
+            background: var(--bg-elevated);
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-soft);
+            border: var(--glass-border);
+        }
+
+        .body-part {
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            stroke-width: 2;
+            stroke: var(--text-secondary);
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .body-part:hover {
+            stroke-width: 4;
+            transform: scale(1.05);
+        }
+
+        .body-part.comfortable { 
+            fill: var(--success);
+            stroke: #7a9860;
+        }
+        .body-part.tense { 
+            fill: var(--error);
+            stroke: #b04a2f;
+        }
+        .body-part.neutral { 
+            fill: var(--calm-blue);
+            stroke: #687e8a;
+        }
+        .body-part.active { 
+            stroke: var(--primary-orange);
+            stroke-width: 6;
+            filter: drop-shadow(0 4px 8px rgba(216, 116, 73, 0.5));
+        }
+
+        .body-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(8px);
+            padding: 16px 20px;
+            border-radius: var(--border-radius);
+            border: var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Enhanced sensation tags */
+        .sensations-tracker {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            margin: 20px 0;
+            text-align: center;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .sensations-tracker h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .sensation-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .sensation-tag {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--border-color);
+            padding: 12px 18px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-size: 15px;
+            font-weight: 500;
+            user-select: none;
+            color: var(--text-secondary);
+        }
+
+        .sensation-tag:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-medium);
+            color: var(--text-primary);
+        }
+
+        .sensation-tag.selected {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            border-color: var(--primary-orange-dark);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Statistics Cards */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+            padding: 32px 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-orange), var(--sage-green));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        /* Emergency Mode */
+        .emergency-mode {
+            background: linear-gradient(135deg, var(--error) 0%, #d66850 100%);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 48px 32px;
+            border-radius: var(--border-radius-large);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-strong);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-mode::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #d66850, var(--error), #d66850, var(--error));
+            border-radius: var(--border-radius-large);
+            z-index: -1;
+            animation: emergency-glow 3s linear infinite;
+        }
+
+        @keyframes emergency-glow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .emergency-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            letter-spacing: -0.5px;
+        }
+
+        .emergency-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--primary-orange);
+            border-radius: var(--border-radius-large);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .emergency-btn {
+            background: rgba(245, 230, 216, 0.95);
+            color: var(--error);
+            border: none;
+            padding: 18px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition-bounce);
+            backdrop-filter: blur(8px);
+        }
+
+        .emergency-btn:hover {
+            background: var(--text-primary);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* History components */
+        .mood-chart-container {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: 2px solid var(--primary-orange);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .mood-chart {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .mood-day {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 12px;
+            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            min-width: 70px;
+            transition: var(--transition-smooth);
+            border: var(--glass-border);
+        }
+
+        .mood-day:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .mood-emoji {
+            font-size: 28px;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
+        }
+
+        .mood-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Neuroscience Tips */
+        .brain-tip {
+            background: linear-gradient(135deg, rgba(168, 141, 158, 0.2) 0%, rgba(168, 141, 158, 0.1) 100%);
+            border: 2px solid var(--primary-orange);
+            border-radius: var(--border-radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .brain-tip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--soft-purple), var(--calm-blue));
+        }
+
+        .brain-tip-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .brain-tip-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
+        }
+
+        .brain-tip-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-orange);
+            margin: 0;
+            letter-spacing: -0.3px;
+        }
+
+        .brain-tip-content {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .brain-tip.mini {
+            padding: 16px 20px;
+            margin: 16px 0;
+            background: linear-gradient(135deg, rgba(168, 141, 158, 0.15) 0%, rgba(168, 141, 158, 0.05) 100%);
+            border-width: 1px;
+        }
+
+        .brain-tip.mini .brain-tip-icon {
+            font-size: 20px;
+        }
+
+        .brain-tip.mini .brain-tip-title {
+            font-size: 16px;
+        }
+
+        .brain-tip.mini .brain-tip-content {
+            font-size: 14px;
+        }
+
+        /* Fun fact bubbles */
+        .fun-fact {
+            background: linear-gradient(135deg, var(--warm-yellow) 0%, #debb6a 100%);
+            border: 2px solid rgba(216, 184, 112, 0.3);
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .fun-fact::before {
+            content: '💡';
+            position: absolute;
+            left: -8px;
+            top: -8px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--primary-orange);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        /* Entry Management Styles */
+        .recent-entries {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .entries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .entry-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 18px;
+            border: 2px solid transparent;
+            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition-bounce);
+            color: var(--text-primary);
+            backdrop-filter: blur(8px);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-orange);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(216, 116, 73, 0.3);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            color: var(--bg-primary);
+            border-color: var(--primary-orange-dark);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .entries-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .entry-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 12px;
+            background: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-orange);
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(8px);
+        }
+
+        .entry-item:hover {
+            background: var(--bg-elevated);
+            transform: translateX(8px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .entry-content {
+            flex: 1;
+        }
+
+        .entry-type {
+            font-size: 20px;
+            margin-right: 12px;
+            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
+        }
+
+        .entry-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .entry-details {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .entry-time {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            text-align: right;
+            min-width: 100px;
+            font-weight: 500;
+        }
+
+        .entry-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 16px;
+        }
+
+        .entry-action-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-small);
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: var(--transition-bounce);
+            backdrop-filter: blur(4px);
+            color: var(--text-secondary);
+        }
+
+        .entry-action-btn:hover {
+            background: var(--primary-orange);
+            color: var(--bg-primary);
+            border-color: var(--primary-orange-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-emoji {
+            font-size: 64px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 12px rgba(216, 116, 73, 0.3));
+        }
+
+        /* Guided scan progress */
+        .guided-scan-area {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(12px);
+            border: var(--glass-border);
+            padding: 32px;
+            border-radius: var(--border-radius-large);
+            text-align: center;
+            margin: 24px 0;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .scan-progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            margin-bottom: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-inset);
+        }
+
+        .scan-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow));
+            border-radius: 6px;
+            transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 0%;
+        }
+
+        .scan-instruction {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin: 24px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            #main-content {
+                padding: 24px 16px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                min-width: 100%;
+            }
+
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .accessibility-controls {
+                justify-content: center;
+            }
+
+            .breathing-patterns {
+                grid-template-columns: 1fr;
+            }
+
+            .arousal-scale {
+                gap: 12px;
+            }
+
+            .arousal-option {
+                min-width: 75px;
+                padding: 16px 12px;
+            }
+
+            .tab-content {
+                padding: 24px 20px;
+            }
+
+            .stats-overview {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 16px;
+            }
+
+            .emergency-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Manual reduced motion toggle */
+        .reduced-motion *, 
+        .reduced-motion *::before, 
+        .reduced-motion *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            transform: none !important;
+        }
+
+        .reduced-motion .control-btn:hover,
+        .reduced-motion .control-btn:focus {
+            transform: none !important;
+        }
+
+        .reduced-motion .nav-tab:hover:not(.active) {
+            transform: none !important;
+        }
+
+        .reduced-motion .nav-tab.active {
+            transform: none !important;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-orange);
+        }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <!-- Header -->
+        <div class="app-header">
+            <h1 class="title">🎃 Pumpki</h1>
+            <div class="accessibility-controls">
+                <button class="control-btn" id="high-contrast-btn">High Contrast</button>
+                <button class="control-btn" id="reduced-motion-btn">Reduce Motion</button>
+                <button class="control-btn active" id="audio-toggle-btn">🔊 Audio</button>
+            </div>
+        </div>
+
+        <!-- Arousal State Check (always visible) -->
+        <div class="arousal-check">
+            <h3>How are you feeling right now?</h3>
+            <div class="arousal-scale" id="arousal-scale">
+                <div class="arousal-option" data-state="very-low">
+                    <div class="arousal-emoji">😴</div>
+                    <div class="arousal-label">Very Calm</div>
+                </div>
+                <div class="arousal-option" data-state="low">
+                    <div class="arousal-emoji">😌</div>
+                    <div class="arousal-label">Calm</div>
+                </div>
+                <div class="arousal-option" data-state="medium">
+                    <div class="arousal-emoji">😊</div>
+                    <div class="arousal-label">Just Right</div>
+                </div>
+                <div class="arousal-option" data-state="high">
+                    <div class="arousal-emoji">😮</div>
+                    <div class="arousal-label">Energized</div>
+                </div>
+                <div class="arousal-option" data-state="very-high">
+                    <div class="arousal-emoji">😰</div>
+                    <div class="arousal-label">Overwhelmed</div>
+                </div>
+            </div>
+            
+            <div class="fun-fact">
+                <strong>Brain Tip:</strong> Your prefrontal cortex (the smart part behind your forehead) is like your brain's wise CEO - it helps you notice and name your feelings!
+            </div>
+        </div>
+
+        <!-- Navigation tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="breathing">🫁 Breathing</button>
+            <button class="nav-tab" data-tab="body-scan">🧘 Body Check</button>
+            <button class="nav-tab" data-tab="history">📊 My Progress</button>
+            <button class="nav-tab" data-tab="emergency" style="background: linear-gradient(135deg, var(--error) 0%, #d66850 100%); color: var(--text-primary);">🚨 Need Help Now</button>
+        </div>
+
+        <!-- Breathing tab -->
+        <div class="tab-content" id="breathing-tab">
+            <div class="canvas-container">
+                <canvas id="pumpki-canvas" width="400" height="400"></canvas>
+            </div>
+            
+            <div class="breathing-controls">
+                <div class="breathing-timer" id="breathing-timer">
+                    <div class="breathing-phase" id="breathing-phase">Choose a breathing pattern below</div>
+                    <div id="timer-display">Ready</div>
+                </div>
+                
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                    <button class="primary-btn" id="start-breathing-btn">Start Breathing</button>
+                    <button class="secondary-btn" id="stop-breathing-btn">Stop</button>
+                </div>
+
+                <div class="breathing-patterns">
+                    <div class="breathing-pattern active" data-pattern="box">
+                        <h4>🟫 Box Breathing</h4>
+                        <p><strong>4-4-4-4</strong></p>
+                        <small>In 4, Hold 4, Out 4, Hold 4<br>Best for: Balance & Focus</small>
+                    </div>
+                    <div class="breathing-pattern" data-pattern="calm">
+                        <h4>🌊 Calming Breath</h4>
+                        <p><strong>4-6</strong></p>
+                        <small>In 4, Out 6<br>Best for: Anxiety & Overwhelm</small>
+                    </div>
+                    <div class="breathing-pattern" data-pattern="energy">
+                        <h4>⚡ Energizing Breath</h4>
+                        <p><strong>6-4</strong></p>
+                        <small>In 6, Out 4<br>Best for: Low Energy</small>
+                    </div>
+                </div>
+
+                <div class="brain-tip">
+                    <div class="brain-tip-header">
+                        <div class="brain-tip-icon">🧠</div>
+                        <h4 class="brain-tip-title">Cool Brain Fact!</h4>
+                    </div>
+                    <div class="brain-tip-content">
+                        When you breathe slowly, you're actually sending a "chill out" message to your amygdala (your brain's alarm system)! Your vagus nerve is like a superhighway that carries calm signals from your breathing muscles to your brain. Pretty awesome, right?
+                    </div>
+                </div>
+
+                <div class="fun-fact">
+                    <strong>Audio Tip:</strong> Sound waves help your brain sync with your breathing! The gentle tones guide your nervous system into a calm rhythm. 🎵
+                </div>
+            </div>
+        </div>
+
+        <!-- Body scan tab -->
+        <div class="tab-content hidden" id="body-scan-tab">
+            <div class="body-scan-container">
+                <h3>Body Check-In</h3>
+                <p id="body-scan-instruction">Tap different parts of your body to show how they feel, or try a guided body scan:</p>
+                
+                <div style="display: flex; gap: 16px; justify-content: center; margin: 24px 0; flex-wrap: wrap;">
+                    <button class="secondary-btn" id="guided-scan-btn">🧘 Guided Body Scan</button>
+                    <button class="secondary-btn" id="quick-check-btn">⚡ Quick Check</button>
+                    <button class="secondary-btn" id="body-scan-reset">🔄 Reset</button>
+                </div>
+                
+                <div class="body-outline-container">
+                    <svg class="body-outline" viewBox="0 0 200 350" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Simple body outline -->
+                        <ellipse class="body-part neutral" data-part="head" cx="100" cy="40" rx="25" ry="30" />
+                        <rect class="body-part neutral" data-part="neck" x="90" y="65" width="20" height="15" rx="5" />
+                        <ellipse class="body-part neutral" data-part="chest" cx="100" cy="120" rx="35" ry="25" />
+                        <ellipse class="body-part neutral" data-part="stomach" cx="100" cy="160" rx="30" ry="20" />
+                        <rect class="body-part neutral" data-part="left-arm" x="55" y="90" width="12" height="50" rx="6" />
+                        <rect class="body-part neutral" data-part="right-arm" x="133" y="90" width="12" height="50" rx="6" />
+                        <rect class="body-part neutral" data-part="left-leg" x="80" y="185" width="15" height="70" rx="7" />
+                        <rect class="body-part neutral" data-part="right-leg" x="105" y="185" width="15" height="70" rx="7" />
+                        <ellipse class="body-part neutral" data-part="left-foot" cx="87" cy="275" rx="12" ry="8" />
+                        <ellipse class="body-part neutral" data-part="right-foot" cx="113" cy="275" rx="12" ry="8" />
+                    </svg>
+                </div>
+
+                <div class="body-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--success);"></div>
+                        <span>Comfortable/Relaxed</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--calm-blue);"></div>
+                        <span>Neutral/Normal</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--error);"></div>
+                        <span>Tense/Uncomfortable</span>
+                    </div>
+                </div>
+
+                <!-- Guided scan progress -->
+                <div class="guided-scan-area hidden" id="guided-scan-area">
+                    <div class="scan-progress-bar">
+                        <div class="scan-progress-fill" id="scan-progress-fill"></div>
+                    </div>
+                    <div class="scan-instruction" id="current-scan-instruction">
+                        Focus on your head. Notice any tension, warmth, or other feelings.
+                    </div>
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <button class="primary-btn" id="scan-next-btn">Next Area</button>
+                        <button class="secondary-btn" id="scan-stop-btn">Stop Scan</button>
+                    </div>
+                </div>
+
+                <!-- Body sensations tracker -->
+                <div class="sensations-tracker" id="sensations-tracker">
+                    <h4>What are you noticing in your body?</h4>
+                    <div class="sensation-options">
+                        <div class="sensation-tag" data-sensation="warm">🔥 Warm</div>
+                        <div class="sensation-tag" data-sensation="cool">❄️ Cool</div>
+                        <div class="sensation-tag" data-sensation="tight">😬 Tight</div>
+                        <div class="sensation-tag" data-sensation="relaxed">😌 Relaxed</div>
+                        <div class="sensation-tag" data-sensation="tingly">✨ Tingly</div>
+                        <div class="sensation-tag" data-sensation="heavy">⬇️ Heavy</div>
+                        <div class="sensation-tag" data-sensation="light">🎈 Light</div>
+                        <div class="sensation-tag" data-sensation="buzzy">⚡ Buzzy</div>
+                        <div class="sensation-tag" data-sensation="achy">😣 Achy</div>
+                        <div class="sensation-tag" data-sensation="energized">🌟 Energized</div>
+                    </div>
+                </div>
+
+                <div class="brain-tip mini">
+                    <div class="brain-tip-header">
+                        <div class="brain-tip-icon">🌟</div>
+                        <h4 class="brain-tip-title">Body-Brain Connection</h4>
+                    </div>
+                    <div class="brain-tip-content">
+                        Your brain has special sensors called "interoceptors" that are like tiny detectives, constantly reporting what's happening inside your body! When you practice noticing these feelings, you're training your "interoceptive network" to be super smart about your needs.
+                    </div>
+                </div>
+
+                <!-- Body scan results -->
+                <div class="tab-content hidden" id="scan-results">
+                    <h4>Your Body Check Summary:</h4>
+                    <div class="results-content" id="results-content">
+                        <!-- Results will be populated here -->
+                    </div>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button class="primary-btn" id="save-body-check">Save This Check-in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History/Progress tab -->
+        <div class="tab-content hidden" id="history-tab">
+            <h3 style="text-align: center; margin-bottom: 32px;">📊 My Regulation Journey</h3>
+            
+            <!-- Quick stats -->
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-sessions">0</div>
+                    <div class="stat-label">Breathing Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-body-checks">0</div>
+                    <div class="stat-label">Body Check-ins</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="current-streak">0</div>
+                    <div class="stat-label">Day Streak</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="total-minutes-practiced">0</div>
+                    <div class="stat-label">Minutes Practiced</div>
+                </div>
+            </div>
+
+            <!-- Weekly mood chart -->
+            <div class="mood-chart-container">
+                <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary);">This Week's Feelings</h4>
+                <div class="mood-chart" id="weekly-mood-chart">
+                    <!-- Will be populated with mood data -->
+                </div>
+            </div>
+
+            <div class="brain-tip">
+                <div class="brain-tip-header">
+                    <div class="brain-tip-icon">🌱</div>
+                    <h4 class="brain-tip-title">Your Brain is Always Growing!</h4>
+                </div>
+                <div class="brain-tip-content">
+                    Every time you practice breathing or body scans, you're literally rewiring your brain! Scientists call this "neuroplasticity" - it means your brain can create new pathways like building new roads. The more you practice, the stronger these calm-down highways become!
+                </div>
+            </div>
+
+            <div class="fun-fact">
+                <strong>Fun Fact:</strong> Your brain makes about 700 new connections every second when you're learning something new!
+            </div>
+
+            <!-- Recent entries -->
+            <div class="recent-entries">
+                <div class="entries-header">
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin: 0;">Recent Entries</h4>
+                    <div class="entry-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="breathing">Breathing</button>
+                        <button class="filter-btn" data-filter="body-check">Body Checks</button>
+                        <button class="filter-btn" data-filter="mood">Mood</button>
+                    </div>
+                </div>
+                <div class="entries-list" id="entries-list">
+                    <!-- Entries will be populated here -->
+                </div>
+            </div>
+
+            <!-- Data management -->
+            <div style="background: var(--bg-elevated); backdrop-filter: blur(12px); border: var(--glass-border); padding: 32px; border-radius: var(--border-radius-large); text-align: center; box-shadow: var(--shadow-soft);">
+                <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px;">Manage Your Data</h4>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+                    <button class="secondary-btn" id="export-data-btn">Export Data</button>
+                    <button class="secondary-btn" id="import-data-btn">Import Data</button>
+                    <button class="secondary-btn" id="clear-old-data-btn">Clear Old Data</button>
+                </div>
+                <input type="file" id="import-file-input" accept=".json" style="display: none;">
+                <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">
+                    Export your data to save a backup file, or import to restore from a previous backup.
+                </p>
+            </div>
+        </div>
+
+        <!-- Emergency tab -->
+        <div class="tab-content hidden" id="emergency-tab">
+            <div class="emergency-mode">
+                <div class="emergency-title">🚨 Need Help Right Now?</div>
+                <p style="font-size: 18px; margin-bottom: 24px; opacity: 0.9;">Let's get you feeling safer. Try one of these:</p>
+                
+                <div class="emergency-actions">
+                    <button class="emergency-btn" id="emergency-breathing">Start Crisis Breathing</button>
+                    <button class="emergency-btn" id="grounding-54321">5-4-3-2-1 Grounding</button>
+                    <button class="emergency-btn" id="cold-water">Cold Water Technique</button>
+                    <button class="emergency-btn" id="safe-place">Find Safe Space</button>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-elevated); backdrop-filter: blur(12px); border: var(--glass-border); padding: 32px; border-radius: var(--border-radius-large); box-shadow: var(--shadow-soft);">
+                <h4 style="color: var(--text-primary); margin-bottom: 20px; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600;">Remember:</h4>
+                <ul style="text-align: left; color: var(--text-primary); line-height: 1.8; list-style: none; padding-left: 0;">
+                    <li style="margin-bottom: 12px;">🌟 This feeling will pass</li>
+                    <li style="margin-bottom: 12px;">🛡️ You are safe right now</li>
+                    <li style="margin-bottom: 12px;">🧰 You have tools to help yourself</li>
+                    <li>🤝 It's okay to ask for help from a trusted adult</li>
+                </ul>
+            </div>
+
+            <div class="brain-tip">
+                <div class="brain-tip-header">
+                    <div class="brain-tip-icon">🚨</div>
+                    <h4 class="brain-tip-title">What's Happening in Your Brain</h4>
+                </div>
+                <div class="brain-tip-content">
+                    When you feel overwhelmed, your amygdala (alarm system) is trying to protect you by releasing stress hormones like adrenaline. It's like a smoke detector that's being extra careful! The breathing techniques help tell your brain "false alarm - we're safe" and turn on your parasympathetic nervous system (your body's natural calm-down system).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // IndexedDB Database Manager
+        class PumpkiDB {
+            constructor() {
+                this.dbName = 'PumpkiDB';
+                this.version = 1;
+                this.db = null;
+            }
+
+            async init() {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open(this.dbName, this.version);
+                    
+                    request.onerror = () => reject(request.error);
+                    request.onsuccess = () => {
+                        this.db = request.result;
+                        resolve(this.db);
+                    };
+                    
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        
+                        // Breathing sessions store
+                        if (!db.objectStoreNames.contains('breathingSessions')) {
+                            const breathingStore = db.createObjectStore('breathingSessions', {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            });
+                            breathingStore.createIndex('timestamp', 'timestamp', { unique: false });
+                            breathingStore.createIndex('date', 'date', { unique: false });
+                        }
+                        
+                        // Body check-ins store
+                        if (!db.objectStoreNames.contains('bodyCheckIns')) {
+                            const bodyStore = db.createObjectStore('bodyCheckIns', {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            });
+                            bodyStore.createIndex('timestamp', 'timestamp', { unique: false });
+                            bodyStore.createIndex('date', 'date', { unique: false });
+                        }
+                        
+                        // Mood entries store
+                        if (!db.objectStoreNames.contains('moodEntries')) {
+                            const moodStore = db.createObjectStore('moodEntries', {
+                                keyPath: 'id',
+                                autoIncrement: true
+                            });
+                            moodStore.createIndex('timestamp', 'timestamp', { unique: false });
+                            moodStore.createIndex('date', 'date', { unique: false });
+                        }
+                    };
+                });
+            }
+
+            async saveBreathingSession(data) {
+                const transaction = this.db.transaction(['breathingSessions'], 'readwrite');
+                const store = transaction.objectStore('breathingSessions');
+                
+                const session = {
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toDateString(),
+                    pattern: data.pattern,
+                    duration: data.duration,
+                    completedCycles: data.completedCycles,
+                    arousalBefore: data.arousalBefore,
+                    arousalAfter: data.arousalAfter
+                };
+                
+                return store.add(session);
+            }
+
+            async saveBodyCheckIn(data) {
+                const transaction = this.db.transaction(['bodyCheckIns'], 'readwrite');
+                const store = transaction.objectStore('bodyCheckIns');
+                
+                const checkIn = {
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toDateString(),
+                    bodyStates: data.bodyStates,
+                    sensations: data.sensations,
+                    scanType: data.scanType,
+                    arousalState: data.arousalState
+                };
+                
+                return store.add(checkIn);
+            }
+
+            async saveMoodEntry(data) {
+                const transaction = this.db.transaction(['moodEntries'], 'readwrite');
+                const store = transaction.objectStore('moodEntries');
+                
+                const mood = {
+                    timestamp: new Date().toISOString(),
+                    date: new Date().toDateString(),
+                    arousalState: data.arousalState,
+                    context: data.context || ''
+                };
+                
+                return store.add(mood);
+            }
+
+            async getAllEntries(storeName, limit = null) {
+                const transaction = this.db.transaction([storeName], 'readonly');
+                const store = transaction.objectStore(storeName);
+                const index = store.index('timestamp');
+                
+                return new Promise((resolve, reject) => {
+                    const request = limit ? 
+                        index.getAll(null, limit) : 
+                        index.getAll();
+                    
+                    request.onsuccess = () => resolve(request.result.reverse());
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async getEntriesByDateRange(storeName, startDate, endDate) {
+                const transaction = this.db.transaction([storeName], 'readonly');
+                const store = transaction.objectStore(storeName);
+                const index = store.index('timestamp');
+                
+                const range = IDBKeyRange.bound(startDate.toISOString(), endDate.toISOString());
+                
+                return new Promise((resolve, reject) => {
+                    const request = index.getAll(range);
+                    request.onsuccess = () => resolve(request.result);
+                    request.onerror = () => reject(request.error);
+                });
+            }
+
+            async getRecentEntries(days = 7) {
+                const endDate = new Date();
+                const startDate = new Date();
+                startDate.setDate(startDate.getDate() - days);
+                
+                const [breathing, bodyChecks, moods] = await Promise.all([
+                    this.getEntriesByDateRange('breathingSessions', startDate, endDate),
+                    this.getEntriesByDateRange('bodyCheckIns', startDate, endDate),
+                    this.getEntriesByDateRange('moodEntries', startDate, endDate)
+                ]);
+                
+                return { breathing, bodyChecks, moods };
+            }
+
+            async getStats() {
+                const transaction = this.db.transaction(['breathingSessions', 'bodyCheckIns', 'moodEntries'], 'readonly');
+                
+                const breathing = await this.getAllEntries('breathingSessions');
+                const bodyChecks = await this.getAllEntries('bodyCheckIns');
+                const moods = await this.getAllEntries('moodEntries');
+                
+                const totalMinutes = breathing.reduce((sum, session) => sum + (session.duration || 0), 0);
+                const streak = this.calculateStreak(breathing.concat(bodyChecks).concat(moods));
+                
+                return {
+                    totalSessions: breathing.length,
+                    totalBodyChecks: bodyChecks.length,
+                    totalMoods: moods.length,
+                    totalMinutes,
+                    currentStreak: streak
+                };
+            }
+
+            calculateStreak(entries) {
+                if (entries.length === 0) return 0;
+                
+                const dates = [...new Set(entries.map(e => e.date))].sort().reverse();
+                const today = new Date().toDateString();
+                
+                let streak = 0;
+                let currentDate = new Date();
+                
+                for (let i = 0; i < dates.length; i++) {
+                    const entryDate = currentDate.toDateString();
+                    
+                    if (dates.includes(entryDate)) {
+                        streak++;
+                        currentDate.setDate(currentDate.getDate() - 1);
+                    } else {
+                        break;
+                    }
+                }
+                
+                return streak;
+            }
+
+            async exportAllData() {
+                const [breathing, bodyChecks, moods] = await Promise.all([
+                    this.getAllEntries('breathingSessions'),
+                    this.getAllEntries('bodyCheckIns'),
+                    this.getAllEntries('moodEntries')
+                ]);
+                
+                return {
+                    exportDate: new Date().toISOString(),
+                    breathingSessions: breathing,
+                    bodyCheckIns: bodyChecks,
+                    moodEntries: moods
+                };
+            }
+
+            async clearOldData(daysToKeep = 30) {
+                const cutoffDate = new Date();
+                cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
+                
+                const stores = ['breathingSessions', 'bodyCheckIns', 'moodEntries'];
+                const transaction = this.db.transaction(stores, 'readwrite');
+                
+                for (const storeName of stores) {
+                    const store = transaction.objectStore(storeName);
+                    const index = store.index('timestamp');
+                    const range = IDBKeyRange.upperBound(cutoffDate.toISOString());
+                    
+                    const request = index.openCursor(range);
+                    request.onsuccess = (event) => {
+                        const cursor = event.target.result;
+                        if (cursor) {
+                            cursor.delete();
+                            cursor.continue();
+                        }
+                    };
+                }
+                
+                return transaction.complete;
+            }
+
+            async deleteEntry(storeName, id) {
+                const transaction = this.db.transaction([storeName], 'readwrite');
+                const store = transaction.objectStore(storeName);
+                return store.delete(id);
+            }
+        }
+
+        class PumpkiApp {
+            constructor() {
+                this.canvas = document.getElementById('pumpki-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.currentTab = 'breathing';
+                this.currentArousal = null;
+                this.isBreathing = false;
+                this.breathingPattern = 'box';
+                this.breathingPhase = 'ready';
+                this.breathingTimer = null;
+                this.phaseTime = 0;
+                this.currentPhaseIndex = 0;
+                
+                // Body scan properties
+                this.bodyScanData = {};
+                this.selectedSensations = [];
+                this.guidedScanAreas = [];
+                this.currentScanIndex = 0;
+                
+                // Database and history
+                this.db = new PumpkiDB();
+                this.sessionStartTime = null;
+                this.sessionStartArousal = null;
+                this.currentFilter = 'all';
+                
+                // Audio system
+                this.audioEnabled = true;
+                this.audioContext = null;
+                this.masterGain = null;
+                this.breathingSounds = {};
+                this.initializeAudio();
+                
+                // Breathing patterns with phases
+                this.patterns = {
+                    box: {
+                        phases: ['inhale', 'hold', 'exhale', 'hold'],
+                        durations: [4, 4, 4, 4],
+                        instructions: ['🫁 Breathe In', '⏸️ Hold', '🌬️ Breathe Out', '⏸️ Hold']
+                    },
+                    calm: {
+                        phases: ['inhale', 'exhale'],
+                        durations: [4, 6],
+                        instructions: ['🫁 Breathe In', '🌬️ Breathe Out Slowly']
+                    },
+                    energy: {
+                        phases: ['inhale', 'exhale'],
+                        durations: [6, 4],
+                        instructions: ['🫁 Deep Breath In', '🌬️ Quick Out']
+                    }
+                };
+
+                this.breathingScale = 1;
+                this.maxScale = 1.4;
+                this.currentTime = 0;
+                
+                this.setupCanvas();
+                this.startAnimation();
+                
+                // Initialize everything
+                this.initializeApp();
+            }
+
+            async initializeApp() {
+                try {
+                    await this.db.init();
+                    console.log('Database initialized successfully');
+                    this.initializeEventListeners();
+                    await this.loadHistoryData();
+                } catch (error) {
+                    console.error('Failed to initialize database:', error);
+                    this.initializeEventListeners(); // Still set up the app without database
+                }
+            }
+
+            setupCanvas() {
+                const dpr = window.devicePixelRatio || 1;
+                this.canvas.width = 400 * dpr;
+                this.canvas.height = 400 * dpr;
+                this.canvas.style.width = '400px';
+                this.canvas.style.height = '400px';
+                this.ctx.scale(dpr, dpr);
+                
+                this.centerX = 200;
+                this.centerY = 200;
+            }
+
+            initializeEventListeners() {
+                // Tab navigation
+                document.querySelectorAll('.nav-tab').forEach(tab => {
+                    tab.addEventListener('click', (e) => this.switchTab(e.target.dataset.tab));
+                });
+
+                // Accessibility controls
+                document.getElementById('high-contrast-btn').addEventListener('click', this.toggleHighContrast.bind(this));
+                document.getElementById('reduced-motion-btn').addEventListener('click', this.toggleReducedMotion.bind(this));
+                document.getElementById('audio-toggle-btn').addEventListener('click', this.toggleAudio.bind(this));
+
+                // Arousal state
+                document.querySelectorAll('.arousal-option').forEach(option => {
+                    option.addEventListener('click', (e) => this.setArousalState(e.currentTarget.dataset.state));
+                });
+
+                // Breathing controls
+                document.getElementById('start-breathing-btn').addEventListener('click', this.startBreathing.bind(this));
+                document.getElementById('stop-breathing-btn').addEventListener('click', this.stopBreathing.bind(this));
+                
+                document.querySelectorAll('.breathing-pattern').forEach(pattern => {
+                    pattern.addEventListener('click', (e) => this.selectBreathingPattern(e.currentTarget.dataset.pattern));
+                });
+
+                // Body scan
+                document.querySelectorAll('.body-part').forEach(part => {
+                    part.addEventListener('click', (e) => this.toggleBodyPart(e.target));
+                });
+                document.getElementById('body-scan-reset').addEventListener('click', this.resetBodyScan.bind(this));
+                document.getElementById('guided-scan-btn').addEventListener('click', this.startGuidedScan.bind(this));
+                document.getElementById('quick-check-btn').addEventListener('click', this.startQuickCheck.bind(this));
+                document.getElementById('scan-next-btn').addEventListener('click', this.nextScanArea.bind(this));
+                document.getElementById('scan-stop-btn').addEventListener('click', this.stopGuidedScan.bind(this));
+                document.getElementById('save-body-check').addEventListener('click', this.saveBodyCheck.bind(this));
+
+                // Sensation tags
+                document.querySelectorAll('.sensation-tag').forEach(tag => {
+                    tag.addEventListener('click', (e) => this.toggleSensation(e.target));
+                });
+
+                // History tab
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => this.setHistoryFilter(e.target.dataset.filter));
+                });
+                document.getElementById('export-data-btn').addEventListener('click', this.exportData.bind(this));
+                document.getElementById('import-data-btn').addEventListener('click', this.importData.bind(this));
+                document.getElementById('clear-old-data-btn').addEventListener('click', this.clearOldData.bind(this));
+                document.getElementById('import-file-input').addEventListener('change', this.handleFileImport.bind(this));
+
+                // Emergency actions
+                document.getElementById('emergency-breathing').addEventListener('click', this.startEmergencyBreathing.bind(this));
+                document.getElementById('grounding-54321').addEventListener('click', this.showGroundingTechnique.bind(this));
+                document.getElementById('cold-water').addEventListener('click', this.showColdWaterTechnique.bind(this));
+                document.getElementById('safe-place').addEventListener('click', this.showSafePlaceTechnique.bind(this));
+            }
+
+            switchTab(tabName) {
+                // Update active tab
+                document.querySelectorAll('.nav-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+                // Show/hide content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+
+                this.currentTab = tabName;
+                
+                // Load history data when switching to history tab
+                if (tabName === 'history') {
+                    this.loadHistoryData();
+                }
+            }
+
+            setArousalState(state) {
+                this.currentArousal = state;
+                
+                // Update visual selection
+                document.querySelectorAll('.arousal-option').forEach(option => {
+                    option.classList.remove('selected');
+                });
+                document.querySelector(`[data-state="${state}"]`).classList.add('selected');
+
+                // Recommend appropriate breathing pattern
+                this.recommendBreathingPattern(state);
+                
+                // Save mood entry to database
+                this.saveMoodEntry(state);
+            }
+
+            async saveMoodEntry(arousalState, context = '') {
+                if (!this.db.db) return;
+                
+                try {
+                    await this.db.saveMoodEntry({
+                        arousalState,
+                        context
+                    });
+                    console.log('Mood entry saved:', arousalState);
+                } catch (error) {
+                    console.error('Failed to save mood entry:', error);
+                }
+            }
+
+            recommendBreathingPattern(state) {
+                let recommendedPattern;
+                
+                switch(state) {
+                    case 'very-low':
+                    case 'low':
+                        recommendedPattern = 'energy';
+                        break;
+                    case 'high':
+                    case 'very-high':
+                        recommendedPattern = 'calm';
+                        break;
+                    default:
+                        recommendedPattern = 'box';
+                }
+
+                this.selectBreathingPattern(recommendedPattern);
+            }
+
+            selectBreathingPattern(pattern) {
+                // Validate pattern exists
+                if (!this.patterns[pattern]) {
+                    console.error('Invalid breathing pattern:', pattern);
+                    return;
+                }
+                
+                document.querySelectorAll('.breathing-pattern').forEach(p => p.classList.remove('active'));
+                const patternElement = document.querySelector(`[data-pattern="${pattern}"]`);
+                if (patternElement) {
+                    patternElement.classList.add('active');
+                }
+                this.breathingPattern = pattern;
+            }
+
+            startBreathing() {
+                if (this.isBreathing) return;
+
+                this.isBreathing = true;
+                this.currentPhaseIndex = 0;
+                this.phaseTime = 0;
+                this.sessionStartTime = new Date();
+                this.sessionStartArousal = this.currentArousal;
+                this.completedCycles = 0;
+                
+                const btn = document.getElementById('start-breathing-btn');
+                btn.textContent = 'Breathing...';
+                btn.disabled = true;
+
+                // Play start sound
+                if (this.audioEnabled) {
+                    this.playSuccessSound();
+                    // Start gentle ambient background after a moment
+                    setTimeout(() => this.playAmbientBackground(), 1000);
+                }
+
+                this.runBreathingCycle();
+            }
+
+            stopBreathing() {
+                this.isBreathing = false;
+                if (this.breathingTimer) {
+                    clearInterval(this.breathingTimer);
+                    this.breathingTimer = null;
+                }
+                
+                // Reset all values
+                this.currentPhaseIndex = 0;
+                this.phaseTime = 0;
+                this.breathingScale = 1;
+                
+                const btn = document.getElementById('start-breathing-btn');
+                btn.textContent = 'Start Breathing';
+                btn.disabled = false;
+                
+                document.getElementById('breathing-phase').textContent = 'Choose a breathing pattern below';
+                document.getElementById('timer-display').textContent = 'Ready';
+                
+                // Save session if it was long enough
+                if (this.sessionStartTime) {
+                    const duration = Math.floor((new Date() - this.sessionStartTime) / 1000 / 60); // minutes
+                    if (duration >= 1) { // Only save if session was at least 1 minute
+                        this.saveBreathingSession(duration);
+                    }
+                    this.sessionStartTime = null;
+                }
+            }
+
+            async saveBreathingSession(duration) {
+                if (!this.db.db) return;
+                
+                try {
+                    await this.db.saveBreathingSession({
+                        pattern: this.breathingPattern,
+                        duration: duration,
+                        completedCycles: this.completedCycles || 0,
+                        arousalBefore: this.sessionStartArousal,
+                        arousalAfter: this.currentArousal
+                    });
+                    console.log('Breathing session saved:', duration, 'minutes');
+                } catch (error) {
+                    console.error('Failed to save breathing session:', error);
+                }
+            }
+
+            runBreathingCycle() {
+                if (!this.isBreathing) return;
+
+                const pattern = this.patterns[this.breathingPattern];
+                if (!pattern || !pattern.phases || !pattern.durations) return;
+                
+                const currentPhase = pattern.phases[this.currentPhaseIndex];
+                const phaseDuration = pattern.durations[this.currentPhaseIndex];
+                const instruction = pattern.instructions[this.currentPhaseIndex];
+                
+                // Validate duration
+                if (!phaseDuration || phaseDuration <= 0) {
+                    console.error('Invalid phase duration:', phaseDuration);
+                    return;
+                }
+                
+                document.getElementById('breathing-phase').textContent = instruction;
+                
+                // Play audio cue for this phase
+                if (this.audioEnabled) {
+                    this.playBreathingCue(currentPhase, phaseDuration);
+                }
+                
+                // Start phase timer
+                this.phaseTime = Math.floor(phaseDuration);
+                this.breathingTimer = setInterval(() => {
+                    if (!this.isBreathing) return;
+                    
+                    this.phaseTime = Math.max(0, this.phaseTime - 1);
+                    document.getElementById('timer-display').textContent = this.phaseTime;
+                    
+                    // Update visual breathing
+                    this.updateBreathingVisual(currentPhase, this.phaseTime, phaseDuration);
+                    
+                    if (this.phaseTime <= 0) {
+                        clearInterval(this.breathingTimer);
+                        this.currentPhaseIndex = (this.currentPhaseIndex + 1) % pattern.phases.length;
+                        
+                        // Track completed cycles - increment when we complete the full pattern
+                        if (this.currentPhaseIndex === 0) {
+                            this.completedCycles = (this.completedCycles || 0) + 1;
+                        }
+                        
+                        setTimeout(() => this.runBreathingCycle(), 100);
+                    }
+                }, 1000);
+            }
+
+            updateBreathingVisual(phase, timeLeft, duration) {
+                if (!duration || duration <= 0) return;
+                
+                const safeTimeLeft = Math.max(0, timeLeft);
+                const progress = Math.min(1, Math.max(0, (duration - safeTimeLeft) / duration));
+                
+                switch(phase) {
+                    case 'inhale':
+                        this.breathingScale = Math.max(1, Math.min(this.maxScale, 1 + (progress * 0.4)));
+                        break;
+                    case 'exhale':
+                        this.breathingScale = Math.max(1, Math.min(this.maxScale, this.maxScale - (progress * 0.4)));
+                        break;
+                    case 'hold':
+                        this.breathingScale = this.currentPhaseIndex === 1 ? this.maxScale : 1;
+                        break;
+                    default:
+                        this.breathingScale = 1;
+                        break;
+                }
+                
+                // Ensure breathing scale is always valid
+                if (isNaN(this.breathingScale) || this.breathingScale < 1) {
+                    this.breathingScale = 1;
+                }
+            }
+
+            startEmergencyBreathing() {
+                this.setArousalState('very-high');
+                this.selectBreathingPattern('calm');
+                this.switchTab('breathing');
+                
+                // Play calming sound immediately for emergency mode
+                if (this.audioEnabled) {
+                    this.ensureAudioContext().then(() => {
+                        this.playBreathingCue('exhale', 2); // Immediate calm cue
+                    });
+                }
+                
+                setTimeout(() => this.startBreathing(), 500);
+            }
+
+            // Body scan methods
+            toggleBodyPart(element) {
+                const states = ['neutral', 'comfortable', 'tense'];
+                let currentIndex = 0;
+                
+                for (let i = 0; i < states.length; i++) {
+                    if (element.classList.contains(states[i])) {
+                        currentIndex = i;
+                        element.classList.remove(states[i]);
+                        break;
+                    }
+                }
+                
+                const nextIndex = (currentIndex + 1) % states.length;
+                element.classList.add(states[nextIndex]);
+                
+                // Update results if visible
+                this.updateScanResults();
+            }
+
+            resetBodyScan() {
+                document.querySelectorAll('.body-part').forEach(part => {
+                    part.classList.remove('comfortable', 'tense', 'active');
+                    part.classList.add('neutral');
+                });
+                
+                // Reset sensation tags
+                document.querySelectorAll('.sensation-tag').forEach(tag => {
+                    tag.classList.remove('selected');
+                });
+                
+                // Hide results
+                document.getElementById('scan-results').classList.add('hidden');
+                
+                this.bodyScanData = {};
+                this.selectedSensations = [];
+            }
+
+            startGuidedScan() {
+                this.currentScanType = 'guided';
+                document.getElementById('guided-scan-area').classList.remove('hidden');
+                document.getElementById('sensations-tracker').classList.add('hidden');
+                
+                this.guidedScanAreas = [
+                    { part: 'head', instruction: '🧠 Focus on your head and face. Notice any tension in your forehead, jaw, or temples. Take a deep breath.' },
+                    { part: 'neck', instruction: '🦒 Move your attention to your neck and shoulders. Are they tight or relaxed? Gently roll your shoulders.' },
+                    { part: 'chest', instruction: '🫁 Notice your chest and breathing. Is your breath shallow or deep? Feel your heartbeat.' },
+                    { part: 'left-arm', instruction: '🤚 Focus on your left arm. Make a fist, then relax. Notice the difference.' },
+                    { part: 'right-arm', instruction: '🤚 Now your right arm. Stretch it up high, then let it drop. How does it feel?' },
+                    { part: 'stomach', instruction: '🍎 Check in with your belly. Is it tight, relaxed, or maybe hungry? Breathe into this area.' },
+                    { part: 'left-leg', instruction: '🦵 Focus on your left leg. Tense the muscles, then relax them completely.' },
+                    { part: 'right-leg', instruction: '🦵 Now your right leg. Point your toes, then flex them. Notice the sensations.' },
+                    { part: 'left-foot', instruction: '🦶 Focus on your left foot. Wiggle your toes. How does the ground feel underneath?' },
+                    { part: 'right-foot', instruction: '🦶 Finally, your right foot. Take a moment to feel both feet on the ground.' }
+                ];
+                
+                this.currentScanIndex = 0;
+                this.nextScanArea();
+            }
+
+            nextScanArea() {
+                if (this.currentScanIndex >= this.guidedScanAreas.length) {
+                    this.completeScan();
+                    return;
+                }
+                
+                const currentArea = this.guidedScanAreas[this.currentScanIndex];
+                
+                // Remove previous active highlighting
+                document.querySelectorAll('.body-part').forEach(part => {
+                    part.classList.remove('active');
+                });
+                
+                // Highlight current area
+                const bodyPart = document.querySelector(`[data-part="${currentArea.part}"]`);
+                if (bodyPart) {
+                    bodyPart.classList.add('active');
+                }
+                
+                // Update instruction
+                document.getElementById('current-scan-instruction').textContent = currentArea.instruction;
+                
+                // Play gentle transition chime
+                if (this.audioEnabled) {
+                    this.playTransitionChime();
+                }
+                
+                // Update progress bar
+                const progress = ((this.currentScanIndex + 1) / this.guidedScanAreas.length) * 100;
+                document.getElementById('scan-progress-fill').style.width = progress + '%';
+                
+                this.currentScanIndex++;
+            }
+
+            stopGuidedScan() {
+                document.getElementById('guided-scan-area').classList.add('hidden');
+                document.getElementById('sensations-tracker').classList.remove('hidden');
+                document.querySelectorAll('.body-part').forEach(part => {
+                    part.classList.remove('active');
+                });
+                document.getElementById('body-scan-instruction').textContent = 'Tap different parts of your body to show how they feel:';
+            }
+
+            completeScan() {
+                document.getElementById('guided-scan-area').classList.add('hidden');
+                document.getElementById('sensations-tracker').classList.remove('hidden');
+                document.querySelectorAll('.body-part').forEach(part => {
+                    part.classList.remove('active');
+                });
+                
+                // Play completion sound
+                if (this.audioEnabled) {
+                    this.playSuccessSound();
+                }
+                
+                alert('Great job completing the body scan! 🌟\n\nNow you can tap any body parts and select sensations to finish your check-in.');
+                this.updateScanResults();
+            }
+
+            startQuickCheck() {
+                this.currentScanType = 'quick';
+                document.getElementById('sensations-tracker').classList.remove('hidden');
+                document.getElementById('guided-scan-area').classList.add('hidden');
+                document.getElementById('body-scan-instruction').textContent = 'Quickly tap any body parts that feel different today, and select sensations below:';
+            }
+
+            toggleSensation(element) {
+                element.classList.toggle('selected');
+                
+                const sensation = element.dataset.sensation;
+                if (!this.selectedSensations) this.selectedSensations = [];
+                
+                if (element.classList.contains('selected')) {
+                    if (!this.selectedSensations.includes(sensation)) {
+                        this.selectedSensations.push(sensation);
+                    }
+                } else {
+                    this.selectedSensations = this.selectedSensations.filter(s => s !== sensation);
+                }
+                
+                this.updateScanResults();
+            }
+
+            updateScanResults() {
+                const resultsDiv = document.getElementById('scan-results');
+                const contentDiv = document.getElementById('results-content');
+                
+                // Collect body part states
+                const bodyStates = {};
+                document.querySelectorAll('.body-part').forEach(part => {
+                    const partName = part.dataset.part.replace('-', ' ');
+                    if (part.classList.contains('comfortable')) {
+                        bodyStates[partName] = 'comfortable';
+                    } else if (part.classList.contains('tense')) {
+                        bodyStates[partName] = 'tense';
+                    }
+                });
+                
+                // Only show results if there's something to show
+                const hasBodyData = Object.keys(bodyStates).length > 0;
+                const hasSensations = this.selectedSensations && this.selectedSensations.length > 0;
+                
+                if (hasBodyData || hasSensations) {
+                    let resultsHTML = '';
+                    
+                    if (hasBodyData) {
+                        resultsHTML += '<div style="margin-bottom: 15px;"><strong>Body Areas:</strong></div>';
+                        for (const [part, state] of Object.entries(bodyStates)) {
+                            const emoji = state === 'comfortable' ? '😌' : '😬';
+                            const color = state === 'comfortable' ? 'var(--success)' : 'var(--error)';
+                            resultsHTML += `<div style="padding: 8px 0; border-bottom: 1px solid rgba(77, 52, 38, 0.2);">
+                                <span style="font-weight: 600; color: var(--primary-orange);">${emoji} ${part}:</span> 
+                                <span style="color: ${color};">${state}</span>
+                            </div>`;
+                        }
+                    }
+                    
+                    if (hasSensations) {
+                        resultsHTML += '<div style="margin: 15px 0 10px 0;"><strong>Sensations:</strong></div>';
+                        resultsHTML += '<div>' + this.selectedSensations.map(s => {
+                            const tag = document.querySelector(`[data-sensation="${s}"]`);
+                            return tag ? tag.textContent : s;
+                        }).join(', ') + '</div>';
+                    }
+                    
+                    contentDiv.innerHTML = resultsHTML;
+                    resultsDiv.classList.remove('hidden');
+                } else {
+                    resultsDiv.classList.add('hidden');
+                }
+            }
+
+            saveBodyCheck() {
+                const bodyStates = {};
+                document.querySelectorAll('.body-part').forEach(part => {
+                    const partName = part.dataset.part.replace('-', ' ');
+                    if (part.classList.contains('comfortable')) {
+                        bodyStates[partName] = 'comfortable';
+                    } else if (part.classList.contains('tense')) {
+                        bodyStates[partName] = 'tense';
+                    }
+                });
+
+                const checkInData = {
+                    bodyStates,
+                    sensations: this.selectedSensations || [],
+                    scanType: this.currentScanType || 'manual',
+                    arousalState: this.currentArousal
+                };
+
+                this.saveBodyCheckToDatabase(checkInData);
+                
+                // Play success sound
+                if (this.audioEnabled) {
+                    this.playSuccessSound();
+                }
+                
+                alert('Body check saved! 📝\n\nKeep tracking how your body feels to better understand your patterns.');
+            }
+
+            async saveBodyCheckToDatabase(data) {
+                if (!this.db.db) return;
+                
+                try {
+                    await this.db.saveBodyCheckIn(data);
+                    console.log('Body check saved:', data);
+                } catch (error) {
+                    console.error('Failed to save body check:', error);
+                }
+            }
+
+            // History and data management methods
+            async loadHistoryData() {
+                if (!this.db.db) return;
+                
+                try {
+                    const stats = await this.db.getStats();
+                    this.updateStatsDisplay(stats);
+                    
+                    const recentData = await this.db.getRecentEntries(30); // Get more entries for the list
+                    this.updateWeeklyMoodChart(recentData.moods);
+                    this.updateEntriesList(recentData);
+                } catch (error) {
+                    console.error('Failed to load history data:', error);
+                }
+            }
+
+            updateStatsDisplay(stats) {
+                document.getElementById('total-sessions').textContent = stats.totalSessions;
+                document.getElementById('total-body-checks').textContent = stats.totalBodyChecks;
+                document.getElementById('current-streak').textContent = stats.currentStreak;
+                document.getElementById('total-minutes-practiced').textContent = stats.totalMinutes;
+            }
+
+            updateWeeklyMoodChart(moodEntries) {
+                const chartContainer = document.getElementById('weekly-mood-chart');
+                chartContainer.innerHTML = '';
+                
+                const moodEmojis = {
+                    'very-low': '😴',
+                    'low': '😌',
+                    'medium': '😊',
+                    'high': '😮',
+                    'very-high': '😰'
+                };
+
+                // Create days for the past week
+                for (let i = 6; i >= 0; i--) {
+                    const date = new Date();
+                    date.setDate(date.getDate() - i);
+                    const dateStr = date.toDateString();
+                    
+                    const dayDiv = document.createElement('div');
+                    dayDiv.className = 'mood-day';
+                    
+                    // Find mood entry for this day
+                    const dayMood = moodEntries.find(mood => mood.date === dateStr);
+                    const emoji = dayMood ? moodEmojis[dayMood.arousalState] : '⚫';
+                    
+                    dayDiv.innerHTML = `
+                        <div class="mood-emoji">${emoji}</div>
+                        <div class="mood-date">${date.toLocaleDateString('en', {weekday: 'short'})}</div>
+                    `;
+                    
+                    chartContainer.appendChild(dayDiv);
+                }
+            }
+
+            updateEntriesList(data) {
+                const entriesList = document.getElementById('entries-list');
+                
+                // Combine and sort all entries
+                const allEntries = [
+                    ...data.breathing.map(entry => ({...entry, type: 'breathing', icon: '🫁'})),
+                    ...data.bodyChecks.map(entry => ({...entry, type: 'body-check', icon: '🧘'})),
+                    ...data.moods.map(entry => ({...entry, type: 'mood', icon: '😊'}))
+                ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+                if (allEntries.length === 0) {
+                    entriesList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-emoji">📝</div>
+                            <p>No entries yet! Start by doing a breathing session or body check-in.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                entriesList.innerHTML = allEntries
+                    .filter(entry => this.currentFilter === 'all' || entry.type === this.currentFilter)
+                    .slice(0, 20) // Show only latest 20
+                    .map(entry => this.createEntryHTML(entry))
+                    .join('');
+            }
+
+            createEntryHTML(entry) {
+                const time = new Date(entry.timestamp).toLocaleString();
+                let details = '';
+                
+                switch(entry.type) {
+                    case 'breathing':
+                        details = `${entry.pattern} breathing • ${entry.duration || 0} min`;
+                        break;
+                    case 'body-check':
+                        const sensations = entry.sensations?.slice(0, 3).join(', ') || 'No sensations noted';
+                        details = `${entry.scanType} scan • ${sensations}`;
+                        break;
+                    case 'mood':
+                        const moodLabels = {
+                            'very-low': 'Very Calm',
+                            'low': 'Calm', 
+                            'medium': 'Just Right',
+                            'high': 'Energized',
+                            'very-high': 'Overwhelmed'
+                        };
+                        details = `Feeling: ${moodLabels[entry.arousalState] || entry.arousalState}`;
+                        break;
+                }
+                
+                return `
+                    <div class="entry-item">
+                        <div class="entry-content">
+                            <div class="entry-title">
+                                <span class="entry-type">${entry.icon}</span>
+                                ${entry.type.charAt(0).toUpperCase() + entry.type.slice(1).replace('-', ' ')}
+                            </div>
+                            <div class="entry-details">${details}</div>
+                        </div>
+                        <div class="entry-time">${time}</div>
+                        <div class="entry-actions">
+                            <button class="entry-action-btn" onclick="app.deleteEntry('${entry.type}', ${entry.id})">🗑️</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            setHistoryFilter(filter) {
+                this.currentFilter = filter;
+                
+                // Update filter buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
+                
+                // Reload entries with filter
+                this.loadHistoryData();
+            }
+
+            async deleteEntry(type, id) {
+                if (!confirm('Are you sure you want to delete this entry?')) return;
+                
+                const storeMap = {
+                    'breathing': 'breathingSessions',
+                    'body-check': 'bodyCheckIns',
+                    'mood': 'moodEntries'
+                };
+                
+                try {
+                    await this.db.deleteEntry(storeMap[type], id);
+                    this.loadHistoryData(); // Refresh the display
+                } catch (error) {
+                    console.error('Failed to delete entry:', error);
+                    alert('Failed to delete entry. Please try again.');
+                }
+            }
+
+            async exportData() {
+                try {
+                    const data = await this.db.exportAllData();
+                    
+                    const blob = new Blob([JSON.stringify(data, null, 2)], {
+                        type: 'application/json'
+                    });
+                    
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `pumpki-data-${new Date().toISOString().split('T')[0]}.json`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                    
+                    alert('Data exported successfully! 📤\n\nYour Pumpki data has been saved to your downloads folder.');
+                } catch (error) {
+                    console.error('Failed to export data:', error);
+                    alert('Failed to export data. Please try again.');
+                }
+            }
+
+            importData() {
+                document.getElementById('import-file-input').click();
+            }
+
+            async handleFileImport(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                try {
+                    const text = await file.text();
+                    const data = JSON.parse(text);
+                    
+                    // Validate data format
+                    if (!data.breathingSessions && !data.bodyCheckIns && !data.moodEntries) {
+                        throw new Error('Invalid data format');
+                    }
+                    
+                    const confirmed = confirm(
+                        `Import ${data.breathingSessions?.length || 0} breathing sessions, ` +
+                        `${data.bodyCheckIns?.length || 0} body check-ins, and ` +
+                        `${data.moodEntries?.length || 0} mood entries?\n\n` +
+                        `This will add to your existing data.`
+                    );
+                    
+                    if (confirmed) {
+                        await this.importDataToDatabase(data);
+                        alert('Data imported successfully! 📥\n\nYour Pumpki data has been restored.');
+                        this.loadHistoryData(); // Refresh the display
+                    }
+                } catch (error) {
+                    console.error('Failed to import data:', error);
+                    alert('Failed to import data. Please check the file format and try again.');
+                }
+                
+                // Reset file input
+                event.target.value = '';
+            }
+
+            async importDataToDatabase(data) {
+                if (!this.db.db) return;
+                
+                const transaction = this.db.db.transaction(['breathingSessions', 'bodyCheckIns', 'moodEntries'], 'readwrite');
+                
+                // Import breathing sessions
+                if (data.breathingSessions) {
+                    const breathingStore = transaction.objectStore('breathingSessions');
+                    for (const session of data.breathingSessions) {
+                        const sessionCopy = {...session};
+                        delete sessionCopy.id; // Let IndexedDB assign new IDs
+                        await breathingStore.add(sessionCopy);
+                    }
+                }
+                
+                // Import body check-ins
+                if (data.bodyCheckIns) {
+                    const bodyStore = transaction.objectStore('bodyCheckIns');
+                    for (const checkIn of data.bodyCheckIns) {
+                        const checkInCopy = {...checkIn};
+                        delete checkInCopy.id;
+                        await bodyStore.add(checkInCopy);
+                    }
+                }
+                
+                // Import mood entries
+                if (data.moodEntries) {
+                    const moodStore = transaction.objectStore('moodEntries');
+                    for (const mood of data.moodEntries) {
+                        const moodCopy = {...mood};
+                        delete moodCopy.id;
+                        await moodStore.add(moodCopy);
+                    }
+                }
+                
+                return transaction.complete;
+            }
+
+            async clearOldData() {
+                if (!confirm('This will delete data older than 30 days. Continue?')) return;
+                
+                try {
+                    await this.db.clearOldData(30);
+                    this.loadHistoryData(); // Refresh display
+                    alert('Old data cleared successfully! 🗑️\n\nData older than 30 days has been removed.');
+                } catch (error) {
+                    console.error('Failed to clear old data:', error);
+                    alert('Failed to clear old data. Please try again.');
+                }
+            }
+
+            // Audio System Methods
+            initializeAudio() {
+                try {
+                    // Create audio context (will be initialized on first user interaction)
+                    this.audioContext = null;
+                    this.masterGain = null;
+                    console.log('Audio system ready for initialization');
+                } catch (error) {
+                    console.warn('Audio not available:', error);
+                    this.audioEnabled = false;
+                }
+            }
+
+            async ensureAudioContext() {
+                if (!this.audioEnabled) return false;
+                
+                if (!this.audioContext) {
+                    try {
+                        this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        this.masterGain = this.audioContext.createGain();
+                        this.masterGain.connect(this.audioContext.destination);
+                        this.masterGain.gain.value = 0.3; // Gentle volume
+                        
+                        // Resume context if suspended (required by browser policies)
+                        if (this.audioContext.state === 'suspended') {
+                            await this.audioContext.resume();
+                        }
+                        
+                        console.log('Audio context initialized');
+                        return true;
+                    } catch (error) {
+                        console.warn('Failed to initialize audio:', error);
+                        this.audioEnabled = false;
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            async playBreathingCue(phase, duration) {
+                if (!this.audioEnabled || !await this.ensureAudioContext()) return;
+                
+                const freq = this.getPhaseFrequency(phase);
+                const type = this.getPhaseWaveType(phase);
+                
+                try {
+                    // Create oscillator for the tone
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(this.masterGain);
+                    
+                    oscillator.frequency.value = freq;
+                    oscillator.type = type;
+                    
+                    // Gentle fade in/out envelope - extra soft for hold phase
+                    const now = this.audioContext.currentTime;
+                    const fadeDuration = phase === 'hold' ? 0.3 : 0.1; // Longer, gentler fade for hold
+                    const volume = phase === 'hold' ? 0.06 : 0.1; // Softer volume for hold
+                    
+                    gainNode.gain.setValueAtTime(0, now);
+                    gainNode.gain.linearRampToValueAtTime(volume, now + fadeDuration);
+                    gainNode.gain.linearRampToValueAtTime(volume, now + duration - fadeDuration);
+                    gainNode.gain.linearRampToValueAtTime(0, now + duration);
+                    
+                    oscillator.start(now);
+                    oscillator.stop(now + duration);
+                    
+                    // Add some sparkle for transitions (but not for gentle hold)
+                    if (phase === 'inhale' || phase === 'exhale') {
+                        setTimeout(() => this.playTransitionChime(), 100);
+                    }
+                    
+                } catch (error) {
+                    console.warn('Audio playback error:', error);
+                }
+            }
+
+            getPhaseFrequency(phase) {
+                const frequencies = {
+                    'inhale': 220,    // A3 - rising feeling
+                    'hold': 110,      // A2 - very low, gentle, like a heartbeat  
+                    'exhale': 165,    // E3 - releasing feeling
+                    'ready': 196      // G3 - neutral
+                };
+                return frequencies[phase] || frequencies['ready'];
+            }
+
+            getPhaseWaveType(phase) {
+                const waveTypes = {
+                    'inhale': 'sine',     // Smooth and lifting
+                    'hold': 'sine',       // Ultra-gentle and soothing
+                    'exhale': 'sine',     // Smooth and releasing
+                    'ready': 'sine'
+                };
+                return waveTypes[phase] || 'sine';
+            }
+
+            async playTransitionChime() {
+                if (!this.audioEnabled || !await this.ensureAudioContext()) return;
+                
+                try {
+                    const oscillator = this.audioContext.createOscillator();
+                    const gainNode = this.audioContext.createGain();
+                    
+                    oscillator.connect(gainNode);
+                    gainNode.connect(this.masterGain);
+                    
+                    oscillator.frequency.value = 440; // A4 - pleasant chime
+                    oscillator.type = 'sine';
+                    
+                    const now = this.audioContext.currentTime;
+                    gainNode.gain.setValueAtTime(0, now);
+                    gainNode.gain.linearRampToValueAtTime(0.05, now + 0.05);
+                    gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
+                    
+                    oscillator.start(now);
+                    oscillator.stop(now + 0.2);
+                } catch (error) {
+                    console.warn('Chime playback error:', error);
+                }
+            }
+
+            async playSuccessSound() {
+                if (!this.audioEnabled || !await this.ensureAudioContext()) return;
+                
+                try {
+                    // Play a pleasant ascending sequence
+                    const notes = [220, 277, 330, 440]; // A3, C#4, E4, A4
+                    
+                    for (let i = 0; i < notes.length; i++) {
+                        setTimeout(() => {
+                            const oscillator = this.audioContext.createOscillator();
+                            const gainNode = this.audioContext.createGain();
+                            
+                            oscillator.connect(gainNode);
+                            gainNode.connect(this.masterGain);
+                            
+                            oscillator.frequency.value = notes[i];
+                            oscillator.type = 'sine';
+                            
+                            const now = this.audioContext.currentTime;
+                            gainNode.gain.setValueAtTime(0, now);
+                            gainNode.gain.linearRampToValueAtTime(0.08, now + 0.05);
+                            gainNode.gain.linearRampToValueAtTime(0, now + 0.3);
+                            
+                            oscillator.start(now);
+                            oscillator.stop(now + 0.3);
+                        }, i * 150);
+                    }
+                } catch (error) {
+                    console.warn('Success sound error:', error);
+                }
+            }
+
+            // Emergency techniques
+            showGroundingTechnique() {
+                alert('5-4-3-2-1 Grounding Technique:\n\n🔍 5 things you can SEE\n✋ 4 things you can TOUCH\n👂 3 things you can HEAR\n👃 2 things you can SMELL\n👅 1 thing you can TASTE\n\nTake your time with each one.');
+            }
+
+            showColdWaterTechnique() {
+                alert('Cold Water Technique:\n\n❄️ Put cold water on your wrists\n❄️ Splash some on your face\n❄️ Hold an ice cube\n❄️ Drink cold water slowly\n\nThis helps reset your nervous system.');
+            }
+
+            showSafePlaceTechnique() {
+                alert('Find Your Safe Space:\n\n🏠 Go to your room or quiet space\n🧸 Get your comfort items\n🎵 Put on calming music\n🌟 Take slow, deep breaths\n\nYou are safe. This will pass.');
+            }
+
+            toggleHighContrast() {
+                document.body.classList.toggle('high-contrast');
+                document.getElementById('high-contrast-btn').classList.toggle('active');
+            }
+
+            toggleReducedMotion() {
+                document.body.classList.toggle('reduced-motion');
+                document.getElementById('reduced-motion-btn').classList.toggle('active');
+            }
+
+            toggleAudio() {
+                this.audioEnabled = !this.audioEnabled;
+                const btn = document.getElementById('audio-toggle-btn');
+                
+                if (this.audioEnabled) {
+                    btn.classList.add('active');
+                    btn.textContent = '🔊 Audio';
+                    
+                    // Initialize audio context on user interaction
+                    this.ensureAudioContext().then(success => {
+                        if (success) {
+                            this.playSuccessSound(); // Test sound
+                        }
+                    });
+                } else {
+                    btn.classList.remove('active');
+                    btn.textContent = '🔇 Muted';
+                    
+                    // Stop any current audio
+                    if (this.audioContext && this.masterGain) {
+                        this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.5);
+                    }
+                }
+                
+                console.log('Audio', this.audioEnabled ? 'enabled' : 'disabled');
+            }
+
+            // Drawing methods
+            drawPumpki() {
+                this.ctx.clearRect(0, 0, 400, 400);
+                
+                this.ctx.save();
+                this.ctx.translate(this.centerX, this.centerY);
+                
+                // Only apply breathing scale if reduced motion is NOT active
+                const useBreathingScale = !document.body.classList.contains('reduced-motion');
+                this.ctx.scale(
+                    useBreathingScale ? this.breathingScale : 1, 
+                    useBreathingScale ? this.breathingScale : 1
+                );
+                
+                this.drawBody();
+                this.drawFace();
+                
+                this.ctx.restore();
+                
+                if (!document.body.classList.contains('reduced-motion')) {
+                    this.drawSparkles();
+                }
+            }
+
+            drawBody() {
+                // Shadow
+                this.ctx.save();
+                this.ctx.translate(2, 2);
+                this.ctx.fillStyle = 'rgba(45, 30, 20, 0.5)';
+                this.ctx.beginPath();
+                this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.restore();
+
+                // Main body with warm gradient
+                const gradient = this.ctx.createRadialGradient(-10, -10, 0, 0, 0, 40);
+                gradient.addColorStop(0, '#e88b5d');
+                gradient.addColorStop(1, '#d87449');
+                this.ctx.fillStyle = gradient;
+                this.ctx.beginPath();
+                this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
+                this.ctx.fill();
+
+                // Stem
+                this.ctx.fillStyle = '#7a8f65';
+                this.ctx.beginPath();
+                this.ctx.ellipse(0, -45, 6, 12, 0.1, 0, Math.PI * 2);
+                this.ctx.fill();
+            }
+
+            drawFace() {
+                this.ctx.fillStyle = '#4d3426';
+                
+                // Eyes
+                this.ctx.beginPath();
+                this.ctx.arc(-12, -8, 3, 0, Math.PI);
+                this.ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.arc(12, -8, 3, 0, Math.PI);
+                this.ctx.fill();
+
+                // Nose
+                this.ctx.fillStyle = '#bf5830';
+                this.ctx.beginPath();
+                this.ctx.arc(0, 2, 2, 0, Math.PI * 2);
+                this.ctx.fill();
+
+                // Smile
+                const useBreathingMotion = !document.body.classList.contains('reduced-motion');
+                const smileWidth = 16 + (this.isBreathing && useBreathingMotion ? (this.breathingScale - 1) * 10 : 0);
+                this.ctx.strokeStyle = '#4d3426';
+                this.ctx.lineWidth = 2.5;
+                this.ctx.lineCap = 'round';
+                this.ctx.beginPath();
+                this.ctx.arc(0, 8, smileWidth, 0.15, Math.PI - 0.15);
+                this.ctx.stroke();
+
+                // Blush
+                this.ctx.fillStyle = '#d87060';
+                this.ctx.globalAlpha = 0.5;
+                this.ctx.beginPath();
+                this.ctx.arc(-25, 5, 6, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.beginPath();
+                this.ctx.arc(25, 5, 6, 0, Math.PI * 2);
+                this.ctx.fill();
+                this.ctx.globalAlpha = 1;
+            }
+
+            drawSparkles() {
+                const time = this.currentTime * 0.001;
+                this.ctx.fillStyle = '#d8b870';
+                
+                for (let i = 0; i < 4; i++) {
+                    const x = this.centerX + Math.sin(time * 0.5 + i * 1.5) * 70;
+                    const y = this.centerY + Math.cos(time * 0.6 + i * 1.2) * 60;
+                    const size = 1 + Math.sin(time * 3 + i) * 0.5;
+                    const alpha = 0.3 + Math.sin(time * 2 + i) * 0.2;
+                    
+                    this.ctx.globalAlpha = alpha;
+                    this.ctx.save();
+                    this.ctx.translate(x, y);
+                    this.ctx.rotate(time + i);
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(0, -size);
+                    this.ctx.lineTo(size * 0.3, 0);
+                    this.ctx.lineTo(0, size);
+                    this.ctx.lineTo(-size * 0.3, 0);
+                    this.ctx.closePath();
+                    this.ctx.fill();
+                    
+                    this.ctx.restore();
+                }
+                
+                this.ctx.globalAlpha = 1;
+            }
+
+            startAnimation() {
+                const animate = (currentTime) => {
+                    this.currentTime = currentTime;
+                    this.drawPumpki();
+                    requestAnimationFrame(animate);
+                };
+                
+                requestAnimationFrame(animate);
+            }
+        }
+
+        // Initialize the app
+        let app;
+        window.addEventListener('DOMContentLoaded', () => {
+            app = new PumpkiApp();
+        });
+    </script>
+</body>
+</html>
