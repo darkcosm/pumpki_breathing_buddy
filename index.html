@@ -3,292 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pumpki - Your Breathing Buddy</title>
-    <meta name="theme-color" content="#d87449">
-    <meta name="description" content="Beautiful, neurodivergent-friendly companion for breathing exercises and self-regulation with cute brain science tips. Now with extra-gentle hold sounds for sensitive ears.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Pumpki — Your Breathing Buddy</title>
+    <meta name="theme-color" content="#C4956A">
+    <meta name="description" content="Beautiful, neurodivergent-friendly companion for breathing exercises and self-regulation with cute brain science tips. Research-informed tool for nervous system awareness.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" href="hot.png">
     
     <style>
-        /* Burnt Orange Ember Design System - Inspired by Daily Compass */
         :root {
-            /* Primary Burnt Orange Palette */
-            --primary-orange: #d87449;
-            --primary-orange-light: #e88b5d;
-            --primary-orange-dark: #bf5830;
-            --warm-amber: #e8a870;
-            --deep-terracotta: #c85a3a;
+            /* Refined warm palette — matching Her Own Terms */
+            --primary: #C4956A;
+            --primary-light: #D4A87E;
+            --primary-dark: #A67B52;
+            --primary-deep: #8B6543;
+            --warm-amber: #D8B888;
+            --terracotta: #B86B4A;
             
-            /* Background Colors */
-            --bg-primary: #1a110c;
-            --bg-secondary: rgba(45, 30, 20, 0.95);
-            --bg-tertiary: rgba(230, 140, 90, 0.08);
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --bg-elevated: rgba(255, 255, 255, 0.08);
-            --bg-gradient-start: #2d1f16;
-            --bg-gradient-end: #1a110c;
+            /* Dark backgrounds with warm undertones */
+            --bg-primary: #1A1512;
+            --bg-secondary: rgba(38, 30, 24, 0.95);
+            --bg-tertiary: rgba(196, 149, 106, 0.06);
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-elevated: rgba(255, 255, 255, 0.06);
             
-            /* Warm Earthy Accents */
-            --sage-green: #7a8f65;
-            --sage-green-light: #8fa576;
-            --calm-blue: #7a8f9d;
-            --soft-purple: #a88d9e;
-            --warm-yellow: #d8b870;
-            --coral-pink: #d87060;
+            /* Earthy accents */
+            --sage: #7A8F65;
+            --sage-light: #8FA576;
+            --slate: #7A8F9D;
+            --mauve: #9E8A94;
+            --gold: #C4A855;
+            --coral: #C46A5A;
             
-            /* Text Colors */
-            --text-primary: #f5e6d8;
-            --text-secondary: #e0c4ad;
-            --text-tertiary: #b89a7d;
+            /* Text */
+            --text-primary: #F0E4D8;
+            --text-secondary: #C4B09C;
+            --text-tertiary: #8A7E72;
             
-            /* Status Colors */
-            --success: #8fad6f;
-            --warning: #d89850;
-            --error: #c85a3a;
+            /* Status */
+            --success: #8FAD6F;
+            --warning: #C49850;
+            --error: #B85A42;
             
-            /* Borders */
-            --border-color: #4d3426;
+            /* Borders & surfaces */
+            --border: rgba(196, 149, 106, 0.15);
+            --border-active: rgba(196, 149, 106, 0.4);
             
-            /* Spacing & Layout */
-            --border-radius: 24px;
-            --border-radius-small: 16px;
-            --border-radius-large: 32px;
+            /* Typography */
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'DM Sans', -apple-system, sans-serif;
             
-            /* Shadows - Warm undertones */
-            --shadow-soft: 0 8px 32px rgba(45, 30, 20, 0.4);
-            --shadow-medium: 0 12px 48px rgba(45, 30, 20, 0.5);
-            --shadow-strong: 0 20px 64px rgba(45, 30, 20, 0.6);
-            --shadow-inset: inset 0 2px 8px rgba(0, 0, 0, 0.3);
+            /* Radii */
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
             
-            /* Glass Effect */
-            --glass-border: 1px solid rgba(245, 230, 216, 0.1);
-            --glass-backdrop: blur(16px);
-            
-            /* Transitions */
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-quick: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            /* Shadows */
+            --shadow-sm: 0 2px 12px rgba(0,0,0,0.15);
+            --shadow-md: 0 4px 24px rgba(0,0,0,0.2);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.25);
+            --shadow-glow: 0 0 24px rgba(196, 149, 106, 0.15);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: radial-gradient(circle at 50% 50%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            font-family: var(--sans);
+            background: var(--bg-primary);
             min-height: 100vh;
             color: var(--text-primary);
-            font-size: 16px;
-            line-height: 1.6;
-            touch-action: manipulation;
+            font-size: 15px;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            transition: all 0.3s ease;
         }
 
         body.high-contrast {
-            --bg-primary: #000000;
-            --bg-gradient-start: #1a1a1a;
-            --bg-gradient-end: #000000;
-            --text-primary: #ffffff;
-            --primary-orange: #ff6b3d;
+            --bg-primary: #000;
+            --text-primary: #fff;
+            --primary: #FF8C4A;
         }
 
-        .hidden { display: none; }
+        .hidden { display: none !important; }
 
-        /* Main Layout */
+        /* ─── Main Layout ─── */
         #main-content {
-            max-width: 1400px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 32px 24px;
-            width: 100%;
+            padding: 32px 24px 120px;
         }
 
-        /* Header Design */
+        /* ─── Header ─── */
         .app-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 0 40px 0;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 32px;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
         }
 
         .title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(28px, 4vw, 36px);
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: var(--serif);
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 400;
             letter-spacing: -0.02em;
+            color: var(--primary);
         }
 
-        /* Glassmorphism Controls */
+        .title .pumpki-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .title .pumpki-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--bg-primary);
+        }
+
+        /* ─── Controls ─── */
         .accessibility-controls {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--bg-secondary);
-            backdrop-filter: var(--glass-backdrop);
-            border: var(--glass-border);
-            padding: 16px 24px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-soft);
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .control-btn {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            font-size: 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-family: var(--sans);
+            font-size: 13px;
             font-weight: 500;
+            padding: 8px 16px;
+            border-radius: var(--radius);
             cursor: pointer;
-            padding: 12px 16px;
-            border-radius: var(--border-radius-small);
-            transition: var(--transition-smooth);
-            color: var(--text-primary);
-            backdrop-filter: blur(8px);
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .control-btn:hover, .control-btn:focus {
-            background: rgba(216, 116, 73, 0.2);
-            border-color: var(--primary-orange);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(216, 116, 73, 0.3);
-            outline: none;
+        .control-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
         }
 
         .control-btn.active {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            background: var(--primary);
             color: var(--bg-primary);
-            border-color: var(--primary-orange-dark);
-            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
         }
 
-        /* Modern Navigation Tabs */
-        .nav-tabs {
+        /* ─── Disclaimer ─── */
+        .disclaimer-bar {
             display: flex;
-            background: var(--bg-secondary);
-            backdrop-filter: var(--glass-backdrop);
-            border: 2px solid var(--primary-orange);
-            border-radius: var(--border-radius-large);
-            padding: 8px;
-            margin-bottom: 32px;
-            box-shadow: var(--shadow-soft);
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .nav-tab {
-            flex: 1;
-            min-width: 120px;
+            align-items: flex-start;
+            gap: 14px;
             padding: 16px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            background: transparent;
-            cursor: pointer;
-            transition: var(--transition-bounce);
-            font-weight: 600;
-            font-size: 15px;
-            text-align: center;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--mauve);
+            border-radius: var(--radius);
+            margin-bottom: 28px;
+        }
+
+        .disclaimer-bar .icon-wrap {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: rgba(158, 138, 148, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .disclaimer-bar .icon-wrap svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--mauve);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .disclaimer-bar p {
+            font-size: 13px;
             color: var(--text-secondary);
-            position: relative;
-            overflow: hidden;
+            line-height: 1.6;
         }
 
-        .nav-tab::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(216, 116, 73, 0.2), transparent);
-            transition: var(--transition-smooth);
-        }
-
-        .nav-tab:hover::before {
-            left: 100%;
-        }
-
-        .nav-tab.active {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
-            color: var(--bg-primary);
-            box-shadow: var(--shadow-medium);
-            transform: translateY(-2px);
-        }
-
-        .nav-tab:hover:not(.active) {
-            background: rgba(216, 116, 73, 0.15);
-            transform: translateY(-1px);
-        }
-
-        /* Emergency tab special styling */
-        .nav-tab[data-tab="emergency"] {
-            background: linear-gradient(135deg, var(--error) 0%, #d66850 100%);
+        .disclaimer-bar strong {
             color: var(--text-primary);
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(200, 90, 58, 0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(200, 90, 58, 0); }
-        }
-
-        /* Elevated Card Design */
-        .tab-content {
-            background: var(--bg-card);
-            backdrop-filter: var(--glass-backdrop);
-            border: var(--glass-border);
-            border-radius: var(--border-radius-large);
-            padding: 40px;
-            box-shadow: var(--shadow-soft);
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tab-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow), var(--sage-green), var(--calm-blue));
-        }
-
-        /* Arousal State Check - Beautiful Design */
+        /* ─── Arousal Check ─── */
         .arousal-check {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
 
         .arousal-check h3 {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--serif);
             font-size: 24px;
-            font-weight: 600;
+            font-weight: 400;
             color: var(--text-primary);
-            margin-bottom: 24px;
-            letter-spacing: -0.3px;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
         }
 
         .arousal-scale {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 16px;
-            background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--primary-orange);
-            padding: 24px;
-            border-radius: var(--border-radius-large);
-            margin: 20px 0;
+            gap: 12px;
+            padding: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
             flex-wrap: wrap;
-            box-shadow: var(--shadow-soft);
         }
 
         .arousal-option {
@@ -296,975 +247,1077 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            padding: 20px 16px;
-            border-radius: var(--border-radius);
-            transition: var(--transition-bounce);
-            min-width: 90px;
-            text-align: center;
-            border: 2px solid transparent;
+            padding: 16px 14px;
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+            min-width: 80px;
+            border: 1px solid transparent;
             background: var(--bg-tertiary);
-            backdrop-filter: blur(8px);
         }
 
         .arousal-option:hover {
-            background: rgba(216, 116, 73, 0.2);
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--border-color);
+            border-color: var(--border-active);
+            transform: translateY(-2px);
         }
 
         .arousal-option.selected {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
-            color: var(--bg-primary);
-            border-color: var(--primary-orange-dark);
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: var(--shadow-strong);
+            background: var(--primary);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
-        .arousal-emoji {
-            font-size: 36px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
+        .arousal-option.selected .arousal-label {
+            color: var(--bg-primary);
         }
+
+        .arousal-emoji { font-size: 28px; margin-bottom: 8px; }
 
         .arousal-label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             letter-spacing: 0.02em;
+            color: var(--text-secondary);
         }
 
-        /* Canvas Container */
+        .brain-fact-inline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px 18px;
+            background: rgba(196, 168, 85, 0.1);
+            border: 1px solid rgba(196, 168, 85, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .brain-fact-inline svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ─── Navigation Tabs ─── */
+        .nav-tabs {
+            display: flex;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 6px;
+            margin-bottom: 24px;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            flex: 1;
+            min-width: 110px;
+            padding: 12px 16px;
+            border: none;
+            border-radius: var(--radius);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .nav-tab svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .nav-tab.active {
+            background: var(--primary);
+            color: var(--bg-primary);
+        }
+
+        .nav-tab:hover:not(.active) {
+            color: var(--text-primary);
+            background: var(--bg-elevated);
+        }
+
+        .nav-tab[data-tab="emergency"] {
+            color: var(--coral);
+        }
+
+        .nav-tab[data-tab="emergency"].active {
+            background: var(--error);
+            color: var(--text-primary);
+        }
+
+        /* ─── Tab Content Cards ─── */
+        .tab-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .tab-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 24px;
+            right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* ─── Canvas ─── */
         .canvas-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 32px 0;
-            min-height: 450px;
-            position: relative;
+            padding: 24px 0;
+            min-height: 420px;
         }
 
         #pumpki-canvas {
             max-width: 100%;
             height: auto;
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-strong);
-            background: linear-gradient(135deg, rgba(45, 30, 20, 0.3) 0%, rgba(26, 17, 12, 0.5) 100%);
-            border: 2px solid var(--border-color);
+            border-radius: var(--radius-lg);
         }
 
-        /* Breathing Controls */
+        /* ─── Breathing Controls ─── */
         .breathing-controls {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 32px;
-            margin-top: 32px;
+            gap: 28px;
+            margin-top: 24px;
         }
 
         .breathing-timer {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
             background: var(--bg-elevated);
-            backdrop-filter: blur(16px);
-            border: var(--glass-border);
-            padding: 32px 48px;
-            border-radius: var(--border-radius-large);
+            border: 1px solid var(--border);
+            padding: 28px 40px;
+            border-radius: var(--radius-lg);
             text-align: center;
-            min-width: 300px;
-            box-shadow: var(--shadow-medium);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .breathing-timer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow));
+            min-width: 280px;
         }
 
         .breathing-phase {
-            font-size: 20px;
-            margin-bottom: 16px;
-            min-height: 28px;
-            color: var(--primary-orange);
-            letter-spacing: -0.3px;
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 12px;
+            min-height: 24px;
+            color: var(--primary);
         }
 
         #timer-display {
-            font-size: 42px;
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: var(--serif);
+            font-size: 40px;
+            font-weight: 500;
+            color: var(--primary-light);
         }
 
-        /* Breathing Pattern Cards */
         .breathing-patterns {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
             width: 100%;
-            margin-top: 32px;
+            margin-top: 8px;
         }
 
         .breathing-pattern {
             background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 32px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px 20px;
             cursor: pointer;
-            transition: var(--transition-bounce);
+            transition: all 0.3s ease;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
-        .breathing-pattern::before {
+        .breathing-pattern::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--sage-green), var(--calm-blue));
+            right: 0;
+            height: 2px;
+            background: var(--primary);
             transform: scaleX(0);
-            transition: var(--transition-smooth);
+            transition: transform 0.3s ease;
         }
 
         .breathing-pattern:hover {
-            border-color: var(--primary-orange);
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
+            border-color: var(--border-active);
+            transform: translateY(-2px);
         }
 
-        .breathing-pattern:hover::before {
+        .breathing-pattern:hover::after,
+        .breathing-pattern.active::after {
             transform: scaleX(1);
         }
 
         .breathing-pattern.active {
-            border-color: var(--primary-orange);
-            background: linear-gradient(135deg, rgba(216, 116, 73, 0.15) 0%, rgba(232, 139, 93, 0.1) 100%);
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-strong);
+            border-color: var(--primary);
+            background: rgba(196, 149, 106, 0.08);
         }
 
-        .breathing-pattern.active::before {
-            transform: scaleX(1);
-            background: linear-gradient(90deg, var(--primary-orange), var(--primary-orange-light));
+        .breathing-pattern .pattern-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breathing-pattern .pattern-icon svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
         }
 
         .breathing-pattern h4 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--primary-orange);
-            margin-bottom: 12px;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
+            font-family: var(--serif);
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            font-size: 18px;
+            font-weight: 500;
         }
 
         .breathing-pattern p {
             font-weight: 600;
-            font-size: 18px;
-            color: var(--text-primary);
-            margin-bottom: 8px;
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 6px;
         }
 
         .breathing-pattern small {
             color: var(--text-secondary);
-            font-size: 14px;
-            line-height: 1.4;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        /* Modern Button System */
+        /* ─── Buttons ─── */
         .primary-btn, .secondary-btn {
-            padding: 16px 32px;
+            padding: 12px 28px;
             border: none;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: var(--radius);
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            transition: var(--transition-bounce);
-            min-width: 180px;
-            font-family: 'Inter', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .primary-btn::before, .secondary-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: var(--transition-smooth);
-        }
-
-        .primary-btn:hover::before, .secondary-btn:hover::before {
-            left: 100%;
+            transition: all 0.25s ease;
+            min-width: 160px;
+            letter-spacing: 0.01em;
         }
 
         .primary-btn {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            background: var(--primary);
             color: var(--bg-primary);
-            box-shadow: var(--shadow-medium);
-            border: 2px solid var(--primary-orange-dark);
+            border: 1px solid var(--primary-dark);
         }
 
-        .primary-btn:hover, .primary-btn:focus {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-strong);
+        .primary-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
         }
 
         .primary-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
         .secondary-btn {
-            background: linear-gradient(135deg, var(--sage-green) 0%, var(--sage-green-light) 100%);
+            background: var(--bg-elevated);
             color: var(--text-primary);
-            box-shadow: var(--shadow-soft);
-            border: 2px solid var(--sage-green);
+            border: 1px solid var(--border);
         }
 
-        .secondary-btn:hover, .secondary-btn:focus {
-            background: linear-gradient(135deg, #6d7e58 0%, var(--sage-green) 100%);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-medium);
+        .secondary-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-1px);
         }
 
-        /* Body Scan Enhancements */
+        /* ─── Brain Tips ─── */
+        .brain-tip {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--mauve);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .brain-tip-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .brain-tip-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(158, 138, 148, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brain-tip-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--mauve);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .brain-tip-title {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .brain-tip-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .brain-tip.mini {
+            padding: 16px 20px;
+            margin: 16px 0;
+        }
+
+        .brain-tip.mini .brain-tip-title { font-size: 15px; }
+        .brain-tip.mini .brain-tip-content { font-size: 13px; }
+
+        /* ─── Fun fact ─── */
+        .fun-fact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(196, 168, 85, 0.1);
+            border: 1px solid rgba(196, 168, 85, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 500;
+            margin: 16px 0;
+        }
+
+        .fun-fact svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* ─── Body Scan ─── */
         .body-scan-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 32px;
+            gap: 24px;
+        }
+
+        .body-scan-container h3 {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
         }
 
         .body-outline-container {
-            position: relative;
-            max-width: 280px;
+            max-width: 240px;
             margin: 0 auto;
             padding: 24px;
             background: var(--bg-elevated);
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-soft);
-            border: var(--glass-border);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
         }
 
         .body-part {
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.25s ease;
             stroke-width: 2;
-            stroke: var(--text-secondary);
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            stroke: var(--text-tertiary);
         }
 
-        .body-part:hover {
-            stroke-width: 4;
-            transform: scale(1.05);
-        }
-
-        .body-part.comfortable { 
-            fill: var(--success);
-            stroke: #7a9860;
-        }
-        .body-part.tense { 
-            fill: var(--error);
-            stroke: #b04a2f;
-        }
-        .body-part.neutral { 
-            fill: var(--calm-blue);
-            stroke: #687e8a;
-        }
-        .body-part.active { 
-            stroke: var(--primary-orange);
-            stroke-width: 6;
-            filter: drop-shadow(0 4px 8px rgba(216, 116, 73, 0.5));
-        }
+        .body-part:hover { stroke-width: 3; }
+        .body-part.comfortable { fill: var(--success); stroke: #6E9555; }
+        .body-part.tense { fill: var(--error); stroke: #9A4835; }
+        .body-part.neutral { fill: var(--slate); stroke: #66788A; }
+        .body-part.active { stroke: var(--primary); stroke-width: 4; }
 
         .body-legend {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
-            margin: 20px 0;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            padding: 10px 16px;
             background: var(--bg-elevated);
-            backdrop-filter: blur(8px);
-            padding: 16px 20px;
-            border-radius: var(--border-radius);
-            border: var(--glass-border);
-            transition: var(--transition-smooth);
-        }
-
-        .legend-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 13px;
+            color: var(--text-secondary);
         }
 
         .legend-color {
-            width: 24px;
-            height: 24px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        /* Enhanced sensation tags */
+        /* ─── Sensations ─── */
         .sensations-tracker {
             background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: var(--glass-border);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            margin: 20px 0;
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
             text-align: center;
             width: 100%;
-            max-width: 700px;
-            box-shadow: var(--shadow-soft);
+            max-width: 640px;
         }
 
         .sensations-tracker h4 {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
         }
 
         .sensation-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
             justify-content: center;
         }
 
         .sensation-tag {
-            background: var(--bg-elevated);
-            backdrop-filter: blur(8px);
-            border: 2px solid var(--border-color);
-            padding: 12px 18px;
-            border-radius: var(--border-radius);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: var(--radius);
             cursor: pointer;
-            transition: var(--transition-bounce);
-            font-size: 15px;
+            transition: all 0.25s ease;
+            font-size: 13px;
             font-weight: 500;
-            user-select: none;
             color: var(--text-secondary);
+            font-family: var(--sans);
         }
 
         .sensation-tag:hover {
-            border-color: var(--primary-orange);
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
             color: var(--text-primary);
         }
 
         .sensation-tag.selected {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            background: var(--primary);
             color: var(--bg-primary);
-            border-color: var(--primary-orange-dark);
-            box-shadow: var(--shadow-strong);
+            border-color: var(--primary-dark);
         }
 
-        /* Statistics Cards */
+        /* ─── Guided Scan ─── */
+        .guided-scan-area {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .scan-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--bg-tertiary);
+            border-radius: 2px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .scan-progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .scan-instruction {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin: 20px 0;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        /* ─── Stats ─── */
         .stats-overview {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
         .stat-card {
             background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: var(--glass-border);
-            padding: 32px 24px;
-            border-radius: var(--border-radius);
+            border: 1px solid var(--border);
+            padding: 24px 20px;
+            border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.25s ease;
         }
 
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-orange), var(--sage-green));
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-        }
+        .stat-card:hover { transform: translateY(-2px); }
 
         .stat-number {
-            font-family: 'Poppins', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--warm-amber) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
+            font-family: var(--serif);
+            font-size: 40px;
+            font-weight: 500;
+            color: var(--primary);
             line-height: 1;
+            margin-bottom: 8px;
         }
 
         .stat-label {
-            font-size: 16px;
+            font-size: 13px;
             color: var(--text-secondary);
-            font-weight: 600;
+            font-weight: 500;
             letter-spacing: 0.02em;
         }
 
-        /* Emergency Mode */
-        .emergency-mode {
-            background: linear-gradient(135deg, var(--error) 0%, #d66850 100%);
-            color: var(--text-primary);
-            text-align: center;
-            padding: 48px 32px;
-            border-radius: var(--border-radius-large);
-            margin-bottom: 32px;
-            box-shadow: var(--shadow-strong);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .emergency-mode::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #d66850, var(--error), #d66850, var(--error));
-            border-radius: var(--border-radius-large);
-            z-index: -1;
-            animation: emergency-glow 3s linear infinite;
-        }
-
-        @keyframes emergency-glow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .emergency-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            letter-spacing: -0.5px;
-        }
-
-        .emergency-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 24px;
-            padding: 24px;
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--primary-orange);
-            border-radius: var(--border-radius-large);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .emergency-btn {
-            background: rgba(245, 230, 216, 0.95);
-            color: var(--error);
-            border: none;
-            padding: 18px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            transition: var(--transition-bounce);
-            backdrop-filter: blur(8px);
-        }
-
-        .emergency-btn:hover {
-            background: var(--text-primary);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: var(--shadow-medium);
-        }
-
-        /* History components */
+        /* ─── Mood Chart ─── */
         .mood-chart-container {
             background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: 2px solid var(--primary-orange);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 32px;
             text-align: center;
-            box-shadow: var(--shadow-soft);
+        }
+
+        .mood-chart-container h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
         }
 
         .mood-chart {
             display: flex;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .mood-day {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 16px 12px;
-            border-radius: var(--border-radius);
+            padding: 12px 10px;
+            border-radius: var(--radius);
             background: var(--bg-tertiary);
-            min-width: 70px;
-            transition: var(--transition-smooth);
-            border: var(--glass-border);
+            border: 1px solid var(--border);
+            min-width: 60px;
         }
 
-        .mood-day:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-soft);
-        }
+        .mood-emoji { font-size: 24px; margin-bottom: 6px; }
+        .mood-date { font-size: 11px; color: var(--text-tertiary); font-weight: 500; }
 
-        .mood-emoji {
-            font-size: 28px;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
-        }
-
-        .mood-date {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* Neuroscience Tips */
-        .brain-tip {
-            background: linear-gradient(135deg, rgba(168, 141, 158, 0.2) 0%, rgba(168, 141, 158, 0.1) 100%);
-            border: 2px solid var(--primary-orange);
-            border-radius: var(--border-radius);
-            padding: 20px 24px;
-            margin: 24px 0;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(8px);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .brain-tip::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--soft-purple), var(--calm-blue));
-        }
-
-        .brain-tip-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .brain-tip-icon {
-            font-size: 24px;
-            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
-        }
-
-        .brain-tip-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--primary-orange);
-            margin: 0;
-            letter-spacing: -0.3px;
-        }
-
-        .brain-tip-content {
-            color: var(--text-secondary);
-            font-size: 15px;
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        .brain-tip.mini {
-            padding: 16px 20px;
-            margin: 16px 0;
-            background: linear-gradient(135deg, rgba(168, 141, 158, 0.15) 0%, rgba(168, 141, 158, 0.05) 100%);
-            border-width: 1px;
-        }
-
-        .brain-tip.mini .brain-tip-icon {
-            font-size: 20px;
-        }
-
-        .brain-tip.mini .brain-tip-title {
-            font-size: 16px;
-        }
-
-        .brain-tip.mini .brain-tip-content {
-            font-size: 14px;
-        }
-
-        /* Fun fact bubbles */
-        .fun-fact {
-            background: linear-gradient(135deg, var(--warm-yellow) 0%, #debb6a 100%);
-            border: 2px solid rgba(216, 184, 112, 0.3);
-            border-radius: 20px;
-            padding: 16px 20px;
-            margin: 20px 0;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--bg-primary);
-            box-shadow: var(--shadow-soft);
-            position: relative;
-        }
-
-        .fun-fact::before {
-            content: '💡';
-            position: absolute;
-            left: -8px;
-            top: -8px;
-            background: var(--bg-secondary);
-            border: 2px solid var(--primary-orange);
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        /* Entry Management Styles */
+        /* ─── Entries ─── */
         .recent-entries {
             background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: var(--glass-border);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            margin-bottom: 40px;
-            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 32px;
         }
 
         .entries-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 12px;
         }
 
-        .entry-filters {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
+        .entries-header h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0;
         }
+
+        .entry-filters { display: flex; gap: 6px; flex-wrap: wrap; }
 
         .filter-btn {
-            padding: 10px 18px;
-            border: 2px solid transparent;
-            border-radius: var(--border-radius);
-            background: var(--bg-tertiary);
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: transparent;
             cursor: pointer;
-            font-size: 14px;
+            font-family: var(--sans);
+            font-size: 12px;
             font-weight: 500;
-            transition: var(--transition-bounce);
-            color: var(--text-primary);
-            backdrop-filter: blur(8px);
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
         }
 
-        .filter-btn:hover {
-            border-color: var(--primary-orange);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(216, 116, 73, 0.3);
-        }
+        .filter-btn:hover { border-color: var(--primary); }
 
         .filter-btn.active {
-            background: linear-gradient(135deg, var(--primary-orange) 0%, var(--primary-orange-light) 100%);
+            background: var(--primary);
             color: var(--bg-primary);
-            border-color: var(--primary-orange-dark);
-            box-shadow: var(--shadow-medium);
+            border-color: var(--primary);
         }
 
         .entries-list {
-            max-height: 400px;
+            max-height: 360px;
             overflow-y: auto;
-            padding-right: 10px;
+            padding-right: 8px;
         }
 
         .entry-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            margin-bottom: 12px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
             background: var(--bg-tertiary);
-            border-radius: var(--border-radius);
-            border-left: 4px solid var(--primary-orange);
-            transition: var(--transition-smooth);
-            backdrop-filter: blur(8px);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--primary);
+            transition: all 0.2s ease;
         }
 
-        .entry-item:hover {
-            background: var(--bg-elevated);
-            transform: translateX(8px);
-            box-shadow: var(--shadow-soft);
-        }
+        .entry-item:hover { background: var(--bg-elevated); }
 
-        .entry-content {
-            flex: 1;
-        }
+        .entry-content { flex: 1; }
+        .entry-type { font-size: 16px; margin-right: 8px; }
+        .entry-title { font-weight: 500; font-size: 14px; margin-bottom: 3px; }
+        .entry-details { font-size: 13px; color: var(--text-secondary); }
+        .entry-time { font-size: 11px; color: var(--text-tertiary); text-align: right; min-width: 90px; }
 
-        .entry-type {
-            font-size: 20px;
-            margin-right: 12px;
-            filter: drop-shadow(0 2px 8px rgba(216, 116, 73, 0.3));
-        }
-
-        .entry-title {
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            font-size: 16px;
-        }
-
-        .entry-details {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        .entry-time {
-            font-size: 12px;
-            color: var(--text-tertiary);
-            text-align: right;
-            min-width: 100px;
-            font-weight: 500;
-        }
-
-        .entry-actions {
-            display: flex;
-            gap: 8px;
-            margin-left: 16px;
-        }
+        .entry-actions { display: flex; gap: 6px; margin-left: 12px; }
 
         .entry-action-btn {
             background: var(--bg-elevated);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-small);
-            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 6px 10px;
             cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
-            transition: var(--transition-bounce);
-            backdrop-filter: blur(4px);
+            font-size: 11px;
             color: var(--text-secondary);
+            transition: all 0.2s ease;
         }
 
         .entry-action-btn:hover {
-            background: var(--primary-orange);
-            color: var(--bg-primary);
-            border-color: var(--primary-orange-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-soft);
+            background: var(--error);
+            color: var(--text-primary);
+            border-color: var(--error);
         }
 
         .empty-state {
             text-align: center;
-            padding: 60px 20px;
+            padding: 48px 20px;
             color: var(--text-secondary);
         }
 
-        .empty-state-emoji {
-            font-size: 64px;
+        .empty-state-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 16px;
+            stroke: var(--text-tertiary);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* ─── Emergency ─── */
+        .emergency-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 20px 24px;
+            background: rgba(184, 90, 66, 0.1);
+            border: 1px solid rgba(184, 90, 66, 0.3);
+            border-radius: var(--radius);
             margin-bottom: 20px;
-            filter: drop-shadow(0 4px 12px rgba(216, 116, 73, 0.3));
         }
 
-        /* Guided scan progress */
-        .guided-scan-area {
-            background: var(--bg-elevated);
-            backdrop-filter: blur(12px);
-            border: var(--glass-border);
-            padding: 32px;
-            border-radius: var(--border-radius-large);
-            text-align: center;
-            margin: 24px 0;
-            width: 100%;
-            max-width: 600px;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .scan-progress-bar {
-            width: 100%;
-            height: 12px;
-            background: var(--bg-tertiary);
-            border-radius: 6px;
-            margin-bottom: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-inset);
-        }
-
-        .scan-progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-orange), var(--warm-yellow));
-            border-radius: 6px;
-            transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            width: 0%;
-        }
-
-        .scan-instruction {
-            font-size: 18px;
-            color: var(--text-primary);
-            margin: 24px 0;
-            min-height: 60px;
+        .emergency-notice .icon-wrap {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: rgba(184, 90, 66, 0.15);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .emergency-notice .icon-wrap svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--coral);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .emergency-notice h3 {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .emergency-notice p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .emergency-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .emergency-btn {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-family: var(--sans);
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .emergency-btn svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            flex-shrink: 0;
+        }
+
+        .emergency-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .remember-list {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            margin-top: 20px;
+        }
+
+        .remember-list h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .remember-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .remember-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .remember-list li svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--primary);
+            fill: none;
+            stroke-width: 2;
+            flex-shrink: 0;
+        }
+
+        /* ─── Scan Results ─── */
+        #scan-results {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-top: 16px;
+        }
+
+        #scan-results h4 {
+            font-family: var(--serif);
+            font-size: 17px;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        /* ─── Data Management ─── */
+        .data-management {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            padding: 28px;
+            border-radius: var(--radius-lg);
             text-align: center;
-            line-height: 1.5;
         }
 
+        .data-management h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .data-management p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 16px;
+        }
+
+        /* ─── Legal Modal ─── */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(26, 21, 18, 0.95);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .legal-modal.active { display: block; }
+
+        .legal-modal-content {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            position: relative;
+        }
+
+        .legal-modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 32px; height: 32px;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .legal-modal-close:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            border-color: var(--primary);
+        }
+
+        .legal-modal h2 {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+        }
+
+        .legal-modal h3 {
+            font-family: var(--serif);
+            font-size: 19px;
+            font-weight: 500;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+
+        .legal-modal p, .legal-modal ul {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 14px;
+            font-size: 14px;
+        }
+
+        .legal-modal ul { padding-left: 20px; }
+        .legal-modal li { margin-bottom: 6px; }
+        .legal-modal strong { color: var(--text-primary); }
+
+        /* ─── Footer ─── */
+        footer {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            background: rgba(26, 21, 18, 0.95);
+            backdrop-filter: blur(16px);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .footer-company {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+        }
+
+        .footer-tagline {
+            font-size: 11px;
+            opacity: 0.7;
+            display: block;
+            margin-top: 3px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--primary-light); }
+
+        /* ─── Responsive ─── */
         @media (max-width: 768px) {
-            #main-content {
-                padding: 24px 16px;
-            }
-            
-            .nav-tabs {
-                flex-direction: column;
-            }
-            
-            .nav-tab {
-                min-width: 100%;
-            }
-
-            .app-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-
-            .accessibility-controls {
-                justify-content: center;
-            }
-
-            .breathing-patterns {
-                grid-template-columns: 1fr;
-            }
-
-            .arousal-scale {
-                gap: 12px;
-            }
-
-            .arousal-option {
-                min-width: 75px;
-                padding: 16px 12px;
-            }
-
-            .tab-content {
-                padding: 24px 20px;
-            }
-
-            .stats-overview {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 16px;
-            }
-
-            .emergency-actions {
-                grid-template-columns: 1fr;
-            }
+            #main-content { padding: 20px 16px 130px; }
+            .nav-tabs { flex-direction: column; }
+            .nav-tab { min-width: 100%; }
+            .app-header { flex-direction: column; text-align: center; }
+            .breathing-patterns { grid-template-columns: 1fr; }
+            .tab-content { padding: 24px 20px; }
+            .stats-overview { grid-template-columns: repeat(2, 1fr); }
+            .emergency-actions { grid-template-columns: 1fr; }
         }
 
-        /* Reduced motion support */
+        /* ─── Reduced Motion ─── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
 
-        /* Manual reduced motion toggle */
-        .reduced-motion *, 
-        .reduced-motion *::before, 
-        .reduced-motion *::after {
+        .reduced-motion *, .reduced-motion *::before, .reduced-motion *::after {
             animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
             transform: none !important;
         }
 
-        .reduced-motion .control-btn:hover,
-        .reduced-motion .control-btn:focus {
-            transform: none !important;
-        }
-
-        .reduced-motion .nav-tab:hover:not(.active) {
-            transform: none !important;
-        }
-
-        .reduced-motion .nav-tab.active {
-            transform: none !important;
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-orange);
-        }
+        /* ─── Scrollbar ─── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
     </style>
 </head>
 <body>
     <div id="main-content">
         <!-- Header -->
         <div class="app-header">
-            <h1 class="title">🎃 Pumpki</h1>
+            <h1 class="title">
+                <span class="pumpki-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="14" r="8"/><path d="M12 6V2" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/><path d="M15 4c-1 1-2 2-3 2s-2-1-3-2" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+                Pumpki
+            </h1>
             <div class="accessibility-controls">
-                <button class="control-btn" id="high-contrast-btn">High Contrast</button>
-                <button class="control-btn" id="reduced-motion-btn">Reduce Motion</button>
-                <button class="control-btn active" id="audio-toggle-btn">🔊 Audio</button>
+                <button class="control-btn" id="high-contrast-btn">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>
+                    Contrast
+                </button>
+                <button class="control-btn" id="reduced-motion-btn">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    Motion
+                </button>
+                <button class="control-btn active" id="audio-toggle-btn">
+                    <svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                    Audio
+                </button>
             </div>
         </div>
 
-        <!-- Arousal State Check (always visible) -->
+        <!-- Disclaimer -->
+        <div class="disclaimer-bar">
+            <div class="icon-wrap">
+                <svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <p>
+                Pumpki is a gentle self-regulation tool designed for neurodivergent users. 
+                It is <strong>not medical advice</strong> and is not a replacement for therapy, diagnosis, or crisis care.
+                If you're experiencing persistent distress, please seek support from a licensed professional.
+            </p>
+        </div>
+
+        <!-- Arousal State Check -->
         <div class="arousal-check">
             <h3>How are you feeling right now?</h3>
             <div class="arousal-scale" id="arousal-scale">
@@ -1290,17 +1343,30 @@
                 </div>
             </div>
             
-            <div class="fun-fact">
-                <strong>Brain Tip:</strong> Your prefrontal cortex (the smart part behind your forehead) is like your brain's wise CEO - it helps you notice and name your feelings!
+            <div class="brain-fact-inline">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Your prefrontal cortex helps you notice and name your feelings — you're exercising it right now.
             </div>
         </div>
 
         <!-- Navigation tabs -->
         <div class="nav-tabs">
-            <button class="nav-tab active" data-tab="breathing">🫁 Breathing</button>
-            <button class="nav-tab" data-tab="body-scan">🧘 Body Check</button>
-            <button class="nav-tab" data-tab="history">📊 My Progress</button>
-            <button class="nav-tab" data-tab="emergency" style="background: linear-gradient(135deg, var(--error) 0%, #d66850 100%); color: var(--text-primary);">🚨 Need Help Now</button>
+            <button class="nav-tab active" data-tab="breathing">
+                <svg viewBox="0 0 24 24"><path d="M12 22c-4-3-8-6-8-10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 4-4 7-8 10z"/></svg>
+                Breathing
+            </button>
+            <button class="nav-tab" data-tab="body-scan">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8v8M8 20l4-4 4 4"/></svg>
+                Body Check
+            </button>
+            <button class="nav-tab" data-tab="history">
+                <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 5-6"/></svg>
+                My Progress
+            </button>
+            <button class="nav-tab" data-tab="emergency">
+                <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                Need Help Now
+            </button>
         </div>
 
         <!-- Breathing tab -->
@@ -1315,41 +1381,45 @@
                     <div id="timer-display">Ready</div>
                 </div>
                 
-                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+                <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
                     <button class="primary-btn" id="start-breathing-btn">Start Breathing</button>
                     <button class="secondary-btn" id="stop-breathing-btn">Stop</button>
                 </div>
 
                 <div class="breathing-patterns">
                     <div class="breathing-pattern active" data-pattern="box">
-                        <h4>🟫 Box Breathing</h4>
-                        <p><strong>4-4-4-4</strong></p>
-                        <small>In 4, Hold 4, Out 4, Hold 4<br>Best for: Balance & Focus</small>
+                        <div class="pattern-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg></div>
+                        <h4>Box Breathing</h4>
+                        <p>4 – 4 – 4 – 4</p>
+                        <small>In 4, Hold 4, Out 4, Hold 4<br>Best for: Balance &amp; Focus</small>
                     </div>
                     <div class="breathing-pattern" data-pattern="calm">
-                        <h4>🌊 Calming Breath</h4>
-                        <p><strong>4-6</strong></p>
-                        <small>In 4, Out 6<br>Best for: Anxiety & Overwhelm</small>
+                        <div class="pattern-icon"><svg viewBox="0 0 24 24"><path d="M2 12c2-4 6-4 8 0s6 4 8 0M2 18c2-4 6-4 8 0s6 4 8 0"/></svg></div>
+                        <h4>Calming Breath</h4>
+                        <p>4 – 6</p>
+                        <small>In 4, Out 6<br>Best for: Anxiety &amp; Overwhelm</small>
                     </div>
                     <div class="breathing-pattern" data-pattern="energy">
-                        <h4>⚡ Energizing Breath</h4>
-                        <p><strong>6-4</strong></p>
+                        <div class="pattern-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                        <h4>Energizing Breath</h4>
+                        <p>6 – 4</p>
                         <small>In 6, Out 4<br>Best for: Low Energy</small>
                     </div>
                 </div>
 
                 <div class="brain-tip">
                     <div class="brain-tip-header">
-                        <div class="brain-tip-icon">🧠</div>
-                        <h4 class="brain-tip-title">Cool Brain Fact!</h4>
+                        <div class="brain-tip-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/><path d="M9 21h6M10 17v-1M14 17v-1"/></svg></div>
+                        <h4 class="brain-tip-title">Cool Brain Fact</h4>
                     </div>
                     <div class="brain-tip-content">
-                        When you breathe slowly, you're actually sending a "chill out" message to your amygdala (your brain's alarm system)! Your vagus nerve is like a superhighway that carries calm signals from your breathing muscles to your brain. Pretty awesome, right?
+                        When you breathe slowly, you're sending a "chill out" message to your amygdala (your brain's alarm system). Your vagus nerve is like a superhighway that carries calm signals from your breathing muscles to your brain.
                     </div>
                 </div>
 
                 <div class="fun-fact">
-                    <strong>Audio Tip:</strong> Sound waves help your brain sync with your breathing! The gentle tones guide your nervous system into a calm rhythm. 🎵
+                    <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    Audio tip: Sound waves help your brain sync with your breathing — the gentle tones guide your nervous system into calm.
                 </div>
             </div>
         </div>
@@ -1358,17 +1428,16 @@
         <div class="tab-content hidden" id="body-scan-tab">
             <div class="body-scan-container">
                 <h3>Body Check-In</h3>
-                <p id="body-scan-instruction">Tap different parts of your body to show how they feel, or try a guided body scan:</p>
+                <p id="body-scan-instruction" style="color: var(--text-secondary); font-size: 14px;">Tap different parts of your body to show how they feel, or try a guided body scan:</p>
                 
-                <div style="display: flex; gap: 16px; justify-content: center; margin: 24px 0; flex-wrap: wrap;">
-                    <button class="secondary-btn" id="guided-scan-btn">🧘 Guided Body Scan</button>
-                    <button class="secondary-btn" id="quick-check-btn">⚡ Quick Check</button>
-                    <button class="secondary-btn" id="body-scan-reset">🔄 Reset</button>
+                <div style="display: flex; gap: 10px; justify-content: center; margin: 16px 0; flex-wrap: wrap;">
+                    <button class="secondary-btn" id="guided-scan-btn">Guided Body Scan</button>
+                    <button class="secondary-btn" id="quick-check-btn">Quick Check</button>
+                    <button class="secondary-btn" id="body-scan-reset">Reset</button>
                 </div>
                 
                 <div class="body-outline-container">
                     <svg class="body-outline" viewBox="0 0 200 350" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Simple body outline -->
                         <ellipse class="body-part neutral" data-part="head" cx="100" cy="40" rx="25" ry="30" />
                         <rect class="body-part neutral" data-part="neck" x="90" y="65" width="20" height="15" rx="5" />
                         <ellipse class="body-part neutral" data-part="chest" cx="100" cy="120" rx="35" ry="25" />
@@ -1385,19 +1454,18 @@
                 <div class="body-legend">
                     <div class="legend-item">
                         <div class="legend-color" style="background: var(--success);"></div>
-                        <span>Comfortable/Relaxed</span>
+                        <span>Comfortable</span>
                     </div>
                     <div class="legend-item">
-                        <div class="legend-color" style="background: var(--calm-blue);"></div>
-                        <span>Neutral/Normal</span>
+                        <div class="legend-color" style="background: var(--slate);"></div>
+                        <span>Neutral</span>
                     </div>
                     <div class="legend-item">
                         <div class="legend-color" style="background: var(--error);"></div>
-                        <span>Tense/Uncomfortable</span>
+                        <span>Tense</span>
                     </div>
                 </div>
 
-                <!-- Guided scan progress -->
                 <div class="guided-scan-area hidden" id="guided-scan-area">
                     <div class="scan-progress-bar">
                         <div class="scan-progress-fill" id="scan-progress-fill"></div>
@@ -1405,57 +1473,52 @@
                     <div class="scan-instruction" id="current-scan-instruction">
                         Focus on your head. Notice any tension, warmth, or other feelings.
                     </div>
-                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                         <button class="primary-btn" id="scan-next-btn">Next Area</button>
                         <button class="secondary-btn" id="scan-stop-btn">Stop Scan</button>
                     </div>
                 </div>
 
-                <!-- Body sensations tracker -->
                 <div class="sensations-tracker" id="sensations-tracker">
                     <h4>What are you noticing in your body?</h4>
                     <div class="sensation-options">
-                        <div class="sensation-tag" data-sensation="warm">🔥 Warm</div>
-                        <div class="sensation-tag" data-sensation="cool">❄️ Cool</div>
-                        <div class="sensation-tag" data-sensation="tight">😬 Tight</div>
-                        <div class="sensation-tag" data-sensation="relaxed">😌 Relaxed</div>
-                        <div class="sensation-tag" data-sensation="tingly">✨ Tingly</div>
-                        <div class="sensation-tag" data-sensation="heavy">⬇️ Heavy</div>
-                        <div class="sensation-tag" data-sensation="light">🎈 Light</div>
-                        <div class="sensation-tag" data-sensation="buzzy">⚡ Buzzy</div>
-                        <div class="sensation-tag" data-sensation="achy">😣 Achy</div>
-                        <div class="sensation-tag" data-sensation="energized">🌟 Energized</div>
+                        <div class="sensation-tag" data-sensation="warm">Warm</div>
+                        <div class="sensation-tag" data-sensation="cool">Cool</div>
+                        <div class="sensation-tag" data-sensation="tight">Tight</div>
+                        <div class="sensation-tag" data-sensation="relaxed">Relaxed</div>
+                        <div class="sensation-tag" data-sensation="tingly">Tingly</div>
+                        <div class="sensation-tag" data-sensation="heavy">Heavy</div>
+                        <div class="sensation-tag" data-sensation="light">Light</div>
+                        <div class="sensation-tag" data-sensation="buzzy">Buzzy</div>
+                        <div class="sensation-tag" data-sensation="achy">Achy</div>
+                        <div class="sensation-tag" data-sensation="energized">Energized</div>
                     </div>
                 </div>
 
                 <div class="brain-tip mini">
                     <div class="brain-tip-header">
-                        <div class="brain-tip-icon">🌟</div>
+                        <div class="brain-tip-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
                         <h4 class="brain-tip-title">Body-Brain Connection</h4>
                     </div>
                     <div class="brain-tip-content">
-                        Your brain has special sensors called "interoceptors" that are like tiny detectives, constantly reporting what's happening inside your body! When you practice noticing these feelings, you're training your "interoceptive network" to be super smart about your needs.
+                        Your brain has special sensors called "interoceptors" — tiny detectives constantly reporting what's happening inside your body. When you practice noticing these feelings, you're training your interoceptive network to be smarter about your needs.
                     </div>
                 </div>
 
-                <!-- Body scan results -->
                 <div class="tab-content hidden" id="scan-results">
-                    <h4>Your Body Check Summary:</h4>
-                    <div class="results-content" id="results-content">
-                        <!-- Results will be populated here -->
-                    </div>
-                    <div style="text-align: center; margin-top: 20px;">
+                    <h4>Your Body Check Summary</h4>
+                    <div class="results-content" id="results-content"></div>
+                    <div style="text-align: center; margin-top: 16px;">
                         <button class="primary-btn" id="save-body-check">Save This Check-in</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- History/Progress tab -->
+        <!-- History tab -->
         <div class="tab-content hidden" id="history-tab">
-            <h3 style="text-align: center; margin-bottom: 32px;">📊 My Regulation Journey</h3>
+            <h3 style="text-align: center; margin-bottom: 28px; font-family: var(--serif); font-size: 24px; font-weight: 400;">My Regulation Journey</h3>
             
-            <!-- Quick stats -->
             <div class="stats-overview">
                 <div class="stat-card">
                     <div class="stat-number" id="total-sessions">0</div>
@@ -1475,32 +1538,29 @@
                 </div>
             </div>
 
-            <!-- Weekly mood chart -->
             <div class="mood-chart-container">
-                <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary);">This Week's Feelings</h4>
-                <div class="mood-chart" id="weekly-mood-chart">
-                    <!-- Will be populated with mood data -->
-                </div>
+                <h4>This Week's Feelings</h4>
+                <div class="mood-chart" id="weekly-mood-chart"></div>
             </div>
 
             <div class="brain-tip">
                 <div class="brain-tip-header">
-                    <div class="brain-tip-icon">🌱</div>
-                    <h4 class="brain-tip-title">Your Brain is Always Growing!</h4>
+                    <div class="brain-tip-icon"><svg viewBox="0 0 24 24"><path d="M12 22c-4-3-8-6-8-10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 4-4 7-8 10z"/></svg></div>
+                    <h4 class="brain-tip-title">Your Brain is Always Growing</h4>
                 </div>
                 <div class="brain-tip-content">
-                    Every time you practice breathing or body scans, you're literally rewiring your brain! Scientists call this "neuroplasticity" - it means your brain can create new pathways like building new roads. The more you practice, the stronger these calm-down highways become!
+                    Every time you practice breathing or body scans, you're literally rewiring your brain. Scientists call this "neuroplasticity" — your brain creates new pathways like building new roads. The more you practice, the stronger these calm-down highways become.
                 </div>
             </div>
 
             <div class="fun-fact">
-                <strong>Fun Fact:</strong> Your brain makes about 700 new connections every second when you're learning something new!
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                Your brain makes about 700 new connections every second when you're learning something new.
             </div>
 
-            <!-- Recent entries -->
             <div class="recent-entries">
                 <div class="entries-header">
-                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin: 0;">Recent Entries</h4>
+                    <h4>Recent Entries</h4>
                     <div class="entry-filters">
                         <button class="filter-btn active" data-filter="all">All</button>
                         <button class="filter-btn" data-filter="breathing">Breathing</button>
@@ -1508,190 +1568,243 @@
                         <button class="filter-btn" data-filter="mood">Mood</button>
                     </div>
                 </div>
-                <div class="entries-list" id="entries-list">
-                    <!-- Entries will be populated here -->
-                </div>
+                <div class="entries-list" id="entries-list"></div>
             </div>
 
-            <!-- Data management -->
-            <div style="background: var(--bg-elevated); backdrop-filter: blur(12px); border: var(--glass-border); padding: 32px; border-radius: var(--border-radius-large); text-align: center; box-shadow: var(--shadow-soft);">
-                <h4 style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px;">Manage Your Data</h4>
-                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+            <div class="data-management">
+                <h4>Manage Your Data</h4>
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
                     <button class="secondary-btn" id="export-data-btn">Export Data</button>
                     <button class="secondary-btn" id="import-data-btn">Import Data</button>
                     <button class="secondary-btn" id="clear-old-data-btn">Clear Old Data</button>
                 </div>
                 <input type="file" id="import-file-input" accept=".json" style="display: none;">
-                <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.5;">
-                    Export your data to save a backup file, or import to restore from a previous backup.
-                </p>
+                <p>Export your data to save a backup, or import to restore from a previous backup.</p>
             </div>
         </div>
 
         <!-- Emergency tab -->
         <div class="tab-content hidden" id="emergency-tab">
-            <div class="emergency-mode">
-                <div class="emergency-title">🚨 Need Help Right Now?</div>
-                <p style="font-size: 18px; margin-bottom: 24px; opacity: 0.9;">Let's get you feeling safer. Try one of these:</p>
-                
-                <div class="emergency-actions">
-                    <button class="emergency-btn" id="emergency-breathing">Start Crisis Breathing</button>
-                    <button class="emergency-btn" id="grounding-54321">5-4-3-2-1 Grounding</button>
-                    <button class="emergency-btn" id="cold-water">Cold Water Technique</button>
-                    <button class="emergency-btn" id="safe-place">Find Safe Space</button>
+            <div class="emergency-notice">
+                <div class="icon-wrap">
+                    <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+                </div>
+                <div>
+                    <h3>Crisis Support Notice</h3>
+                    <p>
+                        This tool is <strong>not a crisis intervention service</strong>. 
+                        If you are in immediate danger or feel unable to keep yourself safe, 
+                        please contact your local emergency number or a trusted crisis resource.
+                    </p>
                 </div>
             </div>
+                
+            <div class="emergency-actions">
+                <button class="emergency-btn" id="emergency-breathing">
+                    <svg viewBox="0 0 24 24"><path d="M12 22c-4-3-8-6-8-10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 4-4 7-8 10z"/></svg>
+                    Crisis Breathing
+                </button>
+                <button class="emergency-btn" id="grounding-54321">
+                    <svg viewBox="0 0 24 24"><path d="M6 18h.01M10 18h.01M14 18h.01M18 18h.01M8 14h.01M12 14h.01M16 14h.01M10 10h.01M14 10h.01M12 6h.01"/></svg>
+                    5-4-3-2-1 Grounding
+                </button>
+                <button class="emergency-btn" id="cold-water">
+                    <svg viewBox="0 0 24 24"><path d="M12 2v6M12 22c-3 0-6-2-6-6 0-3.5 6-10 6-10s6 6.5 6 10c0 4-3 6-6 6z"/></svg>
+                    Cold Water Reset
+                </button>
+                <button class="emergency-btn" id="safe-place">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M9 22V12h6v10"/></svg>
+                    Find Safe Space
+                </button>
+            </div>
 
-            <div style="background: var(--bg-elevated); backdrop-filter: blur(12px); border: var(--glass-border); padding: 32px; border-radius: var(--border-radius-large); box-shadow: var(--shadow-soft);">
-                <h4 style="color: var(--text-primary); margin-bottom: 20px; font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600;">Remember:</h4>
-                <ul style="text-align: left; color: var(--text-primary); line-height: 1.8; list-style: none; padding-left: 0;">
-                    <li style="margin-bottom: 12px;">🌟 This feeling will pass</li>
-                    <li style="margin-bottom: 12px;">🛡️ You are safe right now</li>
-                    <li style="margin-bottom: 12px;">🧰 You have tools to help yourself</li>
-                    <li>🤝 It's okay to ask for help from a trusted adult</li>
+            <div class="remember-list">
+                <h4>Remember</h4>
+                <ul>
+                    <li><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg> This feeling will pass</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> You are safe right now</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> You have tools to help yourself</li>
+                    <li><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> It's okay to ask for help</li>
                 </ul>
             </div>
 
-            <div class="brain-tip">
+            <div class="brain-tip" style="margin-top: 20px;">
                 <div class="brain-tip-header">
-                    <div class="brain-tip-icon">🚨</div>
+                    <div class="brain-tip-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/><path d="M9 21h6"/></svg></div>
                     <h4 class="brain-tip-title">What's Happening in Your Brain</h4>
                 </div>
                 <div class="brain-tip-content">
-                    When you feel overwhelmed, your amygdala (alarm system) is trying to protect you by releasing stress hormones like adrenaline. It's like a smoke detector that's being extra careful! The breathing techniques help tell your brain "false alarm - we're safe" and turn on your parasympathetic nervous system (your body's natural calm-down system).
+                    When you feel overwhelmed, your amygdala (alarm system) is trying to protect you by releasing stress hormones. It's like a smoke detector that's being extra careful. The breathing techniques help tell your brain "false alarm — we're safe" and activate your parasympathetic nervous system (your body's natural calm-down system).
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-company">
+            © 2026 Her Own Terms, LLC
+            <span class="footer-tagline">Montreal, Quebec, Canada · Built with care for neurodivergent minds</span>
+        </div>
+        <div class="footer-links">
+            <a href="#" onclick="showLegalModal('about'); return false;">About</a>
+            <a href="#" onclick="showLegalModal('privacy'); return false;">Data &amp; Privacy</a>
+            <a href="#" onclick="showLegalModal('medical'); return false;">Medical Disclaimer</a>
+            <a href="#" onclick="showLegalModal('terms'); return false;">Terms of Use</a>
+            <a href="#" onclick="showLegalModal('accessibility'); return false;">Accessibility</a>
+        </div>
+    </footer>
+
     <script>
-        // IndexedDB Database Manager
+        // Legal modal system
+        function showLegalModal(type) {
+            const existingModal = document.querySelector('.legal-modal');
+            if (existingModal) existingModal.remove();
+            
+            const modal = document.createElement('div');
+            modal.className = 'legal-modal active';
+            modal.innerHTML = `
+                <div class="legal-modal-content">
+                    <button class="legal-modal-close" onclick="this.closest('.legal-modal').remove()">×</button>
+                    ${getLegalContent(type)}
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+        }
+
+        function getLegalContent(type) {
+            const content = {
+                about: `
+                    <h2>About Pumpki</h2>
+                    <p>Pumpki is a gentle self-regulation and nervous-system support tool designed specifically for neurodivergent users.</p>
+                    <h3>Research Foundation</h3>
+                    <p>Pumpki incorporates techniques informed by neuroscience research on breathing, interoception, and nervous system regulation. These are educational tools for self-exploration, not medical treatments or therapeutic interventions.</p>
+                    <p>Created by Her Own Terms, LLC in Montreal, Quebec, Pumpki combines breathing exercises, body awareness techniques, and neuroscience education to support self-regulation and emotional wellness.</p>
+                    <p><strong>What Pumpki is:</strong></p>
+                    <ul><li>A self-regulation practice tool</li><li>An educational resource about nervous system states</li><li>A personal tracking system for your wellness journey</li></ul>
+                    <p><strong>What Pumpki is NOT:</strong></p>
+                    <ul><li>Medical or psychological treatment</li><li>A replacement for professional care</li><li>A crisis intervention service</li></ul>
+                `,
+                privacy: `
+                    <h2>Data & Privacy</h2>
+                    <h3>Your Data Stays With You</h3>
+                    <p>Pumpki stores your entries <strong>locally on your device only</strong> using your browser's IndexedDB storage.</p>
+                    <p><strong>What this means:</strong></p>
+                    <ul><li>No accounts required</li><li>No cloud storage</li><li>No data is sent to our servers</li><li>No analytics or tracking</li><li>No third-party data sharing</li></ul>
+                    <h3>Your Control</h3>
+                    <p>You can export or delete your data at any time using the controls in the "My Progress" tab.</p>
+                    <h3>Browser Storage</h3>
+                    <p>Your data is stored in your browser's local IndexedDB database. Clearing your browser data will delete your Pumpki entries.</p>
+                    <p>We recommend exporting your data regularly as a backup if you want to preserve your progress records.</p>
+                    <h3>No Collection Policy</h3>
+                    <p>Her Own Terms, LLC does not collect, store, or have access to any data you create in Pumpki. Your information never leaves your device.</p>
+                `,
+                medical: `
+                    <h2>Medical Disclaimer</h2>
+                    <p><strong>Important: Please read carefully</strong></p>
+                    <p>The tools on this website are provided for <strong>educational, self-reflection, and self-regulation purposes only</strong>.</p>
+                    <p>They are <strong>not intended to diagnose, treat, cure, or prevent any medical or mental health condition</strong>, and should not be used as a substitute for professional care.</p>
+                    <h3>When to Seek Professional Help</h3>
+                    <p>If you are experiencing any of the following, please seek support from a licensed professional or local emergency services:</p>
+                    <ul><li>Persistent distress or emotional pain</li><li>Thoughts of self-harm or suicide</li><li>Inability to care for yourself</li><li>Symptoms that interfere with daily life</li><li>A mental health crisis</li></ul>
+                    <p style="color: var(--primary); font-weight: 600; margin-top: 24px;">You deserve support, and needing help does not mean you've failed.</p>
+                    <h3>Canadian Crisis Resources</h3>
+                    <p><strong>If you're in immediate danger:</strong></p>
+                    <ul><li><strong>Emergency:</strong> Call 911</li><li><strong>988 Suicide Crisis Helpline (Canada):</strong> Call or text 988</li><li><strong>Kids Help Phone (ages 5-29):</strong> Text CONNECT to 686868 or call 1-800-668-6868</li><li><strong>Talk Suicide Canada:</strong> 1-833-456-4566 (available 24/7)</li><li><strong>Crisis Text Line (Canada):</strong> Text HOME to 741741</li></ul>
+                    <p style="margin-top: 20px;"><strong>Quebec-specific resources:</strong></p>
+                    <ul><li><strong>Tel-Aide:</strong> 514-935-1101 (Montreal)</li><li><strong>Suicide Action Montreal:</strong> 1-866-277-3553</li><li><strong>Info-Social 811:</strong> Dial 811 for health and social services info</li></ul>
+                `,
+                terms: `
+                    <h2>Terms of Use</h2>
+                    <p>By using Pumpki, you agree to the following terms:</p>
+                    <h3>Use of the Tool</h3>
+                    <ul><li>You are using the tools voluntarily and at your own discretion</li><li>You understand they are not medical or therapeutic services</li><li>You will not hold Her Own Terms, LLC liable for how you choose to use the tools</li></ul>
+                    <h3>No Warranty</h3>
+                    <p>These tools are offered "as is" without warranty of any kind. We make no guarantees about results, outcomes, or suitability for your specific needs.</p>
+                    <h3>Your Responsibility</h3>
+                    <ul><li>Using the tools safely and appropriately</li><li>Seeking professional help when needed</li><li>Backing up your data if desired</li><li>Understanding the limitations of self-regulation tools</li></ul>
+                    <h3>Intellectual Property</h3>
+                    <p>All original text, design, code, and tools on this site are © 2026 Her Own Terms, LLC unless otherwise stated.</p>
+                    <h3>Good Faith</h3>
+                    <p>These tools are offered in good faith, with care and intention to support neurodivergent individuals in their self-regulation journey.</p>
+                `,
+                accessibility: `
+                    <h2>Accessibility & Design</h2>
+                    <h3>Design Intent</h3>
+                    <p>Pumpki is intentionally designed to support neurodivergent users, including those with sensory sensitivities, anxiety disorders, ADHD, autism spectrum conditions, trauma histories, and other neurodevelopmental differences.</p>
+                    <h3>Accessibility Features</h3>
+                    <ul><li><strong>Reduced motion option</strong> — Minimizes animations and transitions</li><li><strong>High contrast mode</strong> — Increases visual clarity</li><li><strong>Gentle audio cues</strong> — Optional breathing guidance with soft tones</li><li><strong>Non-judgmental language</strong> — Supportive, shame-free communication</li><li><strong>Calming color palette</strong> — Warm, earthy tones designed to be soothing</li><li><strong>Local data storage</strong> — No accounts or complex setup required</li><li><strong>Flexible pacing</strong> — Use tools at your own speed</li></ul>
+                    <h3>Important Note</h3>
+                    <p>These features are <strong>intentional design choices</strong>, not clinical guarantees or medical treatments.</p>
+                    <h3>Browser Compatibility</h3>
+                    <p>Pumpki works best on modern browsers (Chrome, Firefox, Safari, Edge).</p>
+                `
+            };
+            return content[type] || '<p>Content not found</p>';
+        }
+
+        // ─── IndexedDB Database Manager ───
         class PumpkiDB {
-            constructor() {
-                this.dbName = 'PumpkiDB';
-                this.version = 1;
-                this.db = null;
-            }
+            constructor() { this.dbName = 'PumpkiDB'; this.version = 1; this.db = null; }
 
             async init() {
                 return new Promise((resolve, reject) => {
                     const request = indexedDB.open(this.dbName, this.version);
-                    
                     request.onerror = () => reject(request.error);
-                    request.onsuccess = () => {
-                        this.db = request.result;
-                        resolve(this.db);
-                    };
-                    
+                    request.onsuccess = () => { this.db = request.result; resolve(this.db); };
                     request.onupgradeneeded = (event) => {
                         const db = event.target.result;
-                        
-                        // Breathing sessions store
                         if (!db.objectStoreNames.contains('breathingSessions')) {
-                            const breathingStore = db.createObjectStore('breathingSessions', {
-                                keyPath: 'id',
-                                autoIncrement: true
-                            });
-                            breathingStore.createIndex('timestamp', 'timestamp', { unique: false });
-                            breathingStore.createIndex('date', 'date', { unique: false });
+                            const s = db.createObjectStore('breathingSessions', { keyPath: 'id', autoIncrement: true });
+                            s.createIndex('timestamp', 'timestamp', { unique: false });
+                            s.createIndex('date', 'date', { unique: false });
                         }
-                        
-                        // Body check-ins store
                         if (!db.objectStoreNames.contains('bodyCheckIns')) {
-                            const bodyStore = db.createObjectStore('bodyCheckIns', {
-                                keyPath: 'id',
-                                autoIncrement: true
-                            });
-                            bodyStore.createIndex('timestamp', 'timestamp', { unique: false });
-                            bodyStore.createIndex('date', 'date', { unique: false });
+                            const s = db.createObjectStore('bodyCheckIns', { keyPath: 'id', autoIncrement: true });
+                            s.createIndex('timestamp', 'timestamp', { unique: false });
+                            s.createIndex('date', 'date', { unique: false });
                         }
-                        
-                        // Mood entries store
                         if (!db.objectStoreNames.contains('moodEntries')) {
-                            const moodStore = db.createObjectStore('moodEntries', {
-                                keyPath: 'id',
-                                autoIncrement: true
-                            });
-                            moodStore.createIndex('timestamp', 'timestamp', { unique: false });
-                            moodStore.createIndex('date', 'date', { unique: false });
+                            const s = db.createObjectStore('moodEntries', { keyPath: 'id', autoIncrement: true });
+                            s.createIndex('timestamp', 'timestamp', { unique: false });
+                            s.createIndex('date', 'date', { unique: false });
                         }
                     };
                 });
             }
 
             async saveBreathingSession(data) {
-                const transaction = this.db.transaction(['breathingSessions'], 'readwrite');
-                const store = transaction.objectStore('breathingSessions');
-                
-                const session = {
-                    timestamp: new Date().toISOString(),
-                    date: new Date().toDateString(),
-                    pattern: data.pattern,
-                    duration: data.duration,
-                    completedCycles: data.completedCycles,
-                    arousalBefore: data.arousalBefore,
-                    arousalAfter: data.arousalAfter
-                };
-                
-                return store.add(session);
+                const store = this.db.transaction(['breathingSessions'], 'readwrite').objectStore('breathingSessions');
+                return store.add({ timestamp: new Date().toISOString(), date: new Date().toDateString(), ...data });
             }
 
             async saveBodyCheckIn(data) {
-                const transaction = this.db.transaction(['bodyCheckIns'], 'readwrite');
-                const store = transaction.objectStore('bodyCheckIns');
-                
-                const checkIn = {
-                    timestamp: new Date().toISOString(),
-                    date: new Date().toDateString(),
-                    bodyStates: data.bodyStates,
-                    sensations: data.sensations,
-                    scanType: data.scanType,
-                    arousalState: data.arousalState
-                };
-                
-                return store.add(checkIn);
+                const store = this.db.transaction(['bodyCheckIns'], 'readwrite').objectStore('bodyCheckIns');
+                return store.add({ timestamp: new Date().toISOString(), date: new Date().toDateString(), ...data });
             }
 
             async saveMoodEntry(data) {
-                const transaction = this.db.transaction(['moodEntries'], 'readwrite');
-                const store = transaction.objectStore('moodEntries');
-                
-                const mood = {
-                    timestamp: new Date().toISOString(),
-                    date: new Date().toDateString(),
-                    arousalState: data.arousalState,
-                    context: data.context || ''
-                };
-                
-                return store.add(mood);
+                const store = this.db.transaction(['moodEntries'], 'readwrite').objectStore('moodEntries');
+                return store.add({ timestamp: new Date().toISOString(), date: new Date().toDateString(), ...data });
             }
 
-            async getAllEntries(storeName, limit = null) {
-                const transaction = this.db.transaction([storeName], 'readonly');
-                const store = transaction.objectStore(storeName);
-                const index = store.index('timestamp');
-                
+            async getAllEntries(storeName) {
+                const index = this.db.transaction([storeName], 'readonly').objectStore(storeName).index('timestamp');
                 return new Promise((resolve, reject) => {
-                    const request = limit ? 
-                        index.getAll(null, limit) : 
-                        index.getAll();
-                    
-                    request.onsuccess = () => resolve(request.result.reverse());
-                    request.onerror = () => reject(request.error);
+                    const r = index.getAll();
+                    r.onsuccess = () => resolve(r.result.reverse());
+                    r.onerror = () => reject(r.error);
                 });
             }
 
             async getEntriesByDateRange(storeName, startDate, endDate) {
-                const transaction = this.db.transaction([storeName], 'readonly');
-                const store = transaction.objectStore(storeName);
-                const index = store.index('timestamp');
-                
+                const index = this.db.transaction([storeName], 'readonly').objectStore(storeName).index('timestamp');
                 const range = IDBKeyRange.bound(startDate.toISOString(), endDate.toISOString());
-                
                 return new Promise((resolve, reject) => {
-                    const request = index.getAll(range);
-                    request.onsuccess = () => resolve(request.result);
-                    request.onerror = () => reject(request.error);
+                    const r = index.getAll(range);
+                    r.onsuccess = () => resolve(r.result);
+                    r.onerror = () => reject(r.error);
                 });
             }
 
@@ -1699,55 +1812,38 @@
                 const endDate = new Date();
                 const startDate = new Date();
                 startDate.setDate(startDate.getDate() - days);
-                
                 const [breathing, bodyChecks, moods] = await Promise.all([
                     this.getEntriesByDateRange('breathingSessions', startDate, endDate),
                     this.getEntriesByDateRange('bodyCheckIns', startDate, endDate),
                     this.getEntriesByDateRange('moodEntries', startDate, endDate)
                 ]);
-                
                 return { breathing, bodyChecks, moods };
             }
 
             async getStats() {
-                const transaction = this.db.transaction(['breathingSessions', 'bodyCheckIns', 'moodEntries'], 'readonly');
-                
                 const breathing = await this.getAllEntries('breathingSessions');
                 const bodyChecks = await this.getAllEntries('bodyCheckIns');
                 const moods = await this.getAllEntries('moodEntries');
-                
-                const totalMinutes = breathing.reduce((sum, session) => sum + (session.duration || 0), 0);
-                const streak = this.calculateStreak(breathing.concat(bodyChecks).concat(moods));
-                
+                const totalMinutes = breathing.reduce((sum, s) => sum + (s.duration || 0), 0);
                 return {
                     totalSessions: breathing.length,
                     totalBodyChecks: bodyChecks.length,
                     totalMoods: moods.length,
                     totalMinutes,
-                    currentStreak: streak
+                    currentStreak: this.calculateStreak(breathing.concat(bodyChecks).concat(moods))
                 };
             }
 
             calculateStreak(entries) {
-                if (entries.length === 0) return 0;
-                
+                if (!entries.length) return 0;
                 const dates = [...new Set(entries.map(e => e.date))].sort().reverse();
-                const today = new Date().toDateString();
-                
-                let streak = 0;
-                let currentDate = new Date();
-                
+                let streak = 0, currentDate = new Date();
                 for (let i = 0; i < dates.length; i++) {
-                    const entryDate = currentDate.toDateString();
-                    
-                    if (dates.includes(entryDate)) {
+                    if (dates.includes(currentDate.toDateString())) {
                         streak++;
                         currentDate.setDate(currentDate.getDate() - 1);
-                    } else {
-                        break;
-                    }
+                    } else break;
                 }
-                
                 return streak;
             }
 
@@ -1757,47 +1853,29 @@
                     this.getAllEntries('bodyCheckIns'),
                     this.getAllEntries('moodEntries')
                 ]);
-                
-                return {
-                    exportDate: new Date().toISOString(),
-                    breathingSessions: breathing,
-                    bodyCheckIns: bodyChecks,
-                    moodEntries: moods
-                };
+                return { exportDate: new Date().toISOString(), breathingSessions: breathing, bodyCheckIns: bodyChecks, moodEntries: moods };
             }
 
             async clearOldData(daysToKeep = 30) {
                 const cutoffDate = new Date();
                 cutoffDate.setDate(cutoffDate.getDate() - daysToKeep);
-                
                 const stores = ['breathingSessions', 'bodyCheckIns', 'moodEntries'];
                 const transaction = this.db.transaction(stores, 'readwrite');
-                
                 for (const storeName of stores) {
-                    const store = transaction.objectStore(storeName);
-                    const index = store.index('timestamp');
+                    const index = transaction.objectStore(storeName).index('timestamp');
                     const range = IDBKeyRange.upperBound(cutoffDate.toISOString());
-                    
                     const request = index.openCursor(range);
-                    request.onsuccess = (event) => {
-                        const cursor = event.target.result;
-                        if (cursor) {
-                            cursor.delete();
-                            cursor.continue();
-                        }
-                    };
+                    request.onsuccess = (e) => { const cursor = e.target.result; if (cursor) { cursor.delete(); cursor.continue(); } };
                 }
-                
                 return transaction.complete;
             }
 
             async deleteEntry(storeName, id) {
-                const transaction = this.db.transaction([storeName], 'readwrite');
-                const store = transaction.objectStore(storeName);
-                return store.delete(id);
+                return this.db.transaction([storeName], 'readwrite').objectStore(storeName).delete(id);
             }
         }
 
+        // ─── Main App ───
         class PumpkiApp {
             constructor() {
                 this.canvas = document.getElementById('pumpki-canvas');
@@ -1806,69 +1884,44 @@
                 this.currentArousal = null;
                 this.isBreathing = false;
                 this.breathingPattern = 'box';
-                this.breathingPhase = 'ready';
                 this.breathingTimer = null;
                 this.phaseTime = 0;
                 this.currentPhaseIndex = 0;
-                
-                // Body scan properties
                 this.bodyScanData = {};
                 this.selectedSensations = [];
                 this.guidedScanAreas = [];
                 this.currentScanIndex = 0;
-                
-                // Database and history
                 this.db = new PumpkiDB();
                 this.sessionStartTime = null;
                 this.sessionStartArousal = null;
                 this.currentFilter = 'all';
-                
-                // Audio system
                 this.audioEnabled = true;
                 this.audioContext = null;
                 this.masterGain = null;
-                this.breathingSounds = {};
-                this.initializeAudio();
-                
-                // Breathing patterns with phases
+
                 this.patterns = {
-                    box: {
-                        phases: ['inhale', 'hold', 'exhale', 'hold'],
-                        durations: [4, 4, 4, 4],
-                        instructions: ['🫁 Breathe In', '⏸️ Hold', '🌬️ Breathe Out', '⏸️ Hold']
-                    },
-                    calm: {
-                        phases: ['inhale', 'exhale'],
-                        durations: [4, 6],
-                        instructions: ['🫁 Breathe In', '🌬️ Breathe Out Slowly']
-                    },
-                    energy: {
-                        phases: ['inhale', 'exhale'],
-                        durations: [6, 4],
-                        instructions: ['🫁 Deep Breath In', '🌬️ Quick Out']
-                    }
+                    box: { phases: ['inhale','hold','exhale','hold'], durations: [4,4,4,4], instructions: ['Breathe In','Hold','Breathe Out','Hold'] },
+                    calm: { phases: ['inhale','exhale'], durations: [4,6], instructions: ['Breathe In','Breathe Out Slowly'] },
+                    energy: { phases: ['inhale','exhale'], durations: [6,4], instructions: ['Deep Breath In','Quick Out'] }
                 };
 
                 this.breathingScale = 1;
                 this.maxScale = 1.4;
                 this.currentTime = 0;
-                
+
                 this.setupCanvas();
                 this.startAnimation();
-                
-                // Initialize everything
                 this.initializeApp();
             }
 
             async initializeApp() {
                 try {
                     await this.db.init();
-                    console.log('Database initialized successfully');
                     this.initializeEventListeners();
                     await this.loadHistoryData();
                 } catch (error) {
-                    console.error('Failed to initialize database:', error);
-                    this.initializeEventListeners(); // Still set up the app without database
+                    console.error('DB init failed:', error);
+                    this.initializeEventListeners();
                 }
             }
 
@@ -1879,346 +1932,169 @@
                 this.canvas.style.width = '400px';
                 this.canvas.style.height = '400px';
                 this.ctx.scale(dpr, dpr);
-                
                 this.centerX = 200;
                 this.centerY = 200;
             }
 
             initializeEventListeners() {
-                // Tab navigation
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.addEventListener('click', (e) => this.switchTab(e.target.dataset.tab));
-                });
-
-                // Accessibility controls
-                document.getElementById('high-contrast-btn').addEventListener('click', this.toggleHighContrast.bind(this));
-                document.getElementById('reduced-motion-btn').addEventListener('click', this.toggleReducedMotion.bind(this));
+                document.querySelectorAll('.nav-tab').forEach(tab => tab.addEventListener('click', (e) => this.switchTab(e.target.closest('.nav-tab').dataset.tab)));
+                document.getElementById('high-contrast-btn').addEventListener('click', () => { document.body.classList.toggle('high-contrast'); document.getElementById('high-contrast-btn').classList.toggle('active'); });
+                document.getElementById('reduced-motion-btn').addEventListener('click', () => { document.body.classList.toggle('reduced-motion'); document.getElementById('reduced-motion-btn').classList.toggle('active'); });
                 document.getElementById('audio-toggle-btn').addEventListener('click', this.toggleAudio.bind(this));
-
-                // Arousal state
-                document.querySelectorAll('.arousal-option').forEach(option => {
-                    option.addEventListener('click', (e) => this.setArousalState(e.currentTarget.dataset.state));
-                });
-
-                // Breathing controls
+                document.querySelectorAll('.arousal-option').forEach(o => o.addEventListener('click', (e) => this.setArousalState(e.currentTarget.dataset.state)));
                 document.getElementById('start-breathing-btn').addEventListener('click', this.startBreathing.bind(this));
                 document.getElementById('stop-breathing-btn').addEventListener('click', this.stopBreathing.bind(this));
-                
-                document.querySelectorAll('.breathing-pattern').forEach(pattern => {
-                    pattern.addEventListener('click', (e) => this.selectBreathingPattern(e.currentTarget.dataset.pattern));
-                });
-
-                // Body scan
-                document.querySelectorAll('.body-part').forEach(part => {
-                    part.addEventListener('click', (e) => this.toggleBodyPart(e.target));
-                });
+                document.querySelectorAll('.breathing-pattern').forEach(p => p.addEventListener('click', (e) => this.selectBreathingPattern(e.currentTarget.dataset.pattern)));
+                document.querySelectorAll('.body-part').forEach(p => p.addEventListener('click', (e) => this.toggleBodyPart(e.target)));
                 document.getElementById('body-scan-reset').addEventListener('click', this.resetBodyScan.bind(this));
                 document.getElementById('guided-scan-btn').addEventListener('click', this.startGuidedScan.bind(this));
                 document.getElementById('quick-check-btn').addEventListener('click', this.startQuickCheck.bind(this));
                 document.getElementById('scan-next-btn').addEventListener('click', this.nextScanArea.bind(this));
                 document.getElementById('scan-stop-btn').addEventListener('click', this.stopGuidedScan.bind(this));
                 document.getElementById('save-body-check').addEventListener('click', this.saveBodyCheck.bind(this));
-
-                // Sensation tags
-                document.querySelectorAll('.sensation-tag').forEach(tag => {
-                    tag.addEventListener('click', (e) => this.toggleSensation(e.target));
-                });
-
-                // History tab
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => this.setHistoryFilter(e.target.dataset.filter));
-                });
+                document.querySelectorAll('.sensation-tag').forEach(t => t.addEventListener('click', (e) => this.toggleSensation(e.target)));
+                document.querySelectorAll('.filter-btn').forEach(b => b.addEventListener('click', (e) => this.setHistoryFilter(e.target.dataset.filter)));
                 document.getElementById('export-data-btn').addEventListener('click', this.exportData.bind(this));
-                document.getElementById('import-data-btn').addEventListener('click', this.importData.bind(this));
+                document.getElementById('import-data-btn').addEventListener('click', () => document.getElementById('import-file-input').click());
                 document.getElementById('clear-old-data-btn').addEventListener('click', this.clearOldData.bind(this));
                 document.getElementById('import-file-input').addEventListener('change', this.handleFileImport.bind(this));
-
-                // Emergency actions
                 document.getElementById('emergency-breathing').addEventListener('click', this.startEmergencyBreathing.bind(this));
-                document.getElementById('grounding-54321').addEventListener('click', this.showGroundingTechnique.bind(this));
-                document.getElementById('cold-water').addEventListener('click', this.showColdWaterTechnique.bind(this));
-                document.getElementById('safe-place').addEventListener('click', this.showSafePlaceTechnique.bind(this));
+                document.getElementById('grounding-54321').addEventListener('click', () => alert('5-4-3-2-1 Grounding Technique:\n\n5 things you can SEE\n4 things you can TOUCH\n3 things you can HEAR\n2 things you can SMELL\n1 thing you can TASTE\n\nTake your time with each one.'));
+                document.getElementById('cold-water').addEventListener('click', () => alert('Cold Water Technique:\n\nPut cold water on your wrists\nSplash some on your face\nHold an ice cube\nDrink cold water slowly\n\nThis helps reset your nervous system.'));
+                document.getElementById('safe-place').addEventListener('click', () => alert('Find Your Safe Space:\n\nGo to your room or quiet space\nGet your comfort items\nPut on calming music\nTake slow, deep breaths\n\nYou are safe. This will pass.'));
             }
 
             switchTab(tabName) {
-                // Update active tab
-                document.querySelectorAll('.nav-tab').forEach(tab => {
-                    tab.classList.remove('active');
-                });
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-
-                // Show/hide content
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.classList.add('hidden');
-                });
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
                 document.getElementById(`${tabName}-tab`).classList.remove('hidden');
-
                 this.currentTab = tabName;
-                
-                // Load history data when switching to history tab
-                if (tabName === 'history') {
-                    this.loadHistoryData();
-                }
+                if (tabName === 'history') this.loadHistoryData();
             }
 
             setArousalState(state) {
                 this.currentArousal = state;
-                
-                // Update visual selection
-                document.querySelectorAll('.arousal-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
+                document.querySelectorAll('.arousal-option').forEach(o => o.classList.remove('selected'));
                 document.querySelector(`[data-state="${state}"]`).classList.add('selected');
-
-                // Recommend appropriate breathing pattern
                 this.recommendBreathingPattern(state);
-                
-                // Save mood entry to database
                 this.saveMoodEntry(state);
             }
 
-            async saveMoodEntry(arousalState, context = '') {
+            async saveMoodEntry(arousalState) {
                 if (!this.db.db) return;
-                
-                try {
-                    await this.db.saveMoodEntry({
-                        arousalState,
-                        context
-                    });
-                    console.log('Mood entry saved:', arousalState);
-                } catch (error) {
-                    console.error('Failed to save mood entry:', error);
-                }
+                try { await this.db.saveMoodEntry({ arousalState }); } catch (e) { console.error(e); }
             }
 
             recommendBreathingPattern(state) {
-                let recommendedPattern;
-                
-                switch(state) {
-                    case 'very-low':
-                    case 'low':
-                        recommendedPattern = 'energy';
-                        break;
-                    case 'high':
-                    case 'very-high':
-                        recommendedPattern = 'calm';
-                        break;
-                    default:
-                        recommendedPattern = 'box';
-                }
-
-                this.selectBreathingPattern(recommendedPattern);
+                const map = { 'very-low': 'energy', 'low': 'energy', 'high': 'calm', 'very-high': 'calm' };
+                this.selectBreathingPattern(map[state] || 'box');
             }
 
             selectBreathingPattern(pattern) {
-                // Validate pattern exists
-                if (!this.patterns[pattern]) {
-                    console.error('Invalid breathing pattern:', pattern);
-                    return;
-                }
-                
+                if (!this.patterns[pattern]) return;
                 document.querySelectorAll('.breathing-pattern').forEach(p => p.classList.remove('active'));
-                const patternElement = document.querySelector(`[data-pattern="${pattern}"]`);
-                if (patternElement) {
-                    patternElement.classList.add('active');
-                }
+                const el = document.querySelector(`[data-pattern="${pattern}"]`);
+                if (el) el.classList.add('active');
                 this.breathingPattern = pattern;
             }
 
             startBreathing() {
                 if (this.isBreathing) return;
-
                 this.isBreathing = true;
                 this.currentPhaseIndex = 0;
                 this.phaseTime = 0;
                 this.sessionStartTime = new Date();
                 this.sessionStartArousal = this.currentArousal;
                 this.completedCycles = 0;
-                
                 const btn = document.getElementById('start-breathing-btn');
                 btn.textContent = 'Breathing...';
                 btn.disabled = true;
-
-                // Play start sound
-                if (this.audioEnabled) {
-                    this.playSuccessSound();
-                    // Start gentle ambient background after a moment
-                    setTimeout(() => this.playAmbientBackground(), 1000);
-                }
-
+                if (this.audioEnabled) this.playSuccessSound();
                 this.runBreathingCycle();
             }
 
             stopBreathing() {
                 this.isBreathing = false;
-                if (this.breathingTimer) {
-                    clearInterval(this.breathingTimer);
-                    this.breathingTimer = null;
-                }
-                
-                // Reset all values
+                if (this.breathingTimer) { clearInterval(this.breathingTimer); this.breathingTimer = null; }
                 this.currentPhaseIndex = 0;
                 this.phaseTime = 0;
                 this.breathingScale = 1;
-                
                 const btn = document.getElementById('start-breathing-btn');
                 btn.textContent = 'Start Breathing';
                 btn.disabled = false;
-                
                 document.getElementById('breathing-phase').textContent = 'Choose a breathing pattern below';
                 document.getElementById('timer-display').textContent = 'Ready';
-                
-                // Save session if it was long enough
                 if (this.sessionStartTime) {
-                    const duration = Math.floor((new Date() - this.sessionStartTime) / 1000 / 60); // minutes
-                    if (duration >= 1) { // Only save if session was at least 1 minute
-                        this.saveBreathingSession(duration);
-                    }
+                    const duration = Math.floor((new Date() - this.sessionStartTime) / 1000 / 60);
+                    if (duration >= 1) this.saveBreathingSession(duration);
                     this.sessionStartTime = null;
                 }
             }
 
             async saveBreathingSession(duration) {
                 if (!this.db.db) return;
-                
-                try {
-                    await this.db.saveBreathingSession({
-                        pattern: this.breathingPattern,
-                        duration: duration,
-                        completedCycles: this.completedCycles || 0,
-                        arousalBefore: this.sessionStartArousal,
-                        arousalAfter: this.currentArousal
-                    });
-                    console.log('Breathing session saved:', duration, 'minutes');
-                } catch (error) {
-                    console.error('Failed to save breathing session:', error);
-                }
+                try { await this.db.saveBreathingSession({ pattern: this.breathingPattern, duration, completedCycles: this.completedCycles || 0, arousalBefore: this.sessionStartArousal, arousalAfter: this.currentArousal }); } catch (e) { console.error(e); }
             }
 
             runBreathingCycle() {
                 if (!this.isBreathing) return;
-
                 const pattern = this.patterns[this.breathingPattern];
-                if (!pattern || !pattern.phases || !pattern.durations) return;
-                
+                if (!pattern) return;
                 const currentPhase = pattern.phases[this.currentPhaseIndex];
                 const phaseDuration = pattern.durations[this.currentPhaseIndex];
                 const instruction = pattern.instructions[this.currentPhaseIndex];
-                
-                // Validate duration
-                if (!phaseDuration || phaseDuration <= 0) {
-                    console.error('Invalid phase duration:', phaseDuration);
-                    return;
-                }
-                
+                if (!phaseDuration) return;
                 document.getElementById('breathing-phase').textContent = instruction;
-                
-                // Play audio cue for this phase
-                if (this.audioEnabled) {
-                    this.playBreathingCue(currentPhase, phaseDuration);
-                }
-                
-                // Start phase timer
+                if (this.audioEnabled) this.playBreathingCue(currentPhase, phaseDuration);
                 this.phaseTime = Math.floor(phaseDuration);
                 this.breathingTimer = setInterval(() => {
                     if (!this.isBreathing) return;
-                    
                     this.phaseTime = Math.max(0, this.phaseTime - 1);
                     document.getElementById('timer-display').textContent = this.phaseTime;
-                    
-                    // Update visual breathing
                     this.updateBreathingVisual(currentPhase, this.phaseTime, phaseDuration);
-                    
                     if (this.phaseTime <= 0) {
                         clearInterval(this.breathingTimer);
                         this.currentPhaseIndex = (this.currentPhaseIndex + 1) % pattern.phases.length;
-                        
-                        // Track completed cycles - increment when we complete the full pattern
-                        if (this.currentPhaseIndex === 0) {
-                            this.completedCycles = (this.completedCycles || 0) + 1;
-                        }
-                        
+                        if (this.currentPhaseIndex === 0) this.completedCycles = (this.completedCycles || 0) + 1;
                         setTimeout(() => this.runBreathingCycle(), 100);
                     }
                 }, 1000);
             }
 
             updateBreathingVisual(phase, timeLeft, duration) {
-                if (!duration || duration <= 0) return;
-                
-                const safeTimeLeft = Math.max(0, timeLeft);
-                const progress = Math.min(1, Math.max(0, (duration - safeTimeLeft) / duration));
-                
+                if (!duration) return;
+                const progress = Math.min(1, Math.max(0, (duration - Math.max(0, timeLeft)) / duration));
                 switch(phase) {
-                    case 'inhale':
-                        this.breathingScale = Math.max(1, Math.min(this.maxScale, 1 + (progress * 0.4)));
-                        break;
-                    case 'exhale':
-                        this.breathingScale = Math.max(1, Math.min(this.maxScale, this.maxScale - (progress * 0.4)));
-                        break;
-                    case 'hold':
-                        this.breathingScale = this.currentPhaseIndex === 1 ? this.maxScale : 1;
-                        break;
-                    default:
-                        this.breathingScale = 1;
-                        break;
+                    case 'inhale': this.breathingScale = Math.max(1, Math.min(this.maxScale, 1 + (progress * 0.4))); break;
+                    case 'exhale': this.breathingScale = Math.max(1, Math.min(this.maxScale, this.maxScale - (progress * 0.4))); break;
+                    case 'hold': this.breathingScale = this.currentPhaseIndex === 1 ? this.maxScale : 1; break;
+                    default: this.breathingScale = 1;
                 }
-                
-                // Ensure breathing scale is always valid
-                if (isNaN(this.breathingScale) || this.breathingScale < 1) {
-                    this.breathingScale = 1;
-                }
+                if (isNaN(this.breathingScale) || this.breathingScale < 1) this.breathingScale = 1;
             }
 
             startEmergencyBreathing() {
                 this.setArousalState('very-high');
                 this.selectBreathingPattern('calm');
                 this.switchTab('breathing');
-                
-                // Play calming sound immediately for emergency mode
-                if (this.audioEnabled) {
-                    this.ensureAudioContext().then(() => {
-                        this.playBreathingCue('exhale', 2); // Immediate calm cue
-                    });
-                }
-                
+                if (this.audioEnabled) this.ensureAudioContext().then(() => this.playBreathingCue('exhale', 2));
                 setTimeout(() => this.startBreathing(), 500);
             }
 
-            // Body scan methods
+            // Body scan
             toggleBodyPart(element) {
                 const states = ['neutral', 'comfortable', 'tense'];
-                let currentIndex = 0;
-                
-                for (let i = 0; i < states.length; i++) {
-                    if (element.classList.contains(states[i])) {
-                        currentIndex = i;
-                        element.classList.remove(states[i]);
-                        break;
-                    }
-                }
-                
-                const nextIndex = (currentIndex + 1) % states.length;
-                element.classList.add(states[nextIndex]);
-                
-                // Update results if visible
+                let idx = states.findIndex(s => element.classList.contains(s));
+                if (idx >= 0) element.classList.remove(states[idx]);
+                element.classList.add(states[(idx + 1) % states.length]);
                 this.updateScanResults();
             }
 
             resetBodyScan() {
-                document.querySelectorAll('.body-part').forEach(part => {
-                    part.classList.remove('comfortable', 'tense', 'active');
-                    part.classList.add('neutral');
-                });
-                
-                // Reset sensation tags
-                document.querySelectorAll('.sensation-tag').forEach(tag => {
-                    tag.classList.remove('selected');
-                });
-                
-                // Hide results
+                document.querySelectorAll('.body-part').forEach(p => { p.classList.remove('comfortable', 'tense', 'active'); p.classList.add('neutral'); });
+                document.querySelectorAll('.sensation-tag').forEach(t => t.classList.remove('selected'));
                 document.getElementById('scan-results').classList.add('hidden');
-                
                 this.bodyScanData = {};
                 this.selectedSensations = [];
             }
@@ -2227,80 +2103,46 @@
                 this.currentScanType = 'guided';
                 document.getElementById('guided-scan-area').classList.remove('hidden');
                 document.getElementById('sensations-tracker').classList.add('hidden');
-                
                 this.guidedScanAreas = [
-                    { part: 'head', instruction: '🧠 Focus on your head and face. Notice any tension in your forehead, jaw, or temples. Take a deep breath.' },
-                    { part: 'neck', instruction: '🦒 Move your attention to your neck and shoulders. Are they tight or relaxed? Gently roll your shoulders.' },
-                    { part: 'chest', instruction: '🫁 Notice your chest and breathing. Is your breath shallow or deep? Feel your heartbeat.' },
-                    { part: 'left-arm', instruction: '🤚 Focus on your left arm. Make a fist, then relax. Notice the difference.' },
-                    { part: 'right-arm', instruction: '🤚 Now your right arm. Stretch it up high, then let it drop. How does it feel?' },
-                    { part: 'stomach', instruction: '🍎 Check in with your belly. Is it tight, relaxed, or maybe hungry? Breathe into this area.' },
-                    { part: 'left-leg', instruction: '🦵 Focus on your left leg. Tense the muscles, then relax them completely.' },
-                    { part: 'right-leg', instruction: '🦵 Now your right leg. Point your toes, then flex them. Notice the sensations.' },
-                    { part: 'left-foot', instruction: '🦶 Focus on your left foot. Wiggle your toes. How does the ground feel underneath?' },
-                    { part: 'right-foot', instruction: '🦶 Finally, your right foot. Take a moment to feel both feet on the ground.' }
+                    { part: 'head', instruction: 'Focus on your head and face. Notice any tension in your forehead, jaw, or temples. Take a deep breath.' },
+                    { part: 'neck', instruction: 'Move your attention to your neck and shoulders. Are they tight or relaxed? Gently roll your shoulders.' },
+                    { part: 'chest', instruction: 'Notice your chest and breathing. Is your breath shallow or deep? Feel your heartbeat.' },
+                    { part: 'left-arm', instruction: 'Focus on your left arm. Make a fist, then relax. Notice the difference.' },
+                    { part: 'right-arm', instruction: 'Now your right arm. Stretch it up high, then let it drop. How does it feel?' },
+                    { part: 'stomach', instruction: 'Check in with your belly. Is it tight, relaxed, or maybe hungry? Breathe into this area.' },
+                    { part: 'left-leg', instruction: 'Focus on your left leg. Tense the muscles, then relax them completely.' },
+                    { part: 'right-leg', instruction: 'Now your right leg. Point your toes, then flex them. Notice the sensations.' },
+                    { part: 'left-foot', instruction: 'Focus on your left foot. Wiggle your toes. How does the ground feel underneath?' },
+                    { part: 'right-foot', instruction: 'Finally, your right foot. Take a moment to feel both feet on the ground.' }
                 ];
-                
                 this.currentScanIndex = 0;
                 this.nextScanArea();
             }
 
             nextScanArea() {
-                if (this.currentScanIndex >= this.guidedScanAreas.length) {
-                    this.completeScan();
-                    return;
-                }
-                
-                const currentArea = this.guidedScanAreas[this.currentScanIndex];
-                
-                // Remove previous active highlighting
-                document.querySelectorAll('.body-part').forEach(part => {
-                    part.classList.remove('active');
-                });
-                
-                // Highlight current area
-                const bodyPart = document.querySelector(`[data-part="${currentArea.part}"]`);
-                if (bodyPart) {
-                    bodyPart.classList.add('active');
-                }
-                
-                // Update instruction
-                document.getElementById('current-scan-instruction').textContent = currentArea.instruction;
-                
-                // Play gentle transition chime
-                if (this.audioEnabled) {
-                    this.playTransitionChime();
-                }
-                
-                // Update progress bar
-                const progress = ((this.currentScanIndex + 1) / this.guidedScanAreas.length) * 100;
-                document.getElementById('scan-progress-fill').style.width = progress + '%';
-                
+                if (this.currentScanIndex >= this.guidedScanAreas.length) { this.completeScan(); return; }
+                const area = this.guidedScanAreas[this.currentScanIndex];
+                document.querySelectorAll('.body-part').forEach(p => p.classList.remove('active'));
+                const bp = document.querySelector(`[data-part="${area.part}"]`);
+                if (bp) bp.classList.add('active');
+                document.getElementById('current-scan-instruction').textContent = area.instruction;
+                if (this.audioEnabled) this.playTransitionChime();
+                document.getElementById('scan-progress-fill').style.width = ((this.currentScanIndex + 1) / this.guidedScanAreas.length * 100) + '%';
                 this.currentScanIndex++;
             }
 
             stopGuidedScan() {
                 document.getElementById('guided-scan-area').classList.add('hidden');
                 document.getElementById('sensations-tracker').classList.remove('hidden');
-                document.querySelectorAll('.body-part').forEach(part => {
-                    part.classList.remove('active');
-                });
-                document.getElementById('body-scan-instruction').textContent = 'Tap different parts of your body to show how they feel:';
+                document.querySelectorAll('.body-part').forEach(p => p.classList.remove('active'));
             }
 
             completeScan() {
                 document.getElementById('guided-scan-area').classList.add('hidden');
                 document.getElementById('sensations-tracker').classList.remove('hidden');
-                document.querySelectorAll('.body-part').forEach(part => {
-                    part.classList.remove('active');
-                });
-                
-                // Play completion sound
-                if (this.audioEnabled) {
-                    this.playSuccessSound();
-                }
-                
-                alert('Great job completing the body scan! 🌟\n\nNow you can tap any body parts and select sensations to finish your check-in.');
+                document.querySelectorAll('.body-part').forEach(p => p.classList.remove('active'));
+                if (this.audioEnabled) this.playSuccessSound();
+                alert('Great job completing the body scan!\n\nNow you can tap any body parts and select sensations to finish your check-in.');
                 this.updateScanResults();
             }
 
@@ -2308,691 +2150,314 @@
                 this.currentScanType = 'quick';
                 document.getElementById('sensations-tracker').classList.remove('hidden');
                 document.getElementById('guided-scan-area').classList.add('hidden');
-                document.getElementById('body-scan-instruction').textContent = 'Quickly tap any body parts that feel different today, and select sensations below:';
             }
 
             toggleSensation(element) {
                 element.classList.toggle('selected');
-                
-                const sensation = element.dataset.sensation;
+                const s = element.dataset.sensation;
                 if (!this.selectedSensations) this.selectedSensations = [];
-                
-                if (element.classList.contains('selected')) {
-                    if (!this.selectedSensations.includes(sensation)) {
-                        this.selectedSensations.push(sensation);
-                    }
-                } else {
-                    this.selectedSensations = this.selectedSensations.filter(s => s !== sensation);
-                }
-                
+                if (element.classList.contains('selected')) { if (!this.selectedSensations.includes(s)) this.selectedSensations.push(s); }
+                else { this.selectedSensations = this.selectedSensations.filter(x => x !== s); }
                 this.updateScanResults();
             }
 
             updateScanResults() {
                 const resultsDiv = document.getElementById('scan-results');
                 const contentDiv = document.getElementById('results-content');
-                
-                // Collect body part states
                 const bodyStates = {};
-                document.querySelectorAll('.body-part').forEach(part => {
-                    const partName = part.dataset.part.replace('-', ' ');
-                    if (part.classList.contains('comfortable')) {
-                        bodyStates[partName] = 'comfortable';
-                    } else if (part.classList.contains('tense')) {
-                        bodyStates[partName] = 'tense';
-                    }
+                document.querySelectorAll('.body-part').forEach(p => {
+                    const name = p.dataset.part.replace('-', ' ');
+                    if (p.classList.contains('comfortable')) bodyStates[name] = 'comfortable';
+                    else if (p.classList.contains('tense')) bodyStates[name] = 'tense';
                 });
-                
-                // Only show results if there's something to show
-                const hasBodyData = Object.keys(bodyStates).length > 0;
-                const hasSensations = this.selectedSensations && this.selectedSensations.length > 0;
-                
-                if (hasBodyData || hasSensations) {
-                    let resultsHTML = '';
-                    
-                    if (hasBodyData) {
-                        resultsHTML += '<div style="margin-bottom: 15px;"><strong>Body Areas:</strong></div>';
+                const hasBody = Object.keys(bodyStates).length > 0;
+                const hasSens = this.selectedSensations && this.selectedSensations.length > 0;
+                if (hasBody || hasSens) {
+                    let html = '';
+                    if (hasBody) {
+                        html += '<div style="margin-bottom:12px"><strong>Body Areas:</strong></div>';
                         for (const [part, state] of Object.entries(bodyStates)) {
-                            const emoji = state === 'comfortable' ? '😌' : '😬';
                             const color = state === 'comfortable' ? 'var(--success)' : 'var(--error)';
-                            resultsHTML += `<div style="padding: 8px 0; border-bottom: 1px solid rgba(77, 52, 38, 0.2);">
-                                <span style="font-weight: 600; color: var(--primary-orange);">${emoji} ${part}:</span> 
-                                <span style="color: ${color};">${state}</span>
-                            </div>`;
+                            html += `<div style="padding:6px 0;border-bottom:1px solid var(--border)"><span style="font-weight:500;color:var(--primary)">${part}:</span> <span style="color:${color}">${state}</span></div>`;
                         }
                     }
-                    
-                    if (hasSensations) {
-                        resultsHTML += '<div style="margin: 15px 0 10px 0;"><strong>Sensations:</strong></div>';
-                        resultsHTML += '<div>' + this.selectedSensations.map(s => {
-                            const tag = document.querySelector(`[data-sensation="${s}"]`);
-                            return tag ? tag.textContent : s;
-                        }).join(', ') + '</div>';
+                    if (hasSens) {
+                        html += '<div style="margin:12px 0 8px"><strong>Sensations:</strong></div>';
+                        html += '<div>' + this.selectedSensations.join(', ') + '</div>';
                     }
-                    
-                    contentDiv.innerHTML = resultsHTML;
+                    contentDiv.innerHTML = html;
                     resultsDiv.classList.remove('hidden');
-                } else {
-                    resultsDiv.classList.add('hidden');
-                }
+                } else resultsDiv.classList.add('hidden');
             }
 
             saveBodyCheck() {
                 const bodyStates = {};
-                document.querySelectorAll('.body-part').forEach(part => {
-                    const partName = part.dataset.part.replace('-', ' ');
-                    if (part.classList.contains('comfortable')) {
-                        bodyStates[partName] = 'comfortable';
-                    } else if (part.classList.contains('tense')) {
-                        bodyStates[partName] = 'tense';
-                    }
+                document.querySelectorAll('.body-part').forEach(p => {
+                    const name = p.dataset.part.replace('-', ' ');
+                    if (p.classList.contains('comfortable')) bodyStates[name] = 'comfortable';
+                    else if (p.classList.contains('tense')) bodyStates[name] = 'tense';
                 });
-
-                const checkInData = {
-                    bodyStates,
-                    sensations: this.selectedSensations || [],
-                    scanType: this.currentScanType || 'manual',
-                    arousalState: this.currentArousal
-                };
-
-                this.saveBodyCheckToDatabase(checkInData);
-                
-                // Play success sound
-                if (this.audioEnabled) {
-                    this.playSuccessSound();
-                }
-                
-                alert('Body check saved! 📝\n\nKeep tracking how your body feels to better understand your patterns.');
+                const data = { bodyStates, sensations: this.selectedSensations || [], scanType: this.currentScanType || 'manual', arousalState: this.currentArousal };
+                if (this.db.db) this.db.saveBodyCheckIn(data).catch(e => console.error(e));
+                if (this.audioEnabled) this.playSuccessSound();
+                alert('Body check saved!\n\nKeep tracking how your body feels to better understand your patterns.');
             }
 
-            async saveBodyCheckToDatabase(data) {
-                if (!this.db.db) return;
-                
-                try {
-                    await this.db.saveBodyCheckIn(data);
-                    console.log('Body check saved:', data);
-                } catch (error) {
-                    console.error('Failed to save body check:', error);
-                }
-            }
-
-            // History and data management methods
+            // History
             async loadHistoryData() {
                 if (!this.db.db) return;
-                
                 try {
                     const stats = await this.db.getStats();
-                    this.updateStatsDisplay(stats);
-                    
-                    const recentData = await this.db.getRecentEntries(30); // Get more entries for the list
-                    this.updateWeeklyMoodChart(recentData.moods);
-                    this.updateEntriesList(recentData);
-                } catch (error) {
-                    console.error('Failed to load history data:', error);
-                }
+                    document.getElementById('total-sessions').textContent = stats.totalSessions;
+                    document.getElementById('total-body-checks').textContent = stats.totalBodyChecks;
+                    document.getElementById('current-streak').textContent = stats.currentStreak;
+                    document.getElementById('total-minutes-practiced').textContent = stats.totalMinutes;
+                    const data = await this.db.getRecentEntries(30);
+                    this.updateWeeklyMoodChart(data.moods);
+                    this.updateEntriesList(data);
+                } catch (e) { console.error(e); }
             }
 
-            updateStatsDisplay(stats) {
-                document.getElementById('total-sessions').textContent = stats.totalSessions;
-                document.getElementById('total-body-checks').textContent = stats.totalBodyChecks;
-                document.getElementById('current-streak').textContent = stats.currentStreak;
-                document.getElementById('total-minutes-practiced').textContent = stats.totalMinutes;
-            }
-
-            updateWeeklyMoodChart(moodEntries) {
-                const chartContainer = document.getElementById('weekly-mood-chart');
-                chartContainer.innerHTML = '';
-                
-                const moodEmojis = {
-                    'very-low': '😴',
-                    'low': '😌',
-                    'medium': '😊',
-                    'high': '😮',
-                    'very-high': '😰'
-                };
-
-                // Create days for the past week
+            updateWeeklyMoodChart(moods) {
+                const el = document.getElementById('weekly-mood-chart');
+                el.innerHTML = '';
+                const emojis = { 'very-low': '😴', 'low': '😌', 'medium': '😊', 'high': '😮', 'very-high': '😰' };
                 for (let i = 6; i >= 0; i--) {
-                    const date = new Date();
-                    date.setDate(date.getDate() - i);
-                    const dateStr = date.toDateString();
-                    
-                    const dayDiv = document.createElement('div');
-                    dayDiv.className = 'mood-day';
-                    
-                    // Find mood entry for this day
-                    const dayMood = moodEntries.find(mood => mood.date === dateStr);
-                    const emoji = dayMood ? moodEmojis[dayMood.arousalState] : '⚫';
-                    
-                    dayDiv.innerHTML = `
-                        <div class="mood-emoji">${emoji}</div>
-                        <div class="mood-date">${date.toLocaleDateString('en', {weekday: 'short'})}</div>
-                    `;
-                    
-                    chartContainer.appendChild(dayDiv);
+                    const d = new Date(); d.setDate(d.getDate() - i);
+                    const mood = moods.find(m => m.date === d.toDateString());
+                    el.innerHTML += `<div class="mood-day"><div class="mood-emoji">${mood ? emojis[mood.arousalState] : '·'}</div><div class="mood-date">${d.toLocaleDateString('en',{weekday:'short'})}</div></div>`;
                 }
             }
 
             updateEntriesList(data) {
-                const entriesList = document.getElementById('entries-list');
-                
-                // Combine and sort all entries
-                const allEntries = [
-                    ...data.breathing.map(entry => ({...entry, type: 'breathing', icon: '🫁'})),
-                    ...data.bodyChecks.map(entry => ({...entry, type: 'body-check', icon: '🧘'})),
-                    ...data.moods.map(entry => ({...entry, type: 'mood', icon: '😊'}))
-                ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                const el = document.getElementById('entries-list');
+                const icons = { breathing: '○', 'body-check': '◇', mood: '●' };
+                const all = [
+                    ...data.breathing.map(e => ({...e, type:'breathing'})),
+                    ...data.bodyChecks.map(e => ({...e, type:'body-check'})),
+                    ...data.moods.map(e => ({...e, type:'mood'}))
+                ].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-                if (allEntries.length === 0) {
-                    entriesList.innerHTML = `
-                        <div class="empty-state">
-                            <div class="empty-state-emoji">📝</div>
-                            <p>No entries yet! Start by doing a breathing session or body check-in.</p>
-                        </div>
-                    `;
+                if (!all.length) {
+                    el.innerHTML = '<div class="empty-state"><svg class="empty-state-icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><p>No entries yet. Start with a breathing session or body check-in.</p></div>';
                     return;
                 }
 
-                entriesList.innerHTML = allEntries
-                    .filter(entry => this.currentFilter === 'all' || entry.type === this.currentFilter)
-                    .slice(0, 20) // Show only latest 20
-                    .map(entry => this.createEntryHTML(entry))
-                    .join('');
-            }
-
-            createEntryHTML(entry) {
-                const time = new Date(entry.timestamp).toLocaleString();
-                let details = '';
-                
-                switch(entry.type) {
-                    case 'breathing':
-                        details = `${entry.pattern} breathing • ${entry.duration || 0} min`;
-                        break;
-                    case 'body-check':
-                        const sensations = entry.sensations?.slice(0, 3).join(', ') || 'No sensations noted';
-                        details = `${entry.scanType} scan • ${sensations}`;
-                        break;
-                    case 'mood':
-                        const moodLabels = {
-                            'very-low': 'Very Calm',
-                            'low': 'Calm', 
-                            'medium': 'Just Right',
-                            'high': 'Energized',
-                            'very-high': 'Overwhelmed'
-                        };
-                        details = `Feeling: ${moodLabels[entry.arousalState] || entry.arousalState}`;
-                        break;
-                }
-                
-                return `
-                    <div class="entry-item">
-                        <div class="entry-content">
-                            <div class="entry-title">
-                                <span class="entry-type">${entry.icon}</span>
-                                ${entry.type.charAt(0).toUpperCase() + entry.type.slice(1).replace('-', ' ')}
-                            </div>
-                            <div class="entry-details">${details}</div>
-                        </div>
-                        <div class="entry-time">${time}</div>
-                        <div class="entry-actions">
-                            <button class="entry-action-btn" onclick="app.deleteEntry('${entry.type}', ${entry.id})">🗑️</button>
-                        </div>
-                    </div>
-                `;
+                const labels = { 'very-low':'Very Calm','low':'Calm','medium':'Just Right','high':'Energized','very-high':'Overwhelmed' };
+                el.innerHTML = all.filter(e => this.currentFilter === 'all' || e.type === this.currentFilter).slice(0, 20).map(e => {
+                    const time = new Date(e.timestamp).toLocaleString();
+                    let details = '';
+                    if (e.type === 'breathing') details = `${e.pattern} · ${e.duration||0} min`;
+                    else if (e.type === 'body-check') details = `${e.scanType} scan · ${(e.sensations||[]).slice(0,3).join(', ')||'No sensations noted'}`;
+                    else details = `Feeling: ${labels[e.arousalState]||e.arousalState}`;
+                    return `<div class="entry-item"><div class="entry-content"><div class="entry-title">${e.type.charAt(0).toUpperCase()+e.type.slice(1).replace('-',' ')}</div><div class="entry-details">${details}</div></div><div class="entry-time">${time}</div><div class="entry-actions"><button class="entry-action-btn" onclick="app.deleteEntry('${e.type}',${e.id})">Delete</button></div></div>`;
+                }).join('');
             }
 
             setHistoryFilter(filter) {
                 this.currentFilter = filter;
-                
-                // Update filter buttons
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 document.querySelector(`[data-filter="${filter}"]`).classList.add('active');
-                
-                // Reload entries with filter
                 this.loadHistoryData();
             }
 
             async deleteEntry(type, id) {
-                if (!confirm('Are you sure you want to delete this entry?')) return;
-                
-                const storeMap = {
-                    'breathing': 'breathingSessions',
-                    'body-check': 'bodyCheckIns',
-                    'mood': 'moodEntries'
-                };
-                
-                try {
-                    await this.db.deleteEntry(storeMap[type], id);
-                    this.loadHistoryData(); // Refresh the display
-                } catch (error) {
-                    console.error('Failed to delete entry:', error);
-                    alert('Failed to delete entry. Please try again.');
-                }
+                if (!confirm('Delete this entry?')) return;
+                const map = { 'breathing':'breathingSessions','body-check':'bodyCheckIns','mood':'moodEntries' };
+                try { await this.db.deleteEntry(map[type], id); this.loadHistoryData(); } catch (e) { alert('Failed to delete.'); }
             }
 
             async exportData() {
                 try {
                     const data = await this.db.exportAllData();
-                    
-                    const blob = new Blob([JSON.stringify(data, null, 2)], {
-                        type: 'application/json'
-                    });
-                    
-                    const url = URL.createObjectURL(blob);
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                     const a = document.createElement('a');
-                    a.href = url;
+                    a.href = URL.createObjectURL(blob);
                     a.download = `pumpki-data-${new Date().toISOString().split('T')[0]}.json`;
                     a.click();
-                    URL.revokeObjectURL(url);
-                    
-                    alert('Data exported successfully! 📤\n\nYour Pumpki data has been saved to your downloads folder.');
-                } catch (error) {
-                    console.error('Failed to export data:', error);
-                    alert('Failed to export data. Please try again.');
-                }
-            }
-
-            importData() {
-                document.getElementById('import-file-input').click();
+                    alert('Data exported successfully.');
+                } catch (e) { alert('Export failed.'); }
             }
 
             async handleFileImport(event) {
                 const file = event.target.files[0];
                 if (!file) return;
-
                 try {
-                    const text = await file.text();
-                    const data = JSON.parse(text);
-                    
-                    // Validate data format
-                    if (!data.breathingSessions && !data.bodyCheckIns && !data.moodEntries) {
-                        throw new Error('Invalid data format');
+                    const data = JSON.parse(await file.text());
+                    if (!data.breathingSessions && !data.bodyCheckIns && !data.moodEntries) throw new Error('Invalid');
+                    if (confirm(`Import ${data.breathingSessions?.length||0} breathing, ${data.bodyCheckIns?.length||0} body checks, ${data.moodEntries?.length||0} moods?`)) {
+                        const tx = this.db.db.transaction(['breathingSessions','bodyCheckIns','moodEntries'], 'readwrite');
+                        for (const s of (data.breathingSessions||[])) { const c = {...s}; delete c.id; tx.objectStore('breathingSessions').add(c); }
+                        for (const s of (data.bodyCheckIns||[])) { const c = {...s}; delete c.id; tx.objectStore('bodyCheckIns').add(c); }
+                        for (const s of (data.moodEntries||[])) { const c = {...s}; delete c.id; tx.objectStore('moodEntries').add(c); }
+                        alert('Data imported successfully.');
+                        this.loadHistoryData();
                     }
-                    
-                    const confirmed = confirm(
-                        `Import ${data.breathingSessions?.length || 0} breathing sessions, ` +
-                        `${data.bodyCheckIns?.length || 0} body check-ins, and ` +
-                        `${data.moodEntries?.length || 0} mood entries?\n\n` +
-                        `This will add to your existing data.`
-                    );
-                    
-                    if (confirmed) {
-                        await this.importDataToDatabase(data);
-                        alert('Data imported successfully! 📥\n\nYour Pumpki data has been restored.');
-                        this.loadHistoryData(); // Refresh the display
-                    }
-                } catch (error) {
-                    console.error('Failed to import data:', error);
-                    alert('Failed to import data. Please check the file format and try again.');
-                }
-                
-                // Reset file input
+                } catch (e) { alert('Import failed. Check file format.'); }
                 event.target.value = '';
             }
 
-            async importDataToDatabase(data) {
-                if (!this.db.db) return;
-                
-                const transaction = this.db.db.transaction(['breathingSessions', 'bodyCheckIns', 'moodEntries'], 'readwrite');
-                
-                // Import breathing sessions
-                if (data.breathingSessions) {
-                    const breathingStore = transaction.objectStore('breathingSessions');
-                    for (const session of data.breathingSessions) {
-                        const sessionCopy = {...session};
-                        delete sessionCopy.id; // Let IndexedDB assign new IDs
-                        await breathingStore.add(sessionCopy);
-                    }
-                }
-                
-                // Import body check-ins
-                if (data.bodyCheckIns) {
-                    const bodyStore = transaction.objectStore('bodyCheckIns');
-                    for (const checkIn of data.bodyCheckIns) {
-                        const checkInCopy = {...checkIn};
-                        delete checkInCopy.id;
-                        await bodyStore.add(checkInCopy);
-                    }
-                }
-                
-                // Import mood entries
-                if (data.moodEntries) {
-                    const moodStore = transaction.objectStore('moodEntries');
-                    for (const mood of data.moodEntries) {
-                        const moodCopy = {...mood};
-                        delete moodCopy.id;
-                        await moodStore.add(moodCopy);
-                    }
-                }
-                
-                return transaction.complete;
-            }
-
             async clearOldData() {
-                if (!confirm('This will delete data older than 30 days. Continue?')) return;
-                
-                try {
-                    await this.db.clearOldData(30);
-                    this.loadHistoryData(); // Refresh display
-                    alert('Old data cleared successfully! 🗑️\n\nData older than 30 days has been removed.');
-                } catch (error) {
-                    console.error('Failed to clear old data:', error);
-                    alert('Failed to clear old data. Please try again.');
-                }
+                if (!confirm('Delete data older than 30 days?')) return;
+                try { await this.db.clearOldData(30); this.loadHistoryData(); alert('Old data cleared.'); } catch (e) { alert('Failed.'); }
             }
 
-            // Audio System Methods
-            initializeAudio() {
-                try {
-                    // Create audio context (will be initialized on first user interaction)
-                    this.audioContext = null;
-                    this.masterGain = null;
-                    console.log('Audio system ready for initialization');
-                } catch (error) {
-                    console.warn('Audio not available:', error);
-                    this.audioEnabled = false;
-                }
-            }
-
+            // Audio
             async ensureAudioContext() {
                 if (!this.audioEnabled) return false;
-                
                 if (!this.audioContext) {
                     try {
                         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
                         this.masterGain = this.audioContext.createGain();
                         this.masterGain.connect(this.audioContext.destination);
-                        this.masterGain.gain.value = 0.3; // Gentle volume
-                        
-                        // Resume context if suspended (required by browser policies)
-                        if (this.audioContext.state === 'suspended') {
-                            await this.audioContext.resume();
-                        }
-                        
-                        console.log('Audio context initialized');
+                        this.masterGain.gain.value = 0.3;
+                        if (this.audioContext.state === 'suspended') await this.audioContext.resume();
                         return true;
-                    } catch (error) {
-                        console.warn('Failed to initialize audio:', error);
-                        this.audioEnabled = false;
-                        return false;
-                    }
+                    } catch (e) { this.audioEnabled = false; return false; }
                 }
                 return true;
             }
 
             async playBreathingCue(phase, duration) {
                 if (!this.audioEnabled || !await this.ensureAudioContext()) return;
-                
-                const freq = this.getPhaseFrequency(phase);
-                const type = this.getPhaseWaveType(phase);
-                
+                const freqs = { inhale: 220, hold: 110, exhale: 165, ready: 196 };
                 try {
-                    // Create oscillator for the tone
-                    const oscillator = this.audioContext.createOscillator();
-                    const gainNode = this.audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(this.masterGain);
-                    
-                    oscillator.frequency.value = freq;
-                    oscillator.type = type;
-                    
-                    // Gentle fade in/out envelope - extra soft for hold phase
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    osc.connect(gain); gain.connect(this.masterGain);
+                    osc.frequency.value = freqs[phase] || 196;
+                    osc.type = 'sine';
                     const now = this.audioContext.currentTime;
-                    const fadeDuration = phase === 'hold' ? 0.3 : 0.1; // Longer, gentler fade for hold
-                    const volume = phase === 'hold' ? 0.06 : 0.1; // Softer volume for hold
-                    
-                    gainNode.gain.setValueAtTime(0, now);
-                    gainNode.gain.linearRampToValueAtTime(volume, now + fadeDuration);
-                    gainNode.gain.linearRampToValueAtTime(volume, now + duration - fadeDuration);
-                    gainNode.gain.linearRampToValueAtTime(0, now + duration);
-                    
-                    oscillator.start(now);
-                    oscillator.stop(now + duration);
-                    
-                    // Add some sparkle for transitions (but not for gentle hold)
-                    if (phase === 'inhale' || phase === 'exhale') {
-                        setTimeout(() => this.playTransitionChime(), 100);
-                    }
-                    
-                } catch (error) {
-                    console.warn('Audio playback error:', error);
-                }
-            }
-
-            getPhaseFrequency(phase) {
-                const frequencies = {
-                    'inhale': 220,    // A3 - rising feeling
-                    'hold': 110,      // A2 - very low, gentle, like a heartbeat  
-                    'exhale': 165,    // E3 - releasing feeling
-                    'ready': 196      // G3 - neutral
-                };
-                return frequencies[phase] || frequencies['ready'];
-            }
-
-            getPhaseWaveType(phase) {
-                const waveTypes = {
-                    'inhale': 'sine',     // Smooth and lifting
-                    'hold': 'sine',       // Ultra-gentle and soothing
-                    'exhale': 'sine',     // Smooth and releasing
-                    'ready': 'sine'
-                };
-                return waveTypes[phase] || 'sine';
+                    const fade = phase === 'hold' ? 0.3 : 0.1;
+                    const vol = phase === 'hold' ? 0.06 : 0.1;
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(vol, now + fade);
+                    gain.gain.linearRampToValueAtTime(vol, now + duration - fade);
+                    gain.gain.linearRampToValueAtTime(0, now + duration);
+                    osc.start(now); osc.stop(now + duration);
+                    if (phase === 'inhale' || phase === 'exhale') setTimeout(() => this.playTransitionChime(), 100);
+                } catch (e) {}
             }
 
             async playTransitionChime() {
                 if (!this.audioEnabled || !await this.ensureAudioContext()) return;
-                
                 try {
-                    const oscillator = this.audioContext.createOscillator();
-                    const gainNode = this.audioContext.createGain();
-                    
-                    oscillator.connect(gainNode);
-                    gainNode.connect(this.masterGain);
-                    
-                    oscillator.frequency.value = 440; // A4 - pleasant chime
-                    oscillator.type = 'sine';
-                    
+                    const osc = this.audioContext.createOscillator();
+                    const gain = this.audioContext.createGain();
+                    osc.connect(gain); gain.connect(this.masterGain);
+                    osc.frequency.value = 440; osc.type = 'sine';
                     const now = this.audioContext.currentTime;
-                    gainNode.gain.setValueAtTime(0, now);
-                    gainNode.gain.linearRampToValueAtTime(0.05, now + 0.05);
-                    gainNode.gain.linearRampToValueAtTime(0, now + 0.2);
-                    
-                    oscillator.start(now);
-                    oscillator.stop(now + 0.2);
-                } catch (error) {
-                    console.warn('Chime playback error:', error);
-                }
+                    gain.gain.setValueAtTime(0, now);
+                    gain.gain.linearRampToValueAtTime(0.05, now + 0.05);
+                    gain.gain.linearRampToValueAtTime(0, now + 0.2);
+                    osc.start(now); osc.stop(now + 0.2);
+                } catch (e) {}
             }
 
             async playSuccessSound() {
                 if (!this.audioEnabled || !await this.ensureAudioContext()) return;
-                
-                try {
-                    // Play a pleasant ascending sequence
-                    const notes = [220, 277, 330, 440]; // A3, C#4, E4, A4
-                    
-                    for (let i = 0; i < notes.length; i++) {
-                        setTimeout(() => {
-                            const oscillator = this.audioContext.createOscillator();
-                            const gainNode = this.audioContext.createGain();
-                            
-                            oscillator.connect(gainNode);
-                            gainNode.connect(this.masterGain);
-                            
-                            oscillator.frequency.value = notes[i];
-                            oscillator.type = 'sine';
-                            
+                [220, 277, 330, 440].forEach((freq, i) => {
+                    setTimeout(() => {
+                        try {
+                            const osc = this.audioContext.createOscillator();
+                            const gain = this.audioContext.createGain();
+                            osc.connect(gain); gain.connect(this.masterGain);
+                            osc.frequency.value = freq; osc.type = 'sine';
                             const now = this.audioContext.currentTime;
-                            gainNode.gain.setValueAtTime(0, now);
-                            gainNode.gain.linearRampToValueAtTime(0.08, now + 0.05);
-                            gainNode.gain.linearRampToValueAtTime(0, now + 0.3);
-                            
-                            oscillator.start(now);
-                            oscillator.stop(now + 0.3);
-                        }, i * 150);
-                    }
-                } catch (error) {
-                    console.warn('Success sound error:', error);
-                }
-            }
-
-            // Emergency techniques
-            showGroundingTechnique() {
-                alert('5-4-3-2-1 Grounding Technique:\n\n🔍 5 things you can SEE\n✋ 4 things you can TOUCH\n👂 3 things you can HEAR\n👃 2 things you can SMELL\n👅 1 thing you can TASTE\n\nTake your time with each one.');
-            }
-
-            showColdWaterTechnique() {
-                alert('Cold Water Technique:\n\n❄️ Put cold water on your wrists\n❄️ Splash some on your face\n❄️ Hold an ice cube\n❄️ Drink cold water slowly\n\nThis helps reset your nervous system.');
-            }
-
-            showSafePlaceTechnique() {
-                alert('Find Your Safe Space:\n\n🏠 Go to your room or quiet space\n🧸 Get your comfort items\n🎵 Put on calming music\n🌟 Take slow, deep breaths\n\nYou are safe. This will pass.');
-            }
-
-            toggleHighContrast() {
-                document.body.classList.toggle('high-contrast');
-                document.getElementById('high-contrast-btn').classList.toggle('active');
-            }
-
-            toggleReducedMotion() {
-                document.body.classList.toggle('reduced-motion');
-                document.getElementById('reduced-motion-btn').classList.toggle('active');
+                            gain.gain.setValueAtTime(0, now);
+                            gain.gain.linearRampToValueAtTime(0.08, now + 0.05);
+                            gain.gain.linearRampToValueAtTime(0, now + 0.3);
+                            osc.start(now); osc.stop(now + 0.3);
+                        } catch (e) {}
+                    }, i * 150);
+                });
             }
 
             toggleAudio() {
                 this.audioEnabled = !this.audioEnabled;
                 const btn = document.getElementById('audio-toggle-btn');
-                
                 if (this.audioEnabled) {
                     btn.classList.add('active');
-                    btn.textContent = '🔊 Audio';
-                    
-                    // Initialize audio context on user interaction
-                    this.ensureAudioContext().then(success => {
-                        if (success) {
-                            this.playSuccessSound(); // Test sound
-                        }
-                    });
+                    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg> Audio';
+                    this.ensureAudioContext().then(ok => { if (ok) this.playSuccessSound(); });
                 } else {
                     btn.classList.remove('active');
-                    btn.textContent = '🔇 Muted';
-                    
-                    // Stop any current audio
-                    if (this.audioContext && this.masterGain) {
-                        this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.5);
-                    }
+                    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg> Muted';
+                    if (this.audioContext && this.masterGain) this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 0.5);
                 }
-                
-                console.log('Audio', this.audioEnabled ? 'enabled' : 'disabled');
             }
 
-            // Drawing methods
+            // Drawing
             drawPumpki() {
                 this.ctx.clearRect(0, 0, 400, 400);
-                
                 this.ctx.save();
                 this.ctx.translate(this.centerX, this.centerY);
-                
-                // Only apply breathing scale if reduced motion is NOT active
-                const useBreathingScale = !document.body.classList.contains('reduced-motion');
-                this.ctx.scale(
-                    useBreathingScale ? this.breathingScale : 1, 
-                    useBreathingScale ? this.breathingScale : 1
-                );
-                
+                const useScale = !document.body.classList.contains('reduced-motion');
+                this.ctx.scale(useScale ? this.breathingScale : 1, useScale ? this.breathingScale : 1);
                 this.drawBody();
                 this.drawFace();
-                
                 this.ctx.restore();
-                
-                if (!document.body.classList.contains('reduced-motion')) {
-                    this.drawSparkles();
-                }
+                if (!document.body.classList.contains('reduced-motion')) this.drawSparkles();
             }
 
             drawBody() {
-                // Shadow
                 this.ctx.save();
                 this.ctx.translate(2, 2);
-                this.ctx.fillStyle = 'rgba(45, 30, 20, 0.5)';
+                this.ctx.fillStyle = 'rgba(38, 30, 24, 0.5)';
                 this.ctx.beginPath();
                 this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
                 this.ctx.fill();
                 this.ctx.restore();
 
-                // Main body with warm gradient
-                const gradient = this.ctx.createRadialGradient(-10, -10, 0, 0, 0, 40);
-                gradient.addColorStop(0, '#e88b5d');
-                gradient.addColorStop(1, '#d87449');
-                this.ctx.fillStyle = gradient;
+                const g = this.ctx.createRadialGradient(-10, -10, 0, 0, 0, 40);
+                g.addColorStop(0, '#D4A87E');
+                g.addColorStop(1, '#C4956A');
+                this.ctx.fillStyle = g;
                 this.ctx.beginPath();
                 this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
                 this.ctx.fill();
 
-                // Stem
-                this.ctx.fillStyle = '#7a8f65';
+                this.ctx.fillStyle = '#7A8F65';
                 this.ctx.beginPath();
                 this.ctx.ellipse(0, -45, 6, 12, 0.1, 0, Math.PI * 2);
                 this.ctx.fill();
             }
 
             drawFace() {
-                this.ctx.fillStyle = '#4d3426';
-                
-                // Eyes
-                this.ctx.beginPath();
-                this.ctx.arc(-12, -8, 3, 0, Math.PI);
-                this.ctx.fill();
-                this.ctx.beginPath();
-                this.ctx.arc(12, -8, 3, 0, Math.PI);
-                this.ctx.fill();
+                this.ctx.fillStyle = '#5C4A3C';
+                this.ctx.beginPath(); this.ctx.arc(-12, -8, 3, 0, Math.PI); this.ctx.fill();
+                this.ctx.beginPath(); this.ctx.arc(12, -8, 3, 0, Math.PI); this.ctx.fill();
 
-                // Nose
-                this.ctx.fillStyle = '#bf5830';
-                this.ctx.beginPath();
-                this.ctx.arc(0, 2, 2, 0, Math.PI * 2);
-                this.ctx.fill();
+                this.ctx.fillStyle = '#A67B52';
+                this.ctx.beginPath(); this.ctx.arc(0, 2, 2, 0, Math.PI * 2); this.ctx.fill();
 
-                // Smile
-                const useBreathingMotion = !document.body.classList.contains('reduced-motion');
-                const smileWidth = 16 + (this.isBreathing && useBreathingMotion ? (this.breathingScale - 1) * 10 : 0);
-                this.ctx.strokeStyle = '#4d3426';
+                const useMotion = !document.body.classList.contains('reduced-motion');
+                const w = 16 + (this.isBreathing && useMotion ? (this.breathingScale - 1) * 10 : 0);
+                this.ctx.strokeStyle = '#5C4A3C';
                 this.ctx.lineWidth = 2.5;
                 this.ctx.lineCap = 'round';
                 this.ctx.beginPath();
-                this.ctx.arc(0, 8, smileWidth, 0.15, Math.PI - 0.15);
+                this.ctx.arc(0, 8, w, 0.15, Math.PI - 0.15);
                 this.ctx.stroke();
 
-                // Blush
-                this.ctx.fillStyle = '#d87060';
-                this.ctx.globalAlpha = 0.5;
-                this.ctx.beginPath();
-                this.ctx.arc(-25, 5, 6, 0, Math.PI * 2);
-                this.ctx.fill();
-                this.ctx.beginPath();
-                this.ctx.arc(25, 5, 6, 0, Math.PI * 2);
-                this.ctx.fill();
+                this.ctx.fillStyle = '#C46A5A';
+                this.ctx.globalAlpha = 0.4;
+                this.ctx.beginPath(); this.ctx.arc(-25, 5, 6, 0, Math.PI * 2); this.ctx.fill();
+                this.ctx.beginPath(); this.ctx.arc(25, 5, 6, 0, Math.PI * 2); this.ctx.fill();
                 this.ctx.globalAlpha = 1;
             }
 
             drawSparkles() {
-                const time = this.currentTime * 0.001;
-                this.ctx.fillStyle = '#d8b870';
-                
+                const t = this.currentTime * 0.001;
+                this.ctx.fillStyle = '#C4A855';
                 for (let i = 0; i < 4; i++) {
-                    const x = this.centerX + Math.sin(time * 0.5 + i * 1.5) * 70;
-                    const y = this.centerY + Math.cos(time * 0.6 + i * 1.2) * 60;
-                    const size = 1 + Math.sin(time * 3 + i) * 0.5;
-                    const alpha = 0.3 + Math.sin(time * 2 + i) * 0.2;
-                    
-                    this.ctx.globalAlpha = alpha;
+                    const x = this.centerX + Math.sin(t * 0.5 + i * 1.5) * 70;
+                    const y = this.centerY + Math.cos(t * 0.6 + i * 1.2) * 60;
+                    const size = 1 + Math.sin(t * 3 + i) * 0.5;
+                    this.ctx.globalAlpha = 0.3 + Math.sin(t * 2 + i) * 0.2;
                     this.ctx.save();
                     this.ctx.translate(x, y);
-                    this.ctx.rotate(time + i);
-                    
+                    this.ctx.rotate(t + i);
                     this.ctx.beginPath();
                     this.ctx.moveTo(0, -size);
                     this.ctx.lineTo(size * 0.3, 0);
@@ -3000,29 +2465,19 @@
                     this.ctx.lineTo(-size * 0.3, 0);
                     this.ctx.closePath();
                     this.ctx.fill();
-                    
                     this.ctx.restore();
                 }
-                
                 this.ctx.globalAlpha = 1;
             }
 
             startAnimation() {
-                const animate = (currentTime) => {
-                    this.currentTime = currentTime;
-                    this.drawPumpki();
-                    requestAnimationFrame(animate);
-                };
-                
+                const animate = (t) => { this.currentTime = t; this.drawPumpki(); requestAnimationFrame(animate); };
                 requestAnimationFrame(animate);
             }
         }
 
-        // Initialize the app
         let app;
-        window.addEventListener('DOMContentLoaded', () => {
-            app = new PumpkiApp();
-        });
+        window.addEventListener('DOMContentLoaded', () => { app = new PumpkiApp(); });
     </script>
 </body>
 </html>
